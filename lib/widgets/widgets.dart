@@ -34,7 +34,8 @@ Widget card(BuildContext c, String image, String title, dynamic v) {
     shape: RoundedRectangleBorder(borderRadius: rounded(10)),
     child: Container(
       width: 240,
-      decoration: BoxDecoration(borderRadius: rounded(10)),
+      decoration: BoxDecoration(
+          borderRadius: rounded(10), color: read(c).fixTheme ? Cw : C3),
       child: InkWell(
         borderRadius: rounded(10),
         onTap: () => v == null ? {} : open(c, v),
@@ -49,7 +50,10 @@ Widget card(BuildContext c, String image, String title, dynamic v) {
                 borderRadius: rounded(10),
               ),
             ),
-            Text(title, style: TextStyle(color: Cb, fontSize: 20)),
+            Text(
+              title,
+              style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20),
+            ),
             Container(height: 0)
           ],
         ),
@@ -188,7 +192,7 @@ Widget cardHistory(
     child: Card(
       shape: RoundedRectangleBorder(borderRadius: rounded(10)),
       margin: EdgeInsets.zero,
-      color: Cw,
+      color: read(c).fixTheme ? Cw : C3,
       elevation: 3,
       child: InkWell(
         onTap: () => open(c, DetailScanHistory(img, date, title, desc)),
@@ -208,8 +212,12 @@ Widget cardHistory(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(title!, style: TextStyle(color: Cb, fontSize: 20)),
-                Text(date!, style: TextStyle(color: Cb, fontSize: 15))
+                Text(title!,
+                    style: TextStyle(
+                        color: read(c).fixTheme ? Cb : Cw, fontSize: 20)),
+                Text(date!,
+                    style: TextStyle(
+                        color: read(c).fixTheme ? Cb : Cw, fontSize: 15))
               ],
             ),
           ],
@@ -220,7 +228,7 @@ Widget cardHistory(
 }
 
 // btn untuk profile
-Widget btnData_profile(String title,VoidCallback v) {
+Widget btnData_profile(BuildContext c, String title, VoidCallback v) {
   return TextButton(
     onPressed: v,
     child: Row(
@@ -228,8 +236,11 @@ Widget btnData_profile(String title,VoidCallback v) {
       children: [
         Text(
           title,
-          style:
-              TextStyle(color: Cb, fontSize: 17, fontWeight: FontWeight.w400),
+          style: TextStyle(
+            color: read(c).fixTheme ? Cb : Cw,
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         Icon(Icons.chevron_right_rounded, color: C1, size: 30),
       ],

@@ -5,7 +5,7 @@ import 'package:attacne/screens/history.dart';
 import 'package:attacne/screens/login.dart';
 import 'package:attacne/screens/nav_bar.dart';
 import 'package:attacne/services/colors.dart';
-import 'package:attacne/services/state.dart';
+import 'package:attacne/services/provider.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
@@ -107,7 +107,6 @@ Widget textFormField(
 }) {
   return TextFormField(
     onChanged: (value) {
-      // print(value);
       switch (label) {
         case 'Username':
           sementara1 = value;
@@ -120,7 +119,7 @@ Widget textFormField(
           break;
       }
     },
-    style: TextStyle(fontSize: 18, color: Cb),
+    style: TextStyle(fontSize: 18, color: read(c).fixTheme ? Cb : Cw),
     // autofocus: false,
     keyboardType: type,
     obscureText: isPass

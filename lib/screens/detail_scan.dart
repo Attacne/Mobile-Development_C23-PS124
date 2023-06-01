@@ -25,6 +25,7 @@ class DetailScan extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: BoxDecoration(
+                    color: read(c).fixTheme ? Cw : C2,
                     image: DecorationImage(
                         image: FileImage(image!), fit: BoxFit.cover),
                   ),
@@ -36,7 +37,8 @@ class DetailScan extends StatelessWidget {
                 (BuildContext c, int index) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                    decoration: BoxDecoration(color: Cw),
+                    decoration:
+                        BoxDecoration(color: read(c).fixTheme ? Cw : C2),
                     child: Column(
                       children: [
                         Column(
@@ -51,17 +53,15 @@ class DetailScan extends StatelessWidget {
                             Text(
                               desc_id,
                               style: TextStyle(
-                                color: Colors.black,
+                                color: read(c).fixTheme ? Cb : Cw,
                                 fontSize: 17,
-                                fontWeight: FontWeight.w400,
                               ),
                               textAlign: TextAlign.justify,
                             ),
                             Container(height: 100),
                             Text(
                               subHeadDetailScan_id,
-                              style: TextStyle(
-                                  color: C1, fontSize: 30, fontWeight: bold),
+                              style: TextStyle(color: C1, fontSize: 30),
                             ),
                           ],
                         ),
@@ -73,8 +73,8 @@ class DetailScan extends StatelessWidget {
                             padding: EdgeInsets.zero,
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext c, int i) =>
-                                card(c, imgRecProd_id[i]!, prodName_id[i]!, null),
+                            itemBuilder: (BuildContext c, int i) => card(
+                                c, imgRecProd_id[i]!, prodName_id[i]!, null),
                           ),
                         ),
                       ],
@@ -89,7 +89,7 @@ class DetailScan extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: 80,
-        color: Cw,
+        color: read(c).fixTheme ? Cw : C2,
         child: Center(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -11,7 +11,9 @@ class Acne extends StatelessWidget {
   Widget build(BuildContext c) {
     return SafeArea(
       top: false,
+      bottom: false,
       child: Scaffold(
+        backgroundColor: read(c).fixTheme ? Cw : C2,
         body: Stack(
           children: [
             Positioned(
@@ -20,30 +22,41 @@ class Acne extends StatelessWidget {
               right: -(900 / 5),
               child: Container(
                 height: 900,
-                decoration: BoxDecoration(
-                  gradient: gradient,
-                  borderRadius: rounded(1000),
-                ),
+                decoration: read(c).fixTheme
+                    ? BoxDecoration(
+                        gradient: gradient,
+                        borderRadius: rounded(1000),
+                      )
+                    : BoxDecoration(
+                        color: C3,
+                        borderRadius: rounded(1000),
+                      ),
               ),
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  acneHead_id,
-                  style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold),
+                Padding(
+                  padding: EdgeInsets.only(top: 50),
+                  child: Text(
+                    acneHead_id,
+                    style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold),
+                  ),
                 ),
                 Image.asset(
                   height: size(c).height * .35,
                   imgAcne_id,
                   fit: BoxFit.fitWidth,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    btnAcne(c, Icons.camera_alt),
-                    btnAcne(c, Icons.add_rounded),
-                  ],
+                Padding(
+                  padding: EdgeInsets.only(bottom: 100),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      btnAcne(c, Icons.camera_alt),
+                      btnAcne(c, Icons.add_rounded),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -4,7 +4,7 @@ import 'package:attacne/screens/acne.dart';
 import 'package:attacne/screens/history.dart';
 import 'package:attacne/screens/home.dart';
 import 'package:attacne/screens/profile.dart';
-import 'package:attacne/services/state.dart';
+import 'package:attacne/services/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

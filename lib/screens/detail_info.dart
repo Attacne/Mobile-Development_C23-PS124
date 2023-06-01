@@ -24,13 +24,12 @@ class DetailInfo extends StatelessWidget {
             SliverAppBar(
               elevation: 5,
               pinned: true,
-              backgroundColor: C1,
               expandedHeight: size(c).width,
               title: Text(detailInfoHead_id),
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: BoxDecoration(
-                    color: C1,
+                    color: read(c).fixTheme ? C1 : C2,
                     image: DecorationImage(
                         image: AssetImage(img!), fit: BoxFit.cover),
                   ),
@@ -42,23 +41,21 @@ class DetailInfo extends StatelessWidget {
                 (BuildContext context, int index) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                    decoration: BoxDecoration(color: Cw),
+                    decoration: BoxDecoration(
+                      color: read(c).fixTheme ? Cw : C3,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(height: 10),
                         Text(
                           title!,
-                          style: TextStyle(
-                              color: C1, fontSize: 30, fontWeight: bold),
+                          style: TextStyle(color: C1, fontSize: 30),
                         ),
                         Text(
                           desc!,
                           style: TextStyle(
-                            color: Cb,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
+                              color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
                           textAlign: TextAlign.justify,
                         ),
                         Container(height: size(c).width),

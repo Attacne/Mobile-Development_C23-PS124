@@ -1,4 +1,5 @@
 import 'package:attacne/screens/change_language.dart';
+import 'package:attacne/screens/change_theme.dart';
 import 'package:attacne/screens/detail_info.dart';
 import 'package:attacne/screens/detail_profile.dart';
 import 'package:attacne/screens/login.dart';
@@ -22,7 +23,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: Cw,
+      backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
         leadingWidth: 80,
         leading: Row(
@@ -45,7 +46,7 @@ class _ProfileState extends State<Profile> {
           ],
         ),
         toolbarHeight: 80,
-        backgroundColor: Cw,
+        backgroundColor: read(c).fixTheme ? Cw : C3,
         elevation: 0,
         titleSpacing: 0,
         title: TextButton(
@@ -60,11 +61,12 @@ class _ProfileState extends State<Profile> {
             children: [
               Text(
                 read(c).userName,
-                style: TextStyle(color: Cb, fontSize: 17, fontWeight: bold),
+                style:
+                    TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
               ),
               Text(
                 read(c).email,
-                style: TextStyle(color: Cb),
+                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
               ),
             ],
           ),
@@ -89,22 +91,23 @@ class _ProfileState extends State<Profile> {
               children: [
                 Text(
                   head1Profile_id,
-                  style: TextStyle(color: Cb, fontSize: 17, fontWeight: bold),
+                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
-                btnData_profile(subHead1Profile_id, () {}),
-                btnData_profile(subHead2Profile_id, () {}),
+                btnData_profile(c, subHead1Profile_id, () {}),
+                btnData_profile(c, subHead2Profile_id, () {}),
                 const SizedBox(height: 50),
                 Text(
                   head2Profile_id,
-                  style: TextStyle(color: Cb, fontSize: 17, fontWeight: bold),
+                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
                 btnData_profile(
-                    subHead3Profile_id, () => open(c, ChangeLanguage())),
-                btnData_profile(subHead4Profile_id, () {}),
-                btnData_profile(subHead5Profile_id, () {}),
-                btnData_profile(subHead6Profile_id, () {}),
+                    c, subHead3Profile_id, () => open(c, ChangeLanguage())),
+                btnData_profile(
+                    c, subHead4Profile_id, () => open(c, ChangeTheme())),
+                btnData_profile(c, subHead5Profile_id, () {}),
+                btnData_profile(c, subHead6Profile_id, () {}),
               ],
             ),
           ),

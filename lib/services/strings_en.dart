@@ -93,7 +93,7 @@ String mainUserName_en = 'Muh. Hilmy Noor Fauzi',
     subHead2Profile_en = 'Privacy Policy',
     head2Profile_en = 'General',
     subHead3Profile_en = 'Language',
-    subHead4Profile_en = 'Feedback',
+    subHead4Profile_en = 'Theme',
     subHead5Profile_en = 'About app',
     subHead6Profile_en = 'Rate this app';
 //--------------------------------------------------------------------

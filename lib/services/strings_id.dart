@@ -1,5 +1,6 @@
 import 'package:attacne/services/variabels.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 String titleS_id = 'Jerawat Batu', desc_id = '...';
 //--------------------------------------------------------------------
@@ -93,7 +94,7 @@ String mainUserName_id = 'Muh. Hilmy Noor Fauzi',
     subHead2Profile_id = 'Kebijakan pribadi',
     head2Profile_id = 'Umum',
     subHead3Profile_id = 'Bahasa',
-    subHead4Profile_id = 'Masukan',
+    subHead4Profile_id = 'Tema',
     subHead5Profile_id = 'Tentang aplikasi',
     subHead6Profile_id = 'Nilai aplikasi ini';
 //--------------------------------------------------------------------

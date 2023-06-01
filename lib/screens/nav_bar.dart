@@ -42,7 +42,7 @@ class NavBarAppState extends State<NavBarApp> {
           ),
           height: 55,
           decoration: BoxDecoration(
-            color: Cw,
+            color: read(c).fixTheme ? Cw : C3,
             boxShadow: [
               BoxShadow(
                 color: Cb.withOpacity(.3),
@@ -132,7 +132,7 @@ class NavBarAppState extends State<NavBarApp> {
                             Icon(
                               icon[index],
                               size: 30,
-                              color: index == currentIndex ? C1 : Cb26,
+                              color: index == currentIndex ? C1 : read(c).fixTheme ? Cb26 : Cw24,
                             ),
                           ],
                         ),

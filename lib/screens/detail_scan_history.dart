@@ -32,9 +32,7 @@ class DetailScanHistory extends StatelessWidget {
                 background: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: FileImage(img!),
-                      fit: BoxFit.cover,
-                    ),
+                        image: FileImage(img!), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -44,7 +42,8 @@ class DetailScanHistory extends StatelessWidget {
                 (BuildContext context, int index) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                    decoration: BoxDecoration(color: Cw),
+                    decoration:
+                        BoxDecoration(color: read(c).fixTheme ? Cw : C2),
                     child: Column(
                       children: [
                         Column(
@@ -53,15 +52,13 @@ class DetailScanHistory extends StatelessWidget {
                             Container(height: 10, width: 10),
                             Text(
                               title!,
-                              style: TextStyle(
-                                  color: C1, fontSize: 30, fontWeight: bold),
+                              style: TextStyle(color: C1, fontSize: 30),
                             ),
                             Text(
                               desc!,
                               style: TextStyle(
-                                color: Cb,
+                                color: read(c).fixTheme ? Cb : Cw,
                                 fontSize: 17,
-                                fontWeight: FontWeight.w400,
                               ),
                               textAlign: TextAlign.justify,
                             ),

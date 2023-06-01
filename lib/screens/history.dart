@@ -22,18 +22,17 @@ class _HistoryState extends State<History> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: gradient,
-          ),
+          decoration: read(c).fixTheme
+              ? BoxDecoration(gradient: gradient)
+              : BoxDecoration(color: C3),
         ),
-        title: Text(
-          'History',
-          style: TextStyle(color: Cw, fontSize: 25, fontWeight: bold),
-        ),
+        title: Text('History', style: TextStyle(color: Cw, fontSize: 25)),
         actions: [
           IconButton(
             onPressed: () async {
-              imgScan.isEmpty ? null : await showMyDialog(c, dgDeleteHistroy_id);
+              imgScan.isEmpty
+                  ? null
+                  : await showMyDialog(c, dgDeleteHistroy_id);
               setState(() {});
             },
             icon: Icon(Icons.delete, color: Cw),
@@ -41,7 +40,7 @@ class _HistoryState extends State<History> {
           )
         ],
       ),
-      backgroundColor: Cw,
+      backgroundColor: read(c).fixTheme ? Cw : C2,
       body: imgScan.isEmpty
           ? Center(
               child: Column(

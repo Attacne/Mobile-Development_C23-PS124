@@ -1,12 +1,11 @@
 import 'package:attacne/services/colors.dart';
-import 'package:attacne/services/state.dart';
+import 'package:attacne/services/provider.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:toast/toast.dart';
 
 class DetailProfile extends StatefulWidget {
   @override
@@ -19,18 +18,18 @@ class _DetailProfileState extends State<DetailProfile> {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: Cw,
+      backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Cw,
+        backgroundColor: read(c).fixTheme ? Cw : C3,
         leading: IconButton(
           splashRadius: 1,
           splashColor: Colors.transparent,
           onPressed: () => close(c),
-          icon: Icon(Icons.arrow_back_rounded, color: Cb),
+          icon: Icon(Icons.arrow_back_rounded, color: read(c).fixTheme ? Cb : Cw),
         ),
         elevation: 0,
-        title: Text(editProfileHead_id, style: TextStyle(fontSize: 17, color: Cb)),
+        title: Text(editProfileHead_id, style: TextStyle(fontSize: 17, color: read(c).fixTheme ? Cb : Cw)),
       ),
       body: Stack(
         children: [
@@ -44,7 +43,7 @@ class _DetailProfileState extends State<DetailProfile> {
                 Container(
                   width: size(c).width,
                   decoration:
-                      BoxDecoration(color: Cw, borderRadius: rounded(20)),
+                      BoxDecoration(color: Colors.transparent, borderRadius: rounded(20)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -116,7 +115,6 @@ class _DetailProfileState extends State<DetailProfile> {
                     )),
                   ),
                   onPressed: () async {
-                    // close(c);
                     isTap = !isTap;
                     setState(() {});
                     await Future.delayed(const Duration(seconds: 1));

@@ -1,6 +1,7 @@
 import 'package:attacne/services/strings_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 
 class StateM with ChangeNotifier, DiagnosticableTreeMixin {
@@ -81,8 +82,6 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
     notifyListeners();
   }
 
-//------------------------------------------------------------------------------
-// untuk pemilihan bahasa page
   String _fixedLang = 'Indonesia';
 
   String get fixedLang => _fixedLang;
@@ -91,4 +90,52 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
     _fixedLang = _selectedLang;
     notifyListeners();
   }
+
+//------------------------------------------------------------------------------
+// untuk pemilihan tema page
+
+  String _selectedTheme = 'LightTheme';
+
+  String get selectedTheme => _selectedTheme;
+
+  void setSelectedTheme(String value) {
+    _selectedTheme = value;
+    notifyListeners();
+  }
+
+  bool _fixTheme = true;
+
+  bool get fixTheme => _fixTheme;
+
+  void setFixedTheme(BuildContext c) {
+    _selectedTheme == 'System'
+        ? MediaQuery.of(c).platformBrightness == Brightness.light
+            ? _fixTheme = true
+            : _fixTheme = false
+        : _selectedTheme == 'LightTheme'
+            ? _fixTheme = true
+            : _fixTheme = false;
+
+    notifyListeners();
+  }
+}
+
+//------------------------------------------------------------------------------
+// untuk pemilihan bahasa page
+class ThemeProvider extends ChangeNotifier {
+  ThemeMode themeMode = ThemeMode.system;
+
+// bool get isDarkMode {
+//   if (themeMode == ThemeMode.system) {
+//     final brightness = SchedulerBinding.instance.window.platformBrightness;
+//     return brightness == Brightness.dark;
+//   } else {
+//     return themeMode == ThemeMode.dark;
+//   }
+// }
+//
+// void toggleTheme(bool isOn) {
+//   themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+//   notifyListeners();
+// }
 }

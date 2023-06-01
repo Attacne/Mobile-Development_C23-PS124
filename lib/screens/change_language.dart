@@ -10,9 +10,7 @@ class ChangeLanguage extends StatelessWidget {
   Widget build(BuildContext c) {
     return Scaffold(
       appBar: AppBar(
-        title: read(c).fixedLang == 'Indonesia'
-            ? Text('Bahasa')
-            : Text('Language'),
+        title: Text(read(c).fixedLang == 'Indonesia' ? 'Bahasa' : 'Language'),
         flexibleSpace: Container(
           width: size(c).width,
           decoration: BoxDecoration(gradient: gradient),
