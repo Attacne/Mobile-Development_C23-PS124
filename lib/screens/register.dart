@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> with TickerProviderStateMixin {
                   height: size(c).width * 1.6,
                   width: size(c).width * 1.6,
                   decoration: BoxDecoration(
-                      gradient: gradient, borderRadius: rounded(1000)),
+                      gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
                 ),
               ),
               Column(

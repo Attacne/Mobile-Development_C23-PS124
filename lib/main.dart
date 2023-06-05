@@ -11,6 +11,7 @@ import 'package:attacne/screens/profile.dart';
 import 'package:attacne/screens/register.dart';
 import 'package:attacne/services/provider.dart';
 import 'package:attacne/services/strings_id.dart';
+import 'package:attacne/widgets/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';

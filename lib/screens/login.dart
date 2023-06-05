@@ -30,7 +30,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               height: size(c).width * .8,
               width: size(c).width * .8,
               decoration: BoxDecoration(
-                gradient: gradient,
+                gradient: read(c).fixTheme ? gradientLight : gradientDark,
                 borderRadius: rounded(1000),
               ),
             ),
@@ -42,7 +42,7 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
               height: size(c).width,
               width: size(c).width,
               decoration: BoxDecoration(
-                gradient: gradient,
+                gradient: read(c).fixTheme ? gradientLight : gradientDark,
                 borderRadius: rounded(1000),
               ),
             ),

@@ -51,7 +51,7 @@ class _DetailProfileState extends State<DetailProfile> {
                         height: size(c).width * .5,
                         width: size(c).width * .5,
                         decoration: BoxDecoration(
-                          gradient: gradient,
+                          gradient: read(c).fixTheme ? gradientLight : gradientDark,
                           borderRadius: rounded(200),
                           image: DecorationImage(
                             image: read(c).imgPrifileNow == ''
@@ -63,7 +63,8 @@ class _DetailProfileState extends State<DetailProfile> {
                       ),
                       Expanded(
                         child: Container(
-                          height: size(c).width * .5,
+                          // color: Colors.red,
+                          height: 250,
                           child: GridView.count(
                             padding: const EdgeInsets.all(5),
                             physics: const BouncingScrollPhysics(),
@@ -81,7 +82,6 @@ class _DetailProfileState extends State<DetailProfile> {
                                     right: size(c).width / 60,
                                   ),
                                   decoration: BoxDecoration(
-                                    color: C1,
                                     borderRadius: rounded(10),
                                     image: DecorationImage(
                                       image: AssetImage(imgProfile_id[i]),
@@ -123,7 +123,7 @@ class _DetailProfileState extends State<DetailProfile> {
                     create(c).setUserName(sementara1!);
                     create(c).setEmail(sementara2!);
                   },
-                  child: const Text('save'),
+                  child: const Text('Save'),
                 ),
                 const SizedBox(height: 50),
               ],

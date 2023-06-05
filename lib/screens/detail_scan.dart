@@ -12,22 +12,21 @@ class DetailScan extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: C1,
+      backgroundColor: read(c).fixTheme ? C1 : C3,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
               elevation: 5,
               pinned: true,
-              backgroundColor: C1,
+              backgroundColor: read(c).fixTheme ? C1 : C3,
               expandedHeight: size(c).width,
               title: Text(detailScanHead_id),
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: BoxDecoration(
                     color: read(c).fixTheme ? Cw : C2,
-                    image: DecorationImage(
-                        image: FileImage(image!), fit: BoxFit.cover),
+                    image: DecorationImage(image: FileImage(image!), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -37,8 +36,7 @@ class DetailScan extends StatelessWidget {
                 (BuildContext c, int index) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                    decoration:
-                        BoxDecoration(color: read(c).fixTheme ? Cw : C2),
+                    decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
                     child: Column(
                       children: [
                         Column(
@@ -47,8 +45,7 @@ class DetailScan extends StatelessWidget {
                             Container(height: 10, width: 10),
                             Text(
                               titleS_id,
-                              style: TextStyle(
-                                  color: C1, fontSize: 30, fontWeight: bold),
+                              style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
                             ),
                             Text(
                               desc_id,
@@ -73,8 +70,7 @@ class DetailScan extends StatelessWidget {
                             padding: EdgeInsets.zero,
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext c, int i) => card(
-                                c, imgRecProd_id[i]!, prodName_id[i]!, null),
+                            itemBuilder: (BuildContext c, int i) => card(c, imgRecProd_id[i]!, prodName_id[i]!),
                           ),
                         ),
                       ],

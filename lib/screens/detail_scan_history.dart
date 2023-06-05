@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/models/acneInfoAdapter.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
@@ -17,7 +18,7 @@ class DetailScanHistory extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: C1,
+      backgroundColor: read(c).fixTheme ? C1 : C3,
       body: SafeArea(
         bottom: false,
         child: CustomScrollView(
@@ -25,14 +26,13 @@ class DetailScanHistory extends StatelessWidget {
             SliverAppBar(
               elevation: 5,
               pinned: true,
-              backgroundColor: C1,
+              backgroundColor: read(c).fixTheme ? C1 : C3,
               expandedHeight: size(c).width,
               title: Text('Detail'),
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
                   decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: FileImage(img!), fit: BoxFit.cover),
+                    image: DecorationImage(image: FileImage(img!), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -42,8 +42,7 @@ class DetailScanHistory extends StatelessWidget {
                 (BuildContext context, int index) {
                   return Container(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                    decoration:
-                        BoxDecoration(color: read(c).fixTheme ? Cw : C2),
+                    decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
                     child: Column(
                       children: [
                         Column(
@@ -65,21 +64,20 @@ class DetailScanHistory extends StatelessWidget {
                             Container(height: 100),
                             Text(
                               'Rekomendasi Produk',
-                              style: TextStyle(
-                                  color: C1, fontSize: 30, fontWeight: bold),
+                              style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
                             ),
                           ],
                         ),
+                        // Rekomendasi Produk
                         Container(
                           height: 300,
                           width: size(c).width,
                           child: ListView.builder(
-                            itemCount: imgInfo_id.length,
+                            itemCount: 5,
                             padding: EdgeInsets.zero,
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.horizontal,
-                            itemBuilder: (BuildContext c, int i) =>
-                                card(c, imgInfo_id[i]!, titleInfo_id[i]!, null),
+                            itemBuilder: (BuildContext c, int i) => card(c, dummyAcne[i].illustration, nameAcneInfo_id[i]!),
                           ),
                         ),
                       ],

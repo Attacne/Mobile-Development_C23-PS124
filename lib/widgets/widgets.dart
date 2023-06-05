@@ -16,37 +16,36 @@ void close(BuildContext c) => Navigator.pop(c);
 void closeDialog(BuildContext c, bool respon) => Navigator.of(c).pop(respon);
 
 // Menambah lapisan teratas pada page
-void open(BuildContext c, dynamic page) =>
-    Navigator.push(c, MaterialPageRoute(builder: (context) => page));
+void open(BuildContext c, dynamic page) => Navigator.push(c, MaterialPageRoute(builder: (context) => page));
 
 // Mengganti lapisan teratas pada page
-void openDelete(BuildContext c, dynamic page) =>
-    Navigator.pushReplacement(c, MaterialPageRoute(builder: (context) => page));
+void openDelete(BuildContext c, dynamic page) => Navigator.pushReplacement(c, MaterialPageRoute(builder: (context) => page));
 
 // Untuk size custom
 Size size(BuildContext c) => MediaQuery.of(c).size;
 
-// menampilkan bentuk kartu listview hodizontal
-Widget card(BuildContext c, String image, String title, dynamic v) {
+// menampilkan bentuk kartu listview hodizontal di Home Page
+Widget card(BuildContext c, String image, String title, {dynamic dest}) {
   return Card(
-    elevation: 3,
+    elevation: 5,
     margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
     shape: RoundedRectangleBorder(borderRadius: rounded(10)),
     child: Container(
       width: 240,
       decoration: BoxDecoration(
-          borderRadius: rounded(10), color: read(c).fixTheme ? Cw : C3),
+        borderRadius: rounded(10),
+        color: read(c).fixTheme ? Cw : C3,
+      ),
       child: InkWell(
         borderRadius: rounded(10),
-        onTap: () => v == null ? {} : open(c, v),
+        onTap: () => dest == null ? {} : open(c, dest),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 220,
+              height: 170,
               decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(image), fit: BoxFit.cover),
+                image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
                 borderRadius: rounded(10),
               ),
             ),
@@ -64,19 +63,19 @@ Widget card(BuildContext c, String image, String title, dynamic v) {
 
 // button untuk save atau tidak
 Widget btnSave(BuildContext c, String title) {
-  bool jika = title == 'Simpan';
+  bool isSave = title == 'Simpan';
   return Container(
     height: size(c).width * .12,
     width: size(c).width * .3,
-    decoration: jika
-        ? BoxDecoration(gradient: gradient, borderRadius: rounded(15))
+    decoration: isSave
+        ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15))
         : BoxDecoration(
-            border: Border.all(width: 3, color: C1),
+            border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
             borderRadius: rounded(15),
           ),
     child: TextButton(
       onPressed: () async {
-        if (jika) {
+        if (isSave) {
           imgScan.add(image);
           dateScan.add(
             'Scan pada: '
@@ -93,7 +92,15 @@ Widget btnSave(BuildContext c, String title) {
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: rounded(10)),
       ),
-      child: Text(title, style: TextStyle(color: jika ? Cw : C1)),
+      child: Text(title,
+          style: TextStyle(
+              color: isSave
+                  ? read(c).fixTheme
+                      ? Cw
+                      : Cw.withOpacity(.5)
+                  : read(c).fixTheme
+                      ? C1
+                      : Cw.withOpacity(.5))),
     ),
   );
 }
@@ -106,28 +113,33 @@ Widget btnAcne(BuildContext c, IconData icon) {
     width: size(c).width * .3,
     decoration: isPlus
         ? BoxDecoration(
-            border: Border.all(width: 3, color: C1),
+            border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
             borderRadius: rounded(15),
           )
-        : BoxDecoration(gradient: gradient, borderRadius: rounded(15)),
+        : BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
     child: TextButton(
       onPressed: () async {
-        isPlus
-            ? await getImage(ImageSource.gallery)
-            : await getImage(ImageSource.camera);
+        isPlus ? await getImage(ImageSource.gallery) : await getImage(ImageSource.camera);
         open(c, DetailScan());
       },
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(borderRadius: rounded(10)),
       ),
-      child: Icon(icon, color: isPlus ? C1 : Cw, size: size(c).height * .05),
+      child: Icon(icon,
+          color: isPlus
+              ? read(c).fixTheme
+                  ? C1
+                  : Cw.withOpacity(.5)
+              : read(c).fixTheme
+                  ? Cw
+                  : Cw.withOpacity(.5),
+          size: size(c).height * .05),
     ),
   );
 }
 
 // TextField dengan background putih
-Widget inputData(BuildContext c, IconData icon, String hintText,
-    bool isPassword, bool isEmail) {
+Widget inputData(BuildContext c, IconData icon, String hintText, bool isPassword, bool isEmail) {
   return Container(
     height: size(c).width / 8,
     width: size(c).width / 1.2,
@@ -136,7 +148,7 @@ Widget inputData(BuildContext c, IconData icon, String hintText,
       color: Cw,
       borderRadius: rounded(15),
       boxShadow: [
-        BoxShadow(color: Cb26, blurRadius: 5, offset: const Offset(0, 5)),
+        BoxShadow(color: Cb.withOpacity(.5), blurRadius: 5, offset: const Offset(0, 5)),
       ],
     ),
     child: TextField(
@@ -159,8 +171,7 @@ Widget inputData(BuildContext c, IconData icon, String hintText,
 }
 
 // button login/register
-Widget loginRegister(
-    BuildContext c, String title, double width, VoidCallback v) {
+Widget loginRegister(BuildContext c, String title, double width, VoidCallback v) {
   return InkWell(
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
@@ -170,10 +181,10 @@ Widget loginRegister(
       width: size(c).width / width,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        gradient: gradient,
+        gradient: read(c).fixTheme ? gradientLight : gradientDark,
         borderRadius: rounded(15),
         boxShadow: [
-          BoxShadow(color: Cb26, blurRadius: 10, offset: const Offset(0, 5)),
+          BoxShadow(color: Cb.withOpacity(.5), blurRadius: 10, offset: const Offset(0, 5)),
         ],
       ),
       child: Text(
@@ -185,8 +196,7 @@ Widget loginRegister(
 }
 
 // card untuk history
-Widget cardHistory(
-    BuildContext c, String? title, File? img, String? date, String? desc) {
+Widget cardHistory(BuildContext c, String? title, File? img, String? date, String? desc) {
   return Container(
     margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
     child: Card(
@@ -211,14 +221,7 @@ Widget cardHistory(
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title!,
-                    style: TextStyle(
-                        color: read(c).fixTheme ? Cb : Cw, fontSize: 20)),
-                Text(date!,
-                    style: TextStyle(
-                        color: read(c).fixTheme ? Cb : Cw, fontSize: 15))
-              ],
+              children: [Text(title!, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20)), Text(date!, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 15))],
             ),
           ],
         ),
@@ -228,19 +231,15 @@ Widget cardHistory(
 }
 
 // btn untuk profile
-Widget btnData_profile(BuildContext c, String title, VoidCallback v) {
+Widget btnData_profile(BuildContext c, String title, {dynamic dest}) {
   return TextButton(
-    onPressed: v,
+    onPressed: () => open(c, dest),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
-          style: TextStyle(
-            color: read(c).fixTheme ? Cb : Cw,
-            fontSize: 17,
-            fontWeight: FontWeight.w400,
-          ),
+          style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: FontWeight.w400),
         ),
         Icon(Icons.chevron_right_rounded, color: C1, size: 30),
       ],

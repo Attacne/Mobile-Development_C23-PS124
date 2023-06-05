@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/models/acneInfoModel.dart';
 import 'package:attacne/screens/history.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/strings_id.dart';
@@ -9,29 +10,30 @@ import 'package:flutter/material.dart';
 import 'package:attacne/screens/acne.dart';
 
 class DetailInfo extends StatelessWidget {
-  String? img, title, desc;
+  AcneInfoModel model;
 
-  DetailInfo(this.img, this.title, this.desc);
+  DetailInfo(this.model);
 
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: C1,
-      body: SafeArea(
-        bottom: false,
+      backgroundColor: read(c).fixTheme ? C1 : C2,
+      body: ScrollConfiguration(
+        behavior: MaterialScrollBehavior().copyWith(overscroll: false),
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
               elevation: 5,
               pinned: true,
-              expandedHeight: size(c).width,
-              title: Text(detailInfoHead_id),
+              backgroundColor: read(c).fixTheme ? C1 : C2,
+              expandedHeight: 350,
+              title: Text(model.acneName),
               flexibleSpace: FlexibleSpaceBar(
                 background: Container(
+                  margin: EdgeInsets.only(top: 50),
                   decoration: BoxDecoration(
                     color: read(c).fixTheme ? C1 : C2,
-                    image: DecorationImage(
-                        image: AssetImage(img!), fit: BoxFit.cover),
+                    image: DecorationImage(image: AssetImage(model.illustration), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -40,25 +42,51 @@ class DetailInfo extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return Container(
-                    padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
                     decoration: BoxDecoration(
                       color: read(c).fixTheme ? Cw : C3,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
                     ),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(height: 10),
-                        Text(
-                          title!,
-                          style: TextStyle(color: C1, fontSize: 30),
+                        Container(
+                          height: 5,
+                          margin: EdgeInsets.symmetric(vertical: 10, horizontal: size(c).width * .35),
+                          decoration: BoxDecoration(borderRadius: rounded(50), color: C1),
                         ),
-                        Text(
-                          desc!,
-                          style: TextStyle(
-                              color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
-                          textAlign: TextAlign.justify,
+                        Container(
+                          padding: const EdgeInsets.all(20),
+                          child: Text(
+                            model.acneDesc,
+                            style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
+                            textAlign: TextAlign.justify,
+                          ),
                         ),
-                        Container(height: size(c).width),
+                        Container(
+                          // margin: const EdgeInsets.only(bottom: 40),
+                          height: 310,
+                          width: size(c).width,
+                          child: ListView.builder(
+                            itemCount: 5,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            physics: const BouncingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext c, int i) {
+                              return Container(
+                                width: 300,
+                                margin: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: rounded(30),
+                                  color: read(c).fixTheme ? Cw : C3,
+                                  image: DecorationImage(image: AssetImage(model.imgAcne[i]), fit: BoxFit.cover),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   );

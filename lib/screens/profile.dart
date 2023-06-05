@@ -25,7 +25,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        leadingWidth: 80,
+        leadingWidth: 70,
         leading: Row(
           children: [
             Container(
@@ -33,12 +33,10 @@ class _ProfileState extends State<Profile> {
               height: 50,
               width: 50,
               decoration: BoxDecoration(
-                gradient: gradient,
+                gradient: read(c).fixTheme ? gradientLight : gradientDark,
                 borderRadius: rounded(50),
                 image: DecorationImage(
-                  image: read(c).imgPrifileNow == ''
-                      ? AssetImage('assets/attacne_logo.png')
-                      : AssetImage(read(c).imgPrifileNow),
+                  image: read(c).imgPrifileNow == '' ? AssetImage('assets/attacne_logo.png') : AssetImage(read(c).imgPrifileNow),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -50,24 +48,13 @@ class _ProfileState extends State<Profile> {
         elevation: 0,
         titleSpacing: 0,
         title: TextButton(
-          style: ButtonStyle(
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          onPressed: () {
-            open(c, DetailProfile());
-          },
+          style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
+          onPressed: () => open(c, DetailProfile()),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                read(c).userName,
-                style:
-                    TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
-              ),
-              Text(
-                read(c).email,
-                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
-              ),
+              Text(read(c).userName, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17)),
+              Text(read(c).email, style: TextStyle(color: read(c).fixTheme ? Cb : Cw)),
             ],
           ),
         ),
@@ -75,7 +62,7 @@ class _ProfileState extends State<Profile> {
           IconButton(
             onPressed: () => dialogLogOut(c, dgLogOut_id),
             icon: const Icon(Icons.logout_outlined),
-            splashRadius: 25,
+            splashRadius: 1,
             color: const Color(0xff38ABBE),
           ),
           const SizedBox(width: 10),
@@ -94,20 +81,18 @@ class _ProfileState extends State<Profile> {
                   style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
-                btnData_profile(c, subHead1Profile_id, () {}),
-                btnData_profile(c, subHead2Profile_id, () {}),
+                btnData_profile(c, subHead1Profile_id),
+                btnData_profile(c, subHead2Profile_id),
                 const SizedBox(height: 50),
                 Text(
                   head2Profile_id,
                   style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
-                btnData_profile(
-                    c, subHead3Profile_id, () => open(c, ChangeLanguage())),
-                btnData_profile(
-                    c, subHead4Profile_id, () => open(c, ChangeTheme())),
-                btnData_profile(c, subHead5Profile_id, () {}),
-                btnData_profile(c, subHead6Profile_id, () {}),
+                btnData_profile(c, subHead3Profile_id, dest: ChangeLanguage()),
+                btnData_profile(c, subHead4Profile_id, dest: ChangeTheme()),
+                btnData_profile(c, subHead5Profile_id),
+                btnData_profile(c, subHead6Profile_id),
               ],
             ),
           ),

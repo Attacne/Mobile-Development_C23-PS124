@@ -21,22 +21,16 @@ class _HistoryState extends State<History> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        flexibleSpace: Container(
-          decoration: read(c).fixTheme
-              ? BoxDecoration(gradient: gradient)
-              : BoxDecoration(color: C3),
-        ),
+        flexibleSpace: Container(decoration: read(c).fixTheme ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark) : BoxDecoration(color: C3)),
         title: Text('History', style: TextStyle(color: Cw, fontSize: 25)),
         actions: [
           IconButton(
             onPressed: () async {
-              imgScan.isEmpty
-                  ? null
-                  : await showMyDialog(c, dgDeleteHistroy_id);
+              imgScan.isEmpty ? null : await showMyDialog(c, dgDeleteHistroy_id);
               setState(() {});
             },
             icon: Icon(Icons.delete, color: Cw),
-            splashRadius: 25,
+            splashRadius: 1,
           )
         ],
       ),

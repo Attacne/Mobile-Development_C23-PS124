@@ -25,30 +25,15 @@ class NavBarAppState extends State<NavBarApp> {
     return WillPopScope(
       onWillPop: () async => await showMyDialogExit(c, 'Exit this app?'),
       child: Scaffold(
-        body: Stack(
-          children: [
-            Container(
-                height: 300, decoration: BoxDecoration(gradient: gradient)),
-            SafeArea(bottom: false, child: destPage[currentIndex]),
-          ],
-        ),
+        body: destPage[currentIndex],
         extendBody: true,
         bottomNavigationBar: Container(
-          margin: EdgeInsets.fromLTRB(
-            size(c).width * .05,
-            size(c).width * .0,
-            size(c).width * .05,
-            size(c).width * .03,
-          ),
+          margin: EdgeInsets.fromLTRB(size(c).width * .05, size(c).width * .0, size(c).width * .05, size(c).width * .03),
           height: 55,
           decoration: BoxDecoration(
             color: read(c).fixTheme ? Cw : C3,
             boxShadow: [
-              BoxShadow(
-                color: Cb.withOpacity(.3),
-                blurRadius: 20,
-                offset: Offset(0, 5),
-              ),
+              BoxShadow(color: Cb.withOpacity(.3), blurRadius: 20, offset: Offset(0, 5)),
             ],
             borderRadius: rounded(50),
           ),
@@ -68,9 +53,7 @@ class NavBarAppState extends State<NavBarApp> {
                   AnimatedContainer(
                     duration: Duration(seconds: 1),
                     curve: Curves.fastLinearToSlowEaseIn,
-                    width: index == currentIndex
-                        ? size(c).width * .32
-                        : size(c).width * .18,
+                    width: index == currentIndex ? size(c).width * .32 : size(c).width * .18,
                     alignment: Alignment.center,
                     child: AnimatedContainer(
                       duration: Duration(seconds: 1),
@@ -78,9 +61,7 @@ class NavBarAppState extends State<NavBarApp> {
                       height: index == currentIndex ? 40 : 0,
                       width: index == currentIndex ? size(c).width * .32 : 0,
                       decoration: BoxDecoration(
-                        color: index == currentIndex
-                            ? C1.withOpacity(.2)
-                            : Colors.transparent,
+                        color: index == currentIndex ? C1.withOpacity(.2) : Colors.transparent,
                         borderRadius: rounded(50),
                       ),
                     ),
@@ -88,9 +69,7 @@ class NavBarAppState extends State<NavBarApp> {
                   AnimatedContainer(
                     duration: Duration(seconds: 1),
                     curve: Curves.fastLinearToSlowEaseIn,
-                    width: index == currentIndex
-                        ? size(c).width * .30
-                        : size(c).width * .18,
+                    width: index == currentIndex ? size(c).width * .30 : size(c).width * .18,
                     alignment: Alignment.center,
                     child: Stack(
                       children: [
@@ -99,23 +78,15 @@ class NavBarAppState extends State<NavBarApp> {
                             AnimatedContainer(
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
-                              width: index == currentIndex
-                                  ? size(c).width * .13
-                                  : 0,
+                              width: index == currentIndex ? size(c).width * .13 : 0,
                             ),
                             AnimatedOpacity(
                               opacity: index == currentIndex ? 1 : 0,
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: Text(
-                                index == currentIndex
-                                    ? '${titleNavBar_id[index]}'
-                                    : '',
-                                style: TextStyle(
-                                  color: C1,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15,
-                                ),
+                                index == currentIndex ? '${titleNavBar_id[index]}' : '',
+                                style: TextStyle(color: C1, fontWeight: FontWeight.w600, fontSize: 15),
                               ),
                             ),
                           ],
@@ -125,14 +96,16 @@ class NavBarAppState extends State<NavBarApp> {
                             AnimatedContainer(
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
-                              width: index == currentIndex
-                                  ? size(c).width * .03
-                                  : 20,
+                              width: index == currentIndex ? size(c).width * .03 : 20,
                             ),
                             Icon(
                               icon[index],
                               size: 30,
-                              color: index == currentIndex ? C1 : read(c).fixTheme ? Cb26 : Cw24,
+                              color: index == currentIndex
+                                  ? C1
+                                  : read(c).fixTheme
+                                      ? Cb.withOpacity(.5)
+                                      : Cw.withOpacity(.5),
                             ),
                           ],
                         ),

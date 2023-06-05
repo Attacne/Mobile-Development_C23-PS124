@@ -27,12 +27,7 @@ Future showMyDialogExit(BuildContext c, String info) {
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center),
-      actions: [
-        TextButton(
-            onPressed: () => closeDialog(c, true), child: const Text('yes')),
-        TextButton(
-            onPressed: () => closeDialog(c, false), child: const Text('no'))
-      ],
+      actions: [TextButton(onPressed: () => closeDialog(c, true), child: const Text('yes')), TextButton(onPressed: () => closeDialog(c, false), child: const Text('no'))],
     ),
   );
 }
@@ -51,9 +46,7 @@ Future showMyDialog(BuildContext c, String info) {
     builder: (c) => AlertDialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: rounded(20)),
-      content: Text(info,
-          style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold),
-          textAlign: TextAlign.center),
+      content: Text(info, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
       actions: [
         TextButton(
           onPressed: () {
@@ -62,8 +55,7 @@ Future showMyDialog(BuildContext c, String info) {
           },
           child: const Text('yes'),
         ),
-        TextButton(
-            onPressed: () => closeDialog(c, false), child: const Text('no')),
+        TextButton(onPressed: () => closeDialog(c, false), child: const Text('no')),
       ],
     ),
   );
@@ -76,9 +68,7 @@ Future dialogLogOut(BuildContext c, String info) {
     builder: (c) => AlertDialog(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: rounded(20)),
-      content: Text(info,
-          style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold),
-          textAlign: TextAlign.center),
+      content: Text(info, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
       actions: [
         TextButton(
           onPressed: () {
@@ -136,7 +126,7 @@ Widget textFormField(
               onTap: () => create(c).passSet(),
               child: Icon(
                 (read(c).isHidePass) ? Icons.visibility_off : Icons.visibility,
-                color: (read(c).isHidePass) ? Cb26 : C1,
+                color: (read(c).isHidePass) ? Cw.withOpacity(.5) : C1,
                 // size: 18,
               ),
             )

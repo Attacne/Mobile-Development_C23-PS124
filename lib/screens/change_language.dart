@@ -9,11 +9,14 @@ class ChangeLanguage extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
+      backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        title: Text(read(c).fixedLang == 'Indonesia' ? 'Bahasa' : 'Language'),
+        title: Text(
+          read(c).fixedLang == 'Indonesia' ? 'Bahasa' : 'Language',
+        ),
         flexibleSpace: Container(
           width: size(c).width,
-          decoration: BoxDecoration(gradient: gradient),
+          decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark),
         ),
       ),
       body: Container(
@@ -21,13 +24,19 @@ class ChangeLanguage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             RadioListTile(
-              title: Text('Indonesia'),
+              title: Text(
+                'Indonesia',
+                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
+              ),
               value: 'Indonesia',
               groupValue: read(c).selectedLang,
               onChanged: (value) => create(c).setSelectedLang(value!),
             ),
             RadioListTile(
-              title: Text('English'),
+              title: Text(
+                'English',
+                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
+              ),
               value: 'English',
               groupValue: read(c).selectedLang,
               onChanged: (value) => create(c).setSelectedLang(value!),

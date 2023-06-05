@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-var C1 = const Color(0xff38ABBE);
-var C2 = const Color(0xFF192028);
-var C3 = const Color(0xFF202C33);
+var C1 = const Color(0xFF38ABBE);
+var C2 = const Color(0xFF212837);
+var C3 = const Color(0xFF2F384E);
 var Cw = const Color(0xFFFFFFFF);
 var Cb = const Color(0xFF000000);
-var Cb26 = Colors.black26;
-var Cw24 = Colors.white24;
+var Ck = const Color(0xFFCA5514);
 
-var gradient = const LinearGradient(
+var gradientLight = const LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [Color(0xff38ABBE), Colors.blue],
+  colors: [Color(0xFF38ABBE),Color(0xFF2196F3)],
+);
+var gradientDark = const LinearGradient(
+  begin: Alignment.topLeft,
+  end: Alignment.bottomRight,
+  colors: [Color(0xFF2F384E), Color(0xFF283043)],
 );

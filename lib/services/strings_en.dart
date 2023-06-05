@@ -106,7 +106,7 @@ List<String?> titleInfo_en = [
   'Jerawat Whitehead',
 ];
 List<String?> imgInfo_en = [
-  "assets/card1.png",
+  "assets/Blackhead1.jpg",
   "assets/card2.png",
   "assets/card1.png",
   "assets/card1.png",

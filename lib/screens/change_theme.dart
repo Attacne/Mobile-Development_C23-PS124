@@ -12,9 +12,7 @@ class ChangeTheme extends StatelessWidget {
         title: Text('Theme'),
         flexibleSpace: Container(
           width: size(c).width,
-          decoration: read(c).fixTheme
-              ? BoxDecoration(gradient: gradient)
-              : BoxDecoration(color: C3),
+          decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark)
         ),
       ),
       body: Container(
