@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/detail_info.dart';
 import 'package:attacne/screens/detail_scan.dart';
 import 'package:attacne/screens/detail_scan_history.dart';
@@ -36,104 +37,19 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
         borderRadius: rounded(10),
         color: read(c).fixTheme ? Cw : C3,
       ),
-      child: InkWell(
-        borderRadius: rounded(10),
-        onTap: () => dest == null ? {} : open(c, dest),
+      child: TextButton(
+        style: ButtonStyle(
+          overlayColor: MaterialStateProperty.all(Colors.transparent),
+        ),
+        onPressed: () => dest == null ? {} : open(c, dest),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              height: 170,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                borderRadius: rounded(10),
-              ),
-            ),
-            Text(
-              title,
-              style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20),
-            ),
-            Container(height: 0)
+            Image.asset(image, fit: BoxFit.cover, height: 170),
+            Text(title, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20)),
           ],
         ),
       ),
-    ),
-  );
-}
-
-// button untuk save atau tidak
-Widget btnSave(BuildContext c, String title) {
-  bool isSave = title == 'Simpan';
-  return Container(
-    height: size(c).width * .12,
-    width: size(c).width * .3,
-    decoration: isSave
-        ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15))
-        : BoxDecoration(
-            border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
-            borderRadius: rounded(15),
-          ),
-    child: TextButton(
-      onPressed: () async {
-        if (isSave) {
-          imgScan.add(image);
-          dateScan.add(
-            'Scan pada: '
-            '${DateTime.now().day}, '
-            '${DateTime.now().hour}:'
-            '${DateTime.now().minute}:'
-            '${DateTime.now().second}',
-          );
-          titleScan.add(titleS_id);
-          descScan.add(desc_id);
-        }
-        close(c);
-      },
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: rounded(10)),
-      ),
-      child: Text(title,
-          style: TextStyle(
-              color: isSave
-                  ? read(c).fixTheme
-                      ? Cw
-                      : Cw.withOpacity(.5)
-                  : read(c).fixTheme
-                      ? C1
-                      : Cw.withOpacity(.5))),
-    ),
-  );
-}
-
-// button untuk membuka camera atau gallery
-Widget btnAcne(BuildContext c, IconData icon) {
-  bool isPlus = icon == Icons.add_rounded;
-  return Container(
-    height: size(c).height * .15,
-    width: size(c).width * .3,
-    decoration: isPlus
-        ? BoxDecoration(
-            border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
-            borderRadius: rounded(15),
-          )
-        : BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
-    child: TextButton(
-      onPressed: () async {
-        isPlus ? await getImage(ImageSource.gallery) : await getImage(ImageSource.camera);
-        open(c, DetailScan());
-      },
-      style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: rounded(10)),
-      ),
-      child: Icon(icon,
-          color: isPlus
-              ? read(c).fixTheme
-                  ? C1
-                  : Cw.withOpacity(.5)
-              : read(c).fixTheme
-                  ? Cw
-                  : Cw.withOpacity(.5),
-          size: size(c).height * .05),
     ),
   );
 }
@@ -190,41 +106,6 @@ Widget loginRegister(BuildContext c, String title, double width, VoidCallback v)
       child: Text(
         title,
         style: TextStyle(fontSize: 18, color: Cw, fontWeight: bold),
-      ),
-    ),
-  );
-}
-
-// card untuk history
-Widget cardHistory(BuildContext c, String? title, File? img, String? date, String? desc) {
-  return Container(
-    margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-    child: Card(
-      shape: RoundedRectangleBorder(borderRadius: rounded(10)),
-      margin: EdgeInsets.zero,
-      color: read(c).fixTheme ? Cw : C3,
-      elevation: 3,
-      child: InkWell(
-        onTap: () => open(c, DetailScanHistory(img, date, title, desc)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: 150,
-              width: 150,
-              child: ClipRRect(
-                borderRadius: rounded(10),
-                child: Image.file(img!, fit: BoxFit.cover),
-              ),
-            ),
-            Container(height: 10, width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text(title!, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20)), Text(date!, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 15))],
-            ),
-          ],
-        ),
       ),
     ),
   );

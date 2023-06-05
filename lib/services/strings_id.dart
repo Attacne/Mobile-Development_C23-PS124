@@ -1,8 +1,9 @@
+import 'dart:io';
+
 import 'package:attacne/services/variabels.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-String titleS_id = 'Jerawat Batu', desc_id = '...';
 //--------------------------------------------------------------------
 //String Login Page
 String login_id = 'Masuk',
@@ -30,17 +31,14 @@ String register_id = 'Daftar',
     infoRegister_id = "Belum punya akun?",
     btnSignIn_id = 'Masuk';
 //--------------------------------------------------------------------
-// String Navbar Page
-List<String> titleNavBar_id = ['Home', 'Acne', 'History', 'Profile'];
-//--------------------------------------------------------------------
 // String Acne Page
-String acneHead_id = 'Yuk Periksa', imgAcneLight_id = 'assets/acne_vec.png', imgAcneDark_id = 'assets/acneDark_vec.png';
+String acneHead_id = 'Yuk Periksa';
 //--------------------------------------------------------------------
 // String History Page
 String historyHead_id = 'Riwayat', infoHistory_id = 'Tidak ada riwayat terbaru', dgDeleteHistroy_id = 'Anda ingin menghapus?';
 //--------------------------------------------------------------------
 // String Home Page
-String appName_id = 'Attacne', imgMaskotHome_id = 'assets/sliver_image.png', subHead1Home_id = 'Kenali Jerawat Anda', subHead2Home_id = 'Belajar Terkait Jerawat';
+String appName_id = 'Attacne', subHead1Home_id = 'Kenali Jerawat Anda', subHead2Home_id = 'Belajar Terkait Jerawat';
 List<String> headCardHome_id = [
   'Jerawat itu apa sih?',
   'Penyebab jerawat itu apa ya?',
@@ -63,21 +61,11 @@ String editProfileHead_id = 'Edit Profile', labelNameEP_id = 'Nama', labelUserNa
 String detailInfoHead_id = 'Detail';
 //--------------------------------------------------------------------
 //String Detail Scane page
-String detailScanHead_id = 'Detail', subHeadDetailScan_id = 'Rekomendasi Produk', btn1DetailScan_id = 'Simpan', btn2DetailScan_id = 'Batal';
-List<String> imgProfile_id = [
-  'assets/attacne_logo.png',
-  'assets/Card 1.png',
-  'assets/Card 2.png',
-  'assets/Card 3.png',
-  'assets/Card 4.png',
-  'assets/Card 5.png',
-  'assets/Card 6.png',
-];
+String detailScanHead_id = 'Detail', subHeadDetailScan_id = 'Rekomendasi Produk', saveDetailScan_id = 'Simpan', dontSaveDetailScan_id = 'Batal', rekomendasiProdukHasilScan = 'Rekomendasi Produk';
+
 //--------------------------------------------------------------------
 //String Profile page
-String mainUserName_id = 'Muh. Hilmy Noor Fauzi',
-    mainEmail_id = 'a267dsx2266@bangkit.academy',
-    dgLogOut_id = 'Keluar?',
+String dgLogOut_id = 'Keluar?',
     head1Profile_id = 'Akun',
     subHead1Profile_id = 'Tutorial untuk digunakan',
     subHead2Profile_id = 'Kebijakan pribadi',
@@ -176,21 +164,4 @@ List<String> descAcneInfo_id = [
       "benzoyl peroxide dapat membantu membersihkan pori-pori dan mengurangi pembentukan jerawat Whitehead. Jika"
       " jerawat Whitehead parah atau tidak merespon terhadap perawatan rumah, disarankan untuk berkonsultasi "
       "dengan dokter kulit untuk perawatan yang lebih lanjut.",
-];
-//--------------------------------------------------------------------
-//Recomendation product model
-List<String?> imgRecProd_id = [
-  "assets/Card 1.png",
-  "assets/Card 1.png",
-  "assets/Card 1.png",
-  "assets/Card 1.png",
-  "assets/Card 1.png",
-];
-
-List<String?> prodName_id = [
-  'Salep anti kesurupan',
-  'Salep penenang',
-  'Salep anti burnout',
-  'Salep anti alay',
-  'Salep anti alay',
 ];

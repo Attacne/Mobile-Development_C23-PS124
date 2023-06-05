@@ -1,4 +1,4 @@
-import 'package:attacne/models/acneInfoAdapter.dart';
+import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/detail_info.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/provider.dart';
@@ -100,7 +100,7 @@ class _HomeState extends State<Home> {
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext c, int i) {
-                                  return card(c, dummyAcne[i].illustration, dummyAcne[i].acneName, dest: DetailInfo(dummyAcne[i]));
+                                  return card(c, acneInfoData[i].illustration, acneInfoData[i].acneName, dest: DetailInfo(acneInfoData[i]));
                                 },
                               ),
                             ),

@@ -1,8 +1,13 @@
-import 'package:attacne/services/strings_id.dart';
-import 'package:flutter/material.dart';
-import 'package:attacne/models/acneInfoModel.dart';
+import 'dart:io';
 
-List<AcneInfoModel> dummyAcne = List.generate(5, (index) {
+import 'package:attacne/services/strings_id.dart';
+import 'package:attacne/services/variabels.dart';
+import 'package:flutter/material.dart';
+import 'package:attacne/models/acneModel.dart';
+
+//--------------------------------------------------------------------
+// Adapter untuk AcneInfoModel
+List<AcneInfo> acneInfoData = List.generate(5, (index) {
   List<String> illustration = [
     "assets/Blackhead.png",
     "assets/Nodules.png",
@@ -10,7 +15,7 @@ List<AcneInfoModel> dummyAcne = List.generate(5, (index) {
     "assets/Pustules.png",
     "assets/Whitehead.png",
   ];
-  return AcneInfoModel(
+  return AcneInfo(
     illustration: illustration[index],
     acneName: acneJudul[index],
     acneDesc: acneDesk[index],
@@ -56,3 +61,10 @@ var acneImg = [
 ];
 var acneJudul = nameAcneInfo_id;
 var acneDesk = descAcneInfo_id;
+
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+// Adapter untuk AcneInfoModel
+
+List<HistoryScan> listHistoryScan = [];

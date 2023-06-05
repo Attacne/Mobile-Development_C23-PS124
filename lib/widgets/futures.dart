@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/acne.dart';
 import 'package:attacne/screens/history.dart';
 import 'package:attacne/screens/login.dart';
@@ -32,34 +33,7 @@ Future showMyDialogExit(BuildContext c, String info) {
   );
 }
 
-// fungsi open camera or gallery
-Future getImage(ImageSource imageSource) async {
-  final ImagePicker picker = ImagePicker();
-  final XFile? imagePicked = await picker.pickImage(source: imageSource);
-  image = File(imagePicked!.path);
-}
 
-// menampilkan dialog keluar
-Future showMyDialog(BuildContext c, String info) {
-  return showDialog(
-    context: c,
-    builder: (c) => AlertDialog(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: rounded(20)),
-      content: Text(info, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
-      actions: [
-        TextButton(
-          onPressed: () {
-            imgScan = [];
-            closeDialog(c, true);
-          },
-          child: const Text('yes'),
-        ),
-        TextButton(onPressed: () => closeDialog(c, false), child: const Text('no')),
-      ],
-    ),
-  );
-}
 
 // menampilkan dialog untuk logout
 Future dialogLogOut(BuildContext c, String info) {

@@ -18,7 +18,7 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
 //------------------------------------------------------------------------------
 //Untuk data userName Profile
-  String _userName = mainUserName_id;
+  String _userName = 'Muh. Hilmy Noor Fauzi';
 
   String get userName => _userName;
 
@@ -29,7 +29,7 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
 //------------------------------------------------------------------------------
 //Untuk data email Profile
-  String _email = mainEmail_id;
+  String _email = 'a267dsx2266@bangkit.academy';
 
   String get email => _email;
 
@@ -118,24 +118,4 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
     notifyListeners();
   }
-}
-
-//------------------------------------------------------------------------------
-// untuk pemilihan bahasa page
-class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.system;
-
-// bool get isDarkMode {
-//   if (themeMode == ThemeMode.system) {
-//     final brightness = SchedulerBinding.instance.window.platformBrightness;
-//     return brightness == Brightness.dark;
-//   } else {
-//     return themeMode == ThemeMode.dark;
-//   }
-// }
-//
-// void toggleTheme(bool isOn) {
-//   themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
-//   notifyListeners();
-// }
 }

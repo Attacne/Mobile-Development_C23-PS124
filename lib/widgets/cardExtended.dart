@@ -36,8 +36,8 @@ class _CardExtendedState extends State<CardExtended> {
                   ? 65
                   : 70
               : isExpanded1
-                  ? 285
-                  : 450,
+                  ? 340
+                  : 380,
           width: isExpanded1 ? 385 : 390,
           decoration: read(c).fixTheme
               ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(20))
@@ -90,7 +90,7 @@ class _CardExtendedState extends State<CardExtended> {
                       isTapped1 ? '' : H2,
                       style: TextStyle(
                         color: Cw.withOpacity(0.9),
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.w400,
                       ),
                       textAlign: TextAlign.justify,

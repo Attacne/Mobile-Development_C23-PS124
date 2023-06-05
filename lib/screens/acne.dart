@@ -1,12 +1,20 @@
 import 'dart:io';
 
+import 'package:attacne/models/acneAdapter.dart';
+import 'package:attacne/screens/detail_scan.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
+import 'package:attacne/widgets/futures.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Acne extends StatelessWidget {
+// untuk simpan sementara file gambar,judul dan desk. setiap hasil scan yang belum
+// di save akan di letakkan di sini
+  File? image;
+
   @override
   Widget build(BuildContext c) {
     return Scaffold(
@@ -39,6 +47,51 @@ class Acne extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+// fungsi open camera or gallery
+  Future getImage(ImageSource imageSource) async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? imagePicked = await picker.pickImage(source: imageSource);
+    image = File(imagePicked!.path);
+  }
+
+// button untuk membuka camera atau gallery
+  Widget btnAcne(BuildContext c, IconData icon) {
+    bool isGallery = icon == Icons.add_rounded;
+    return Container(
+      height: size(c).height * .15,
+      width: size(c).width * .3,
+      decoration: isGallery
+          ? BoxDecoration(
+              border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
+              borderRadius: rounded(15),
+            )
+          : BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
+      child: TextButton(
+        onPressed: () async {
+          isGallery ? await getImage(ImageSource.gallery) : await getImage(ImageSource.camera);
+          //kirim gambar ke cc dan di proses
+          //tambahkah loading
+
+          // dateSementara = [];
+
+          open(c, DetailScan(image));
+        },
+        style: TextButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: rounded(10)),
+        ),
+        child: Icon(icon,
+            color: isGallery
+                ? read(c).fixTheme
+                    ? C1
+                    : Cw.withOpacity(.5)
+                : read(c).fixTheme
+                    ? Cw
+                    : Cw.withOpacity(.5),
+            size: size(c).height * .05),
       ),
     );
   }
