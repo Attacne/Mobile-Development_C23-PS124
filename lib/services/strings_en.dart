@@ -134,7 +134,7 @@ String dgLogOut_en = 'Log Out?',
     subHead3Profile_en = 'Language',
     subHead4Profile_en = 'Theme',
     subHead5Profile_en = 'About App',
-    subHead6Profile_en = 'The value of this application.';
+    subHead6Profile_en = 'Rate this app';
 //--------------------------------------------------------------------
 //Model untuk info kenali jerawat
 List<String> nameAcneInfo_en = jenis_en;

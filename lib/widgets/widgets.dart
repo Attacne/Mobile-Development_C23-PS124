@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
 
 import 'package:attacne/models/acneAdapter.dart';
@@ -111,10 +113,32 @@ Widget loginRegister(BuildContext c, String title, double width, VoidCallback v)
   );
 }
 
+/*Future<void> launchURL(String url) async {
+  final Uri uri = Uri(scheme: "https", host: url);
+  if (!await launchUrl(
+    uri,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw "Can not launch url";
+  }
+}*/
+Future<void> launchUrl1(String link) async {
+  final Uri _url = Uri.parse(link);
+  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $_url');
+  }
+}
+
 // btn untuk profile
-Widget btnData_profile(BuildContext c, String title, {dynamic dest}) {
+Widget btnData_profile(BuildContext c, String title, {required VoidCallback voidCallback}) {
   return TextButton(
-    onPressed: () => open(c, dest),
+    onPressed: voidCallback,
+    /*onPressed: () {
+      _launchURL('www.youtube.com');
+    },*/
+    style: ButtonStyle(
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
+    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

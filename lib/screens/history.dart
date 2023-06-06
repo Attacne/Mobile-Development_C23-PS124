@@ -36,9 +36,9 @@ class _HistoryState extends State<History> {
                 listHistoryScan = []; // historyCount=0;
                 closeDialog(c, true);
               },
-              child: Text(read(c).fixedLang == 'Indonesia' ? 'Yes' : 'Ya'),
+              child: Text(read(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes'),
             ),
-            TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'No' : 'Tidak')),
+            TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
           ],
         ),
       );
@@ -53,9 +53,9 @@ class _HistoryState extends State<History> {
         actions: [
           IconButton(
             onPressed: () async {
-              await showMyDialog();
+              listHistoryScan.isEmpty ? null : await showMyDialog();
               setState(() {});
-              print('hapus');
+              // print('hapus');
             },
             icon: Icon(Icons.delete, color: Cw),
             splashRadius: 1,

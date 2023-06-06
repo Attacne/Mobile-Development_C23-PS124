@@ -7,22 +7,32 @@ import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
+import 'package:attacne/widgets/loading.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:attacne/screens/acne.dart';
 
 import '../models/acneAdapter.dart';
 
-class DetailScan extends StatelessWidget {
+class DetailScan extends StatefulWidget {
   final File? _image;
+
+  DetailScan(this._image);
+
+  @override
+  State<DetailScan> createState() => _DetailScanState();
+}
+
+class _DetailScanState extends State<DetailScan> {
+  bool isLoading = false;
   String _description = '';
+
   List<List<String>> _recomended = [];
+
   String _tanggalSementara = '';
 
   // disini get API hasil deteksi
   String _title = '';
-
-  DetailScan(this._image);
 
   @override
   Widget build(BuildContext c) {
@@ -54,19 +64,16 @@ class DetailScan extends StatelessWidget {
                 borderRadius: rounded(15),
               ),
         child: TextButton(
-          onPressed: () {
+          onPressed: () async {
             if (isSave) {
               listHistoryScan.add(
-                HistoryScan(
-                  imgScan: _image,
-                  hasilScan: _title,
-                  deskHasilScan: _description,
-                  tanggalScan: _tanggalSementara,
-                  rekomendasiProduk: _recomended,
-                ),
+                HistoryScan(imgScan: widget._image, hasilScan: _title, deskHasilScan: _description, tanggalScan: _tanggalSementara, rekomendasiProduk: _recomended),
               );
-              print('\n\n\n${listHistoryScan.length}');
             }
+            setState(() => isLoading = !isLoading); //ubah tampilan loading
+            await Future.delayed(Duration(seconds: 3));
+            setState(() => isLoading = !isLoading); //hilangkan tampilan loading
+            await Future.delayed(Duration(milliseconds: 300));
             close(c);
           },
           style: TextButton.styleFrom(
@@ -91,78 +98,83 @@ class DetailScan extends StatelessWidget {
     return Scaffold(
       backgroundColor: read(c).fixTheme ? C1 : C3,
       body: SafeArea(
-        child: ScrollConfiguration(
-          behavior: MaterialScrollBehavior().copyWith(overscroll: false),
-          child: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                elevation: 5,
-                pinned: true,
-                backgroundColor: read(c).fixTheme ? C1 : C3,
-                expandedHeight: size(c).width,
-                title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
-                    decoration: BoxDecoration(
-                      color: read(c).fixTheme ? Cw : C2,
-                      image: DecorationImage(image: FileImage(_image!), fit: BoxFit.cover),
+        child: Stack(
+          children: [
+            ScrollConfiguration(
+              behavior: MaterialScrollBehavior().copyWith(overscroll: false),
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    elevation: 5,
+                    pinned: true,
+                    backgroundColor: read(c).fixTheme ? C1 : C3,
+                    expandedHeight: size(c).width,
+                    title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
+                    flexibleSpace: FlexibleSpaceBar(
+                      background: Container(
+                        decoration: BoxDecoration(
+                          color: read(c).fixTheme ? Cw : C2,
+                          image: DecorationImage(image: FileImage(widget._image!), fit: BoxFit.cover),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext c, int index) {
-                    return Container(
-                      decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(height: 10, width: 10),
-                                Text(
-                                  _title,
-                                  style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (BuildContext c, int index) {
+                        return Container(
+                          decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(height: 10, width: 10),
+                                    Text(
+                                      _title,
+                                      style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
+                                    ),
+                                    Text(
+                                      _description,
+                                      style: TextStyle(
+                                        color: read(c).fixTheme ? Cb : Cw,
+                                        fontSize: 17,
+                                      ),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                    Container(height: 100),
+                                    Text(
+                                      read(c).fixedLang == 'Indonesia' ? subHeadDetailScan_id : subHeadDetailScan_en,
+                                      style: TextStyle(color: C1, fontSize: 30),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  _description,
-                                  style: TextStyle(
-                                    color: read(c).fixTheme ? Cb : Cw,
-                                    fontSize: 17,
-                                  ),
-                                  textAlign: TextAlign.justify,
+                              ),
+                              Container(
+                                height: 260,
+                                width: size(c).width,
+                                child: ListView.builder(
+                                  itemCount: 5,
+                                  padding: EdgeInsets.zero,
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  itemBuilder: (BuildContext c, int i) => card(c, _recomended[i][0]!, _recomended[i][1]!),
                                 ),
-                                Container(height: 100),
-                                Text(
-                                  read(c).fixedLang == 'Indonesia' ? subHeadDetailScan_id : subHeadDetailScan_en,
-                                  style: TextStyle(color: C1, fontSize: 30),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          Container(
-                            height: 260,
-                            width: size(c).width,
-                            child: ListView.builder(
-                              itemCount: 5,
-                              padding: EdgeInsets.zero,
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (BuildContext c, int i) => card(c, _recomended[i][0]!, _recomended[i][1]!),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                  childCount: 1,
-                ),
+                        );
+                      },
+                      childCount: 1,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            isLoading ? Loading() : Container()
+          ],
         ),
       ),
       bottomNavigationBar: Container(

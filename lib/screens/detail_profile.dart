@@ -131,17 +131,11 @@ class _DetailProfileState extends State<DetailProfile> {
             children: [
               Container(),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 500),
-                height: isTap ? 50 : 0,
+                duration: const Duration(milliseconds: 200),
+                height: isTap ? 30 : 0,
                 width: size(c).width,
-                decoration: BoxDecoration(
-                  color: C1,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Center(child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save', style: TextStyle(color: Cw))),
+                color: C1,
+                child: Center(child: Text(read(c).fixedLang == 'Indonesia' ? 'Selesai' : 'Done', style: TextStyle(color: Cw))),
               ),
             ],
           )

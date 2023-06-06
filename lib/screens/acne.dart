@@ -7,14 +7,20 @@ import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
+import 'package:attacne/widgets/loading.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Acne extends StatelessWidget {
+class Acne extends StatefulWidget {
+  @override
+  State<Acne> createState() => _AcneState();
+}
+
+class _AcneState extends State<Acne> {
 // untuk simpan sementara file gambar,judul dan desk. setiap hasil scan yang belum
-// di save akan di letakkan di sini
   File? _image;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext c) {
@@ -47,16 +53,19 @@ class Acne extends StatelessWidget {
               ],
             ),
           ),
+          isLoading ? Loading() : Container()
         ],
       ),
     );
   }
 
 // fungsi open camera or gallery
-  Future getImage(ImageSource imageSource) async {
+  Future getImage(BuildContext c, ImageSource imageSource) async {
     final ImagePicker picker = ImagePicker();
     final XFile? imagePicked = await picker.pickImage(source: imageSource);
     _image = File(imagePicked!.path);
+    // await Future.delayed(Duration(seconds: 1));
+    // read(c).setLoading();
   }
 
 // button untuk membuka camera atau gallery
@@ -73,11 +82,12 @@ class Acne extends StatelessWidget {
           : BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
       child: TextButton(
         onPressed: () async {
-          isGallery ? await getImage(ImageSource.gallery) : await getImage(ImageSource.camera);
-          //kirim gambar ke cc dan di proses
-          //tambahkah loading
-
+          isGallery ? await getImage(c, ImageSource.gallery) : await getImage(c, ImageSource.camera);
+          await Future.delayed(Duration(milliseconds: 200)); //kirim gambar ke cc dan di proses
+          setState(() => isLoading = !isLoading); //ubah tampilan loading
+          await Future.delayed(Duration(seconds: 3));
           open(c, DetailScan(_image));
+          setState(() => isLoading = !isLoading); //hilangkan tampilan loading
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: rounded(10)),
