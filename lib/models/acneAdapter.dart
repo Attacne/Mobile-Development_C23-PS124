@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,8 @@ import 'package:attacne/models/acneModel.dart';
 
 //--------------------------------------------------------------------
 // Adapter untuk AcneInfoModel
-List<AcneInfo> acneInfoData = List.generate(5, (index) {
-  List<String> illustration = [
+List<AcneInfo> acneInfoData_id = List.generate(5, (index) {
+  List<String> _illustration = [
     "assets/Blackhead.png",
     "assets/Nodules.png",
     "assets/Papules.png",
@@ -16,13 +17,28 @@ List<AcneInfo> acneInfoData = List.generate(5, (index) {
     "assets/Whitehead.png",
   ];
   return AcneInfo(
-    illustration: illustration[index],
-    acneName: acneJudul[index],
-    acneDesc: acneDesk[index],
-    imgAcne: acneImg[index],
+    illustration: _illustration[index],
+    acneName: nameAcneInfo_id[index],
+    acneDesc: descAcneInfo_id[index],
+    imgAcne: _acneImg[index],
   );
 });
-var acneImg = [
+List<AcneInfo> acneInfoData_en = List.generate(5, (index) {
+  List<String> _illustration = [
+    "assets/Blackhead.png",
+    "assets/Nodules.png",
+    "assets/Papules.png",
+    "assets/Pustules.png",
+    "assets/Whitehead.png",
+  ];
+  return AcneInfo(
+    illustration: _illustration[index],
+    acneName: nameAcneInfo_en[index],
+    acneDesc: descAcneInfo_en[index],
+    imgAcne: _acneImg[index],
+  );
+});
+var _acneImg = [
   [
     "assets/Blackhead (1).jpg",
     "assets/Blackhead (2).jpg",
@@ -59,8 +75,6 @@ var acneImg = [
     "assets/Whitehead (5).jpg",
   ]
 ];
-var acneJudul = nameAcneInfo_id;
-var acneDesk = descAcneInfo_id;
 
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------

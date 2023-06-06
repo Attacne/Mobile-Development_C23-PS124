@@ -28,33 +28,9 @@ Future showMyDialogExit(BuildContext c, String info) {
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.center),
-      actions: [TextButton(onPressed: () => closeDialog(c, true), child: const Text('yes')), TextButton(onPressed: () => closeDialog(c, false), child: const Text('no'))],
-    ),
-  );
-}
-
-
-
-// menampilkan dialog untuk logout
-Future dialogLogOut(BuildContext c, String info) {
-  return showDialog(
-    context: c,
-    builder: (c) => AlertDialog(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: rounded(20)),
-      content: Text(info, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
       actions: [
-        TextButton(
-          onPressed: () {
-            closeDialog(c, true);
-            openDelete(c, Login());
-          },
-          child: Text('yes'),
-        ),
-        TextButton(
-          onPressed: () => closeDialog(c, false),
-          child: Text('no'),
-        ),
+        TextButton(onPressed: () => closeDialog(c, true), child: Text(read(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes')),
+        TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
       ],
     ),
   );

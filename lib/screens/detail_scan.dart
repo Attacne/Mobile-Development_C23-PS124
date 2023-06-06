@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:attacne/models/acneModel.dart';
 import 'package:attacne/screens/history.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
@@ -13,22 +14,32 @@ import 'package:attacne/screens/acne.dart';
 import '../models/acneAdapter.dart';
 
 class DetailScan extends StatelessWidget {
-  File? _image;
+  final File? _image;
   String _description = '';
   List<List<String>> _recomended = [];
-  String _tanggalSementara = 'Scan pada: '
-      'Tanggal ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
-      'Jam ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}';
-  String _title = jenisJerawat[Random().nextInt(jenisJerawat.length)];
+  String _tanggalSementara = '';
+
+  // disini get API hasil deteksi
+  String _title = '';
 
   DetailScan(this._image);
 
   @override
   Widget build(BuildContext c) {
-    for (int i = 0; i < jenisJerawat.length; i++) {
-      if (_title == jenisJerawat[i]) {
-        _description = desc[i];
-        _recomended = recomendation[i];
+    _title = (read(c).fixedLang == 'Indonesia' ? jenis_id : jenis_en)[Random().nextInt(5)];
+
+    _tanggalSementara = read(c).fixedLang == 'Indonesia'
+        ? 'Scan pada: '
+            'Tanggal ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
+            'Jam ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}'
+        : 'Scans on: '
+            'Date ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
+            'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}';
+
+    for (int i = 0; i < (read(c).fixedLang == 'Indonesia' ? jenis_id : jenis_en).length; i++) {
+      if (_title == (read(c).fixedLang == 'Indonesia' ? jenis_id[i] : jenis_en[i])) {
+        _description = (read(c).fixedLang == 'Indonesia' ? desk_id[i] : desk_en[i]);
+        _recomended = (read(c).fixedLang == 'Indonesia' ? recomendasi_id[i] : recomendasi_en[i]);
       }
     }
     // button untuk save atau tidak
@@ -89,7 +100,7 @@ class DetailScan extends StatelessWidget {
                 pinned: true,
                 backgroundColor: read(c).fixTheme ? C1 : C3,
                 expandedHeight: size(c).width,
-                title: Text(detailScanHead_id),
+                title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                 flexibleSpace: FlexibleSpaceBar(
                   background: Container(
                     decoration: BoxDecoration(
@@ -126,7 +137,7 @@ class DetailScan extends StatelessWidget {
                                 ),
                                 Container(height: 100),
                                 Text(
-                                  subHeadDetailScan_id,
+                                  read(c).fixedLang == 'Indonesia' ? subHeadDetailScan_id : subHeadDetailScan_en,
                                   style: TextStyle(color: C1, fontSize: 30),
                                 ),
                               ],
@@ -162,8 +173,8 @@ class DetailScan extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              btnSave(c, saveDetailScan_id, true),
-              btnSave(c, dontSaveDetailScan_id, false),
+              btnSave(c, read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, true),
+              btnSave(c, read(c).fixedLang == 'Indonesia' ? dontSaveDetailScan_id : dontSaveDetailScan_en, false),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/models/acneModel.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
@@ -28,7 +29,7 @@ class DetailScanHistory extends StatelessWidget {
                 pinned: true,
                 backgroundColor: read(c).fixTheme ? C1 : C3,
                 expandedHeight: size(c).width,
-                title: Text('Detail'),
+                title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                 flexibleSpace: FlexibleSpaceBar(
                   background: Container(
                     decoration: BoxDecoration(
@@ -64,7 +65,7 @@ class DetailScanHistory extends StatelessWidget {
                                 ),
                                 Container(height: 100),
                                 Text(
-                                  rekomendasiProdukHasilScan,
+                                  read(c).fixedLang == 'Indonesia' ? rekomendasiProdukHasilScan_id : rekomendasiProdukHasilScan_en,
                                   style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
                                 ),
                               ],

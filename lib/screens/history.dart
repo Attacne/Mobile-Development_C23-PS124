@@ -4,6 +4,7 @@ import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/models/acneModel.dart';
 import 'package:attacne/screens/detail_scan_history.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
@@ -21,13 +22,13 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext c) {
 // menampilkan dialog keluar
-    Future showMyDialog(String info) {
+    Future showMyDialog() {
       return showDialog(
         context: c,
         builder: (c) => AlertDialog(
           backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: rounded(20)),
-          content: Text(info, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
+          content: Text(read(c).fixedLang == 'Indonesia' ? dgDeleteHistroy_id : dgDeleteHistroy_en, style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold), textAlign: TextAlign.center),
           actions: [
             TextButton(
               onPressed: () {
@@ -35,9 +36,9 @@ class _HistoryState extends State<History> {
                 listHistoryScan = []; // historyCount=0;
                 closeDialog(c, true);
               },
-              child: const Text('yes'),
+              child: Text(read(c).fixedLang == 'Indonesia' ? 'Yes' : 'Ya'),
             ),
-            TextButton(onPressed: () => closeDialog(c, false), child: const Text('no')),
+            TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'No' : 'Tidak')),
           ],
         ),
       );
@@ -48,19 +49,13 @@ class _HistoryState extends State<History> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         flexibleSpace: Container(decoration: read(c).fixTheme ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark) : BoxDecoration(color: C3)),
-        title: Text('${listHistoryScan.length}', style: TextStyle(color: Cw, fontSize: 25)),
+        title: Text(read(c).fixedLang == 'Indonesia' ? historyHead_id : historyHead_en, style: TextStyle(color: Cw, fontSize: 25)),
         actions: [
           IconButton(
             onPressed: () async {
+              await showMyDialog();
               setState(() {});
-            },
-            icon: Icon(Icons.refresh_rounded, color: Cw),
-            splashRadius: 1,
-          ),
-          IconButton(
-            onPressed: () async {
-              await showMyDialog(dgDeleteHistroy_id);
-              setState(() {});
+              print('hapus');
             },
             icon: Icon(Icons.delete, color: Cw),
             splashRadius: 1,
@@ -75,7 +70,7 @@ class _HistoryState extends State<History> {
                 children: [
                   Icon(Icons.history_rounded, color: C1, size: 150),
                   Text(
-                    infoHistory_id,
+                    read(c).fixedLang == 'Indonesia' ? infoHistory_id : infoHistory_en,
                     style: TextStyle(color: C1, fontWeight: bold, fontSize: 20),
                   ),
                 ],

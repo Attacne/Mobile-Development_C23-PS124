@@ -25,19 +25,19 @@ class ChangeLanguage extends StatelessWidget {
           children: <Widget>[
             RadioListTile(
               title: Text(
-                'Indonesia',
+                read(c).fixedLang == 'Indonesia' ? 'Inggris' : 'English',
                 style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
               ),
-              value: 'Indonesia',
+              value: 'English',
               groupValue: read(c).selectedLang,
               onChanged: (value) => create(c).setSelectedLang(value!),
             ),
             RadioListTile(
               title: Text(
-                'English',
+                'Indonesia',
                 style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
               ),
-              value: 'English',
+              value: 'Indonesia',
               groupValue: read(c).selectedLang,
               onChanged: (value) => create(c).setSelectedLang(value!),
             ),
@@ -55,9 +55,9 @@ class ChangeLanguage extends StatelessWidget {
                   )),
                 ),
                 onPressed: () async {
-                  create(c).setFixedLang();
                   await Future.delayed(const Duration(milliseconds: 500));
-                  close(c);
+                  create(c).setFixedLang();
+                  // close(c);
                 },
                 child: Text(
                   read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save',

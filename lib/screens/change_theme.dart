@@ -9,11 +9,8 @@ class ChangeTheme extends StatelessWidget {
     return Scaffold(
       backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        title: Text('Theme'),
-        flexibleSpace: Container(
-          width: size(c).width,
-          decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark)
-        ),
+        title: Text(read(c).fixedLang == 'Indonesia' ? 'Tema' : 'Theme'),
+        flexibleSpace: Container(width: size(c).width, decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark)),
       ),
       body: Container(
         child: Column(
@@ -21,7 +18,7 @@ class ChangeTheme extends StatelessWidget {
           children: <Widget>[
             RadioListTile(
               title: Text(
-                'LightTheme',
+                read(c).fixedLang == 'Indonesia' ? 'Tema Terang' : 'LightTheme',
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'LightTheme',
@@ -30,7 +27,7 @@ class ChangeTheme extends StatelessWidget {
             ),
             RadioListTile(
               title: Text(
-                'DarkTheme',
+                read(c).fixedLang == 'Indonesia' ? 'Tema Gelap' : 'DarkTheme',
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'DarkTheme',
@@ -39,7 +36,7 @@ class ChangeTheme extends StatelessWidget {
             ),
             RadioListTile(
               title: Text(
-                'System',
+                read(c).fixedLang == 'Indonesia' ? 'Sistem' : 'System',
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'System',
@@ -63,7 +60,7 @@ class ChangeTheme extends StatelessWidget {
                   await Future.delayed(const Duration(milliseconds: 300));
                   create(c).setFixedTheme(c);
                 },
-                child: Text('Save'),
+                child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save'),
               ),
             ),
           ],

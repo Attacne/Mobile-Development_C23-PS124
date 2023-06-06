@@ -2,6 +2,7 @@ import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/detail_info.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/provider.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/cardExtended.dart';
@@ -22,11 +23,11 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext c) {
-    CardExtended card0 = CardExtended(headCardHome_id[0], titleCardHome_id[0]);
-    CardExtended card1 = CardExtended(headCardHome_id[1], titleCardHome_id[1]);
-    CardExtended card2 = CardExtended(headCardHome_id[2], titleCardHome_id[2]);
-    CardExtended card3 = CardExtended(headCardHome_id[3], titleCardHome_id[3]);
-    CardExtended card4 = CardExtended(headCardHome_id[4], titleCardHome_id[4]);
+    CardExtended card0 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[0], titleCardHome_id[0]) : CardExtended(headCardHome_en[0], titleCardHome_en[0]);
+    CardExtended card1 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[1], titleCardHome_id[1]) : CardExtended(headCardHome_en[1], titleCardHome_en[1]);
+    CardExtended card2 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[2], titleCardHome_id[2]) : CardExtended(headCardHome_en[2], titleCardHome_en[2]);
+    CardExtended card3 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[3], titleCardHome_id[3]) : CardExtended(headCardHome_en[3], titleCardHome_en[3]);
+    CardExtended card4 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[4], titleCardHome_id[4]) : CardExtended(headCardHome_en[4], titleCardHome_en[4]);
     return Scaffold(
       body: Stack(
         children: [
@@ -47,14 +48,14 @@ class _HomeState extends State<Home> {
                     flexibleSpace: FlexibleSpaceBar(
                       titlePadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                       title: Text(
-                        appName_id,
+                        appName,
                         style: TextStyle(color: Cw, fontSize: size(c).width * .08),
                       ),
                       background: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
                           alignment: Alignment.centerRight,
-                          imgMaskotHome_id,
+                          imgMaskotHome,
                           fit: BoxFit.fitHeight,
                         ),
                       ),
@@ -87,9 +88,14 @@ class _HomeState extends State<Home> {
                             Row(
                               children: [
                                 const SizedBox(width: 10),
-                                Text(subHead1Home_id, style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 25), textAlign: TextAlign.start),
+                                Text(
+                                  read(c).fixedLang == 'Indonesia' ? subHead1Home_id : subHead1Home_en,
+                                  style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
                               ],
                             ),
+                            const SizedBox(height: 10),
                             Container(
                               margin: const EdgeInsets.only(bottom: 40),
                               height: 260,
@@ -100,16 +106,26 @@ class _HomeState extends State<Home> {
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext c, int i) {
-                                  return card(c, acneInfoData[i].illustration, acneInfoData[i].acneName, dest: DetailInfo(acneInfoData[i]));
+                                  return card(
+                                    c,
+                                    (read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].illustration,
+                                    (read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].acneName,
+                                    dest: DetailInfo((read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i]),
+                                  );
                                 },
                               ),
                             ),
                             Row(
                               children: [
-                                const SizedBox(width: 10),
-                                Text(subHead2Home_id, style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 25), textAlign: TextAlign.start),
+                                const SizedBox(width: 10, height: 20),
+                                Text(
+                                  read(c).fixedLang == 'Indonesia' ? subHead2Home_id : subHead2Home_en,
+                                  style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                  textAlign: TextAlign.start,
+                                ),
                               ],
                             ),
+                            const SizedBox(height: 10),
                             card0,
                             card1,
                             card2,

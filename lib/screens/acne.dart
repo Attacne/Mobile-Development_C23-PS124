@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/detail_scan.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
@@ -13,7 +14,7 @@ import 'package:image_picker/image_picker.dart';
 class Acne extends StatelessWidget {
 // untuk simpan sementara file gambar,judul dan desk. setiap hasil scan yang belum
 // di save akan di letakkan di sini
-  File? image;
+  File? _image;
 
   @override
   Widget build(BuildContext c) {
@@ -34,8 +35,8 @@ class Acne extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(acneHead_id, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
-                Image.asset(height: size(c).height * .35, read(c).fixTheme ? imgAcneLight_id : imgAcneDark_id, fit: BoxFit.fitWidth),
+                Text(read(c).fixedLang == 'Indonesia' ? acneHead_id : acneHead_en, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
+                Image.asset(height: size(c).height * .35, read(c).fixTheme ? imgAcneLight : imgAcneDark, fit: BoxFit.fitWidth),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -55,7 +56,7 @@ class Acne extends StatelessWidget {
   Future getImage(ImageSource imageSource) async {
     final ImagePicker picker = ImagePicker();
     final XFile? imagePicked = await picker.pickImage(source: imageSource);
-    image = File(imagePicked!.path);
+    _image = File(imagePicked!.path);
   }
 
 // button untuk membuka camera atau gallery
@@ -76,9 +77,7 @@ class Acne extends StatelessWidget {
           //kirim gambar ke cc dan di proses
           //tambahkah loading
 
-          // dateSementara = [];
-
-          open(c, DetailScan(image));
+          open(c, DetailScan(_image));
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: rounded(10)),

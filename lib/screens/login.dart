@@ -1,6 +1,7 @@
 import 'package:attacne/screens/nav_bar.dart';
 import 'package:attacne/screens/register.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
@@ -60,46 +61,32 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                     children: [
                       Container(height: size(c).height * .1),
                       Text(
-                        login_id,
-                        style: TextStyle(
-                          color: Cw,
-                          fontSize: 40,
-                          fontWeight: bold,
-                          letterSpacing: 2,
-                          wordSpacing: 4,
-                        ),
+                        read(c).fixedLang == 'Indonesia' ? login_id : login_en,
+                        style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold, letterSpacing: 2, wordSpacing: 4),
                       ),
                       Text(
-                        subTitleLogin_id,
-                        style: TextStyle(
-                          color: Cw,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w300,
-                        ),
+                        read(c).fixedLang == 'Indonesia' ? subTitleLogin_id : subTitleLogin_en,
+                        style: TextStyle(color: Cw, fontSize: 25, fontWeight: FontWeight.w300),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(
-                                top: size(c).height * .11, bottom: 5),
+                            padding: EdgeInsets.only(top: size(c).height * .11, bottom: 5),
                             child: Text(
-                              emailLogin_id,
+                              read(c).fixedLang == 'Indonesia' ? emailLogin_id : emailLogin_en,
                               style: TextStyle(color: Cw, fontSize: 20),
                             ),
                           ),
-                          inputData(c, Icons.email_rounded, hintEmailLogin_id,
-                              false, true),
+                          inputData(c, Icons.email_rounded, read(c).fixedLang == 'Indonesia' ? hintEmailLogin_id : hintEmailLogin_en, false, true),
                           Padding(
-                            padding: EdgeInsets.only(
-                                top: size(c).height * .02, bottom: 5),
+                            padding: EdgeInsets.only(top: size(c).height * .02, bottom: 5),
                             child: Text(
-                              passLogin_id,
+                              read(c).fixedLang == 'Indonesia' ? passLogin_id : passLogin_en,
                               style: TextStyle(color: Cw, fontSize: 20),
                             ),
                           ),
-                          inputData(c, Icons.lock_rounded, hintPassLogin_id, true,
-                              false),
+                          inputData(c, Icons.lock_rounded, read(c).fixedLang == 'Indonesia' ? hintPassLogin_id : hintPassLogin_en, true, false),
                         ],
                       ),
                     ],
@@ -117,12 +104,12 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(height: 1, width: 1),
-            loginRegister(c, btnLogin_id, 1.2, () => openDelete(c, NavBarApp())),
+            loginRegister(c, read(c).fixedLang == 'Indonesia' ? btnLogin_id : btnLogin_en, 1.2, () => openDelete(c, NavBarApp())),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  infoLogin_id,
+                  read(c).fixedLang == 'Indonesia' ? infoLogin_id : infoLogin_en,
                   style: TextStyle(color: Cw, fontSize: 15),
                 ),
                 TextButton(
@@ -130,8 +117,10 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
                   onPressed: () => open(c, Register()),
-                  child: Text(btnSignUp_id,
-                      style: TextStyle(color: C1, fontSize: 15)),
+                  child: Text(
+                    read(c).fixedLang == 'Indonesia' ? btnSignUp_id : btnSignUp_en,
+                    style: TextStyle(color: C1, fontSize: 15),
+                  ),
                 ),
               ],
             ),

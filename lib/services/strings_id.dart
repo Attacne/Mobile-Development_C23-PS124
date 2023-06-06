@@ -5,6 +5,64 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //--------------------------------------------------------------------
+//--------------------------------------------------------------------
+//Prepare
+var jenis_id = [
+  'Jerawat Blackhead',
+  'Jerawat Nodules',
+  'Jerawat Papules',
+  'Jerawat Pustules',
+  'Jerawat Whitehead',
+];
+var desk_id = [
+  'Jerawat Blackhead',
+  'Jerawat Nodules',
+  'Jerawat Papules',
+  'Jerawat Pustules',
+  'Jerawat Whitehead',
+];
+var recomendasi_id = [
+  [
+    ["assets/Card 1.png", 'Salep Blackhead'],
+    ["assets/Card 2.png", 'Salep Blackhead'],
+    ["assets/Card 3.png", 'Salep Blackhead'],
+    ["assets/Card 4.png", 'Salep Blackhead'],
+    ["assets/Card 5.png", 'Salep Blackhead'],
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Nodules'],
+    ["assets/Card 2.png", 'Salep Nodules'],
+    ["assets/Card 3.png", 'Salep Nodules'],
+    ["assets/Card 4.png", 'Salep Nodules'],
+    ["assets/Card 5.png", 'Salep Nodules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Papules'],
+    ["assets/Card 2.png", 'Salep Papules'],
+    ["assets/Card 3.png", 'Salep Papules'],
+    ["assets/Card 4.png", 'Salep Papules'],
+    ["assets/Card 5.png", 'Salep Papules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Pustules'],
+    ["assets/Card 2.png", 'Salep Pustules'],
+    ["assets/Card 3.png", 'Salep Pustules'],
+    ["assets/Card 4.png", 'Salep Pustules'],
+    ["assets/Card 5.png", 'Salep Pustules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Whitehead'],
+    ["assets/Card 2.png", 'Salep Whitehead'],
+    ["assets/Card 3.png", 'Salep Whitehead'],
+    ["assets/Card 4.png", 'Salep Whitehead'],
+    ["assets/Card 5.png", 'Salep Whitehead']
+  ]
+];
+
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
 //String Login Page
 String login_id = 'Masuk',
     subTitleLogin_id = "Masuk untuk melanjutkan",
@@ -15,13 +73,14 @@ String login_id = 'Masuk',
     btnLogin_id = login_id,
     infoLogin_id = "Belum punya akun?",
     btnSignUp_id = 'Mendaftar';
+
 //--------------------------------------------------------------------
 //String Register Page
 String register_id = 'Daftar',
     subTitleRegister_id = "Daftar untuk Masuk",
     fullName_id = 'Nama lengkap',
     hintFullName_id = 'Nama lengkap Anda...',
-    userName_id = 'Nama belakang',
+    userName_id = 'Nama pengguna',
     hintUserName_id = 'Nama pengguna Anda...',
     emailRegister_id = 'Alamat email',
     hintEmailRegister_id = 'Alamat email anda...',
@@ -30,15 +89,18 @@ String register_id = 'Daftar',
     btnRegister_id = 'Gabung',
     infoRegister_id = "Belum punya akun?",
     btnSignIn_id = 'Masuk';
+
 //--------------------------------------------------------------------
 // String Acne Page
 String acneHead_id = 'Yuk Periksa';
+
 //--------------------------------------------------------------------
 // String History Page
 String historyHead_id = 'Riwayat', infoHistory_id = 'Tidak ada riwayat terbaru', dgDeleteHistroy_id = 'Anda ingin menghapus?';
+
 //--------------------------------------------------------------------
-// String Home Page
-String appName_id = 'Attacne', subHead1Home_id = 'Kenali Jerawat Anda', subHead2Home_id = 'Belajar Terkait Jerawat';
+// card extended belajar terkait jerawat
+String appName = 'Attacne', subHead1Home_id = 'Kenali Jerawat Anda', subHead2Home_id = 'Belajar Terkait Jerawat';
 List<String> headCardHome_id = [
   'Jerawat itu apa sih?',
   'Penyebab jerawat itu apa ya?',
@@ -53,15 +115,14 @@ List<String> titleCardHome_id = [
   "Jerawat terbentuk ketika pori-pori kulit tersumbat oleh sebum (minyak alami kulit), sel-sel kulit mati, dan bakteri. Bakteri Propionibacterium acnes berkembang biak di dalam pori-pori yang tersumbat, menyebabkan peradangan. Ini menghasilkan jerawat dengan kemerahan, pembengkakan, dan mungkin nanah jika infeksi lebih parah. Faktor lain seperti perubahan hormon, kebersihan kulit, dan faktor genetik juga dapat mempengaruhi perkembangan jerawat.",
   "Tidak disarankan untuk memencet atau mengeluarkan isi jerawat secara paksa. Meskipun mungkin tergoda untuk melakukannya, proses ini dapat menyebabkan infeksi, peradangan lebih lanjut, dan bahkan meninggalkan bekas atau luka pada kulit. Sebaiknya biarkan jerawat sembuh secara alami atau konsultasikan dengan dokter kulit yang dapat memberikan perawatan yang tepat untuk mengurangi jerawat dan meminimalkan risiko kerusakan kulit.",
 ];
+
 //--------------------------------------------------------------------
 //String Edit Profile page
-String editProfileHead_id = 'Edit Profile', labelNameEP_id = 'Nama', labelUserNameEP_id = 'Username', labelEmailEP_id = 'Alamat email', labelPassEP_id = 'kata sandi baru';
-//--------------------------------------------------------------------
-//String Detail Info page
-String detailInfoHead_id = 'Detail';
+String editProfileHead_id = 'Edit Profile', labelNameEP_id = 'Nama lengkap', labelUserNameEP_id = 'Username', labelEmailEP_id = 'Alamat email', labelPassEP_id = 'kata sandi baru';
+
 //--------------------------------------------------------------------
 //String Detail Scane page
-String detailScanHead_id = 'Detail', subHeadDetailScan_id = 'Rekomendasi Produk', saveDetailScan_id = 'Simpan', dontSaveDetailScan_id = 'Batal', rekomendasiProdukHasilScan = 'Rekomendasi Produk';
+String detailScanHead_id = 'Detail', subHeadDetailScan_id = 'Rekomendasi Produk', saveDetailScan_id = 'Simpan', dontSaveDetailScan_id = 'Batal', rekomendasiProdukHasilScan_id = 'Rekomendasi Produk';
 
 //--------------------------------------------------------------------
 //String Profile page
@@ -75,7 +136,7 @@ String dgLogOut_id = 'Keluar?',
     subHead5Profile_id = 'Tentang aplikasi',
     subHead6Profile_id = 'Nilai aplikasi ini';
 //--------------------------------------------------------------------
-//Model untuk info
+//Model untuk info kenali jerawat
 List<String> nameAcneInfo_id = [
   'Jerawat Blackhead',
   'Jerawat Nodules',
@@ -99,23 +160,7 @@ List<String> descAcneInfo_id = [
       "masker yang mengandung bahan seperti asam salisilat atau retinoid juga dapat membantu membersihkan "
       "pori-pori dan mencegah pembentukan blackhead baru. Jika jerawat blackhead Anda persisten atau "
       "parah, berkonsultasilah dengan dokter kulit untuk saran dan perawatan yang tepat.",
-  "Jerawat nodul adalah jenis jerawat yang lebih serius dan parah dibandingkan dengan jerawat biasa. "
-      "Mereka muncul sebagai benjolan besar, meradang, dan terasa sakit yang terletak di bawah permukaan "
-      "kulit. Jerawat nodul biasanya lebih dalam dan lebih besar daripada jerawat biasa atau jerawat batu.\n\n"
-      "Jerawat nodul terbentuk ketika pori-pori kulit tersumbat oleh minyak, sel kulit mati, dan bakteri. "
-      "Penyebab utama jerawat nodul adalah peningkatan produksi minyak oleh kelenjar sebaceous di bawah "
-      "kulit dan peradangan yang terjadi dalam pori-pori.\n\nPerawatan jerawat nodul biasanya lebih sulit dan "
-      "memerlukan intervensi medis. Perawatan yang mungkin direkomendasikan termasuk:\n"
-      "1. Obat topikal: Krim atau gel yang mengandung bahan seperti retinoid atau benzoyl peroxide "
-      "dapat digunakan untuk mengurangi peradangan dan membantu membersihkan pori-pori.\n"
-      "2. Obat oral: Dalam kasus yang lebih parah, dokter mungkin meresepkan antibiotik oral atau "
-      "isotretinoin untuk mengurangi peradangan dan mengontrol produksi minyak kulit.\n"
-      "3. Injeksi kortikosteroid: Dokter dapat menginjeksi kortikosteroid langsung ke dalam jerawat nodul "
-      "untuk mengurangi peradangan dan mengurangi ukuran benjolan.4. Perawatan dokter kulit: Prosedur medis "
-      "seperti pengelupasan kimia, mikrodermabrasi, atau terapi cahaya dapat digunakan untuk membantu "
-      "membersihkan pori-pori dan mengurangi peradangan.Selalu konsultasikan dengan dokter atau ahli kulit "
-      "untuk menentukan perawatan yang tepat untuk jerawat nodul Anda. Mereka dapat memberikan saran yang "
-      "disesuaikan dengan kondisi kulit Anda dan membantu mengendalikan jerawat nodul secara efektif.",
+  "Jerawat nodul adalah jenis jerawat yang lebih serius dan parah dibandingkan dengan jerawat biasa. Mereka muncul sebagai benjolan besar, meradang, dan terasa sakit yang terletak di bawah permukaan kulit. Jerawat nodul biasanya lebih dalam dan lebih besar daripada jerawat biasa atau jerawat batu. Jerawat nodul terbentuk ketika pori-pori kulit tersumbat oleh minyak, sel kulit mati, dan bakteri. Penyebab utama jerawat nodul adalah peningkatan produksi minyak oleh kelenjar sebaceous di bawah kulit dan peradangan yang terjadi dalam pori-pori.\n\n Perawatan jerawat nodul biasanya lebih sulit dan memerlukan intervensi medis. Perawatan yang mungkin direkomendasikan termasuk obat topikal seperti krim atau gel yang mengandung retinoid atau benzoyl peroxide untuk mengurangi peradangan dan membersihkan pori-pori.\n\n Dalam kasus yang lebih parah, dokter dapat meresepkan antibiotik oral atau isotretinoin untuk mengurangi peradangan dan mengontrol produksi minyak kulit. Injeksi kortikosteroid dapat dilakukan untuk mengurangi peradangan dan ukuran benjolan pada jerawat nodul. Prosedur medis seperti pengelupasan kimia, mikrodermabrasi, atau terapi cahaya juga dapat membantu membersihkan pori-pori dan mengurangi peradangan. Selalu konsultasikan dengan dokter atau ahli kulit untuk menentukan perawatan yang tepat untuk jerawat nodul Anda. Mereka dapat memberikan saran yang disesuaikan dengan kondisi kulit Anda dan membantu mengendalikan jerawat nodul secara efektif.",
   "Jerawat papul adalah salah satu jenis jerawat yang sering muncul pada kulit. Jerawat papul ditandai "
       "dengan adanya benjolan kecil yang merah dan terangkat di permukaan kulit. Benjolan ini biasanya tidak "
       "terisi nanah dan tidak memiliki kepala putih seperti jerawat bernanah (pustules).\n\nJerawat papul "

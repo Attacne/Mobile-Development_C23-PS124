@@ -73,7 +73,7 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
 //------------------------------------------------------------------------------
 // untuk pemilihan bahasa page
-  String _selectedLang = 'Indonesia';
+  String _selectedLang = 'English';
 
   String get selectedLang => _selectedLang;
 
@@ -82,7 +82,7 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
     notifyListeners();
   }
 
-  String _fixedLang = 'Indonesia';
+  String _fixedLang = 'English';
 
   String get fixedLang => _fixedLang;
 

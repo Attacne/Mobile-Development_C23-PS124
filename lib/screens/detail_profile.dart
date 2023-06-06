@@ -1,5 +1,6 @@
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/provider.dart';
+import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
@@ -29,7 +30,7 @@ class _DetailProfileState extends State<DetailProfile> {
           icon: Icon(Icons.arrow_back_rounded, color: read(c).fixTheme ? Cb : Cw),
         ),
         elevation: 0,
-        title: Text(editProfileHead_id, style: TextStyle(fontSize: 17, color: read(c).fixTheme ? Cb : Cw)),
+        title: Text(read(c).fixedLang == 'Indonesia' ? editProfileHead_id : editProfileHead_en, style: TextStyle(fontSize: 17, color: read(c).fixTheme ? Cb : Cw)),
       ),
       body: Stack(
         children: [
@@ -42,8 +43,7 @@ class _DetailProfileState extends State<DetailProfile> {
                 const SizedBox(height: 20),
                 Container(
                   width: size(c).width,
-                  decoration:
-                      BoxDecoration(color: Colors.transparent, borderRadius: rounded(20)),
+                  decoration: BoxDecoration(color: Colors.transparent, borderRadius: rounded(20)),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -54,9 +54,7 @@ class _DetailProfileState extends State<DetailProfile> {
                           gradient: read(c).fixTheme ? gradientLight : gradientDark,
                           borderRadius: rounded(200),
                           image: DecorationImage(
-                            image: read(c).imgPrifileNow == ''
-                                ? const AssetImage('assets/attacne_logo.png')
-                                : AssetImage(read(c).imgPrifileNow),
+                            image: read(c).imgPrifileNow == '' ? const AssetImage('assets/attacne_logo.png') : AssetImage(read(c).imgPrifileNow),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -70,10 +68,9 @@ class _DetailProfileState extends State<DetailProfile> {
                             physics: const BouncingScrollPhysics(),
                             crossAxisCount: 2,
                             children: List.generate(
-                              imgProfile_id.length,
+                              imgProfile.length,
                               (int i) => InkWell(
-                                onTap: () =>
-                                    create(c).setProfile(imgProfile_id[i]),
+                                onTap: () => create(c).setProfile(imgProfile[i]),
                                 splashColor: Colors.transparent,
                                 child: Container(
                                   margin: EdgeInsets.only(
@@ -84,7 +81,7 @@ class _DetailProfileState extends State<DetailProfile> {
                                   decoration: BoxDecoration(
                                     borderRadius: rounded(10),
                                     image: DecorationImage(
-                                      image: AssetImage(imgProfile_id[i]),
+                                      image: AssetImage(imgProfile[i]),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -98,12 +95,11 @@ class _DetailProfileState extends State<DetailProfile> {
                   ),
                 ),
                 const SizedBox(height: 50),
-                textFormField(c, labelUserNameEP_id, text: read(c).userName),
+                textFormField(c, read(c).fixedLang == 'Indonesia' ? labelUserNameEP_id : labelUserNameEP_en, text: read(c).userName),
                 const SizedBox(height: 20),
-                textFormField(c, labelEmailEP_id,
-                    type: TextInputType.emailAddress, text: read(c).email),
+                textFormField(c, read(c).fixedLang == 'Indonesia' ? labelEmailEP_id : labelEmailEP_en, type: TextInputType.emailAddress, text: read(c).email),
                 const SizedBox(height: 20),
-                textFormField(c, labelPassEP_id, isPass: true),
+                textFormField(c, read(c).fixedLang == 'Indonesia' ? labelPassEP_id : labelPassEP_en, isPass: true),
                 const SizedBox(height: 20),
                 TextButton(
                   style: ButtonStyle(
@@ -123,7 +119,7 @@ class _DetailProfileState extends State<DetailProfile> {
                     create(c).setUserName(sementara1!);
                     create(c).setEmail(sementara2!);
                   },
-                  child: const Text('Save'),
+                  child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save'),
                 ),
                 const SizedBox(height: 50),
               ],
@@ -145,7 +141,7 @@ class _DetailProfileState extends State<DetailProfile> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: Center(child: Text('Save', style: TextStyle(color: Cw))),
+                child: Center(child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save', style: TextStyle(color: Cw))),
               ),
             ],
           )

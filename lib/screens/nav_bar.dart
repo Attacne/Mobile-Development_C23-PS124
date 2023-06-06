@@ -85,7 +85,7 @@ class NavBarAppState extends State<NavBarApp> {
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: Text(
-                                index == currentIndex ? '${titleNavBar_id[index]}' : '',
+                                index == currentIndex ? '${titleNavBar[index]}' : '',
                                 style: TextStyle(color: C1, fontWeight: FontWeight.w600, fontSize: 15),
                               ),
                             ),
