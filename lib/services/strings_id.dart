@@ -5,64 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //--------------------------------------------------------------------
-//--------------------------------------------------------------------
-//Prepare
-var jenis_id = [
-  'Jerawat Blackhead',
-  'Jerawat Nodules',
-  'Jerawat Papules',
-  'Jerawat Pustules',
-  'Jerawat Whitehead',
-];
-var desk_id = [
-  'Jerawat Blackhead',
-  'Jerawat Nodules',
-  'Jerawat Papules',
-  'Jerawat Pustules',
-  'Jerawat Whitehead',
-];
-var recomendasi_id = [
-  [
-    ["assets/Card 1.png", 'Salep Blackhead'],
-    ["assets/Card 2.png", 'Salep Blackhead'],
-    ["assets/Card 3.png", 'Salep Blackhead'],
-    ["assets/Card 4.png", 'Salep Blackhead'],
-    ["assets/Card 5.png", 'Salep Blackhead'],
-  ],
-  [
-    ["assets/Card 1.png", 'Salep Nodules'],
-    ["assets/Card 2.png", 'Salep Nodules'],
-    ["assets/Card 3.png", 'Salep Nodules'],
-    ["assets/Card 4.png", 'Salep Nodules'],
-    ["assets/Card 5.png", 'Salep Nodules']
-  ],
-  [
-    ["assets/Card 1.png", 'Salep Papules'],
-    ["assets/Card 2.png", 'Salep Papules'],
-    ["assets/Card 3.png", 'Salep Papules'],
-    ["assets/Card 4.png", 'Salep Papules'],
-    ["assets/Card 5.png", 'Salep Papules']
-  ],
-  [
-    ["assets/Card 1.png", 'Salep Pustules'],
-    ["assets/Card 2.png", 'Salep Pustules'],
-    ["assets/Card 3.png", 'Salep Pustules'],
-    ["assets/Card 4.png", 'Salep Pustules'],
-    ["assets/Card 5.png", 'Salep Pustules']
-  ],
-  [
-    ["assets/Card 1.png", 'Salep Whitehead'],
-    ["assets/Card 2.png", 'Salep Whitehead'],
-    ["assets/Card 3.png", 'Salep Whitehead'],
-    ["assets/Card 4.png", 'Salep Whitehead'],
-    ["assets/Card 5.png", 'Salep Whitehead']
-  ]
-];
-
-//--------------------------------------------------------------------
-//--------------------------------------------------------------------
-
-//--------------------------------------------------------------------
 //String Login Page
 String login_id = 'Masuk',
     subTitleLogin_id = "Masuk untuk melanjutkan",

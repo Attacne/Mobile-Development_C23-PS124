@@ -5,6 +5,7 @@ import 'package:attacne/screens/profile.dart';
 import 'package:attacne/screens/acne.dart';
 import 'package:attacne/screens/home.dart';
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/shared_preferences.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/futures.dart';
@@ -21,6 +22,18 @@ class NavBarApp extends StatefulWidget {
 
 class NavBarAppState extends State<NavBarApp> {
   var currentIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadValue();
+  }
+
+  loadValue() async {
+    create(context).setFixedLang(await SharedP.getLang('lang'));
+    create(context).setFixedTheme(context, await SharedP.getTheme('theme'));
+  }
 
   @override
   Widget build(BuildContext c) {

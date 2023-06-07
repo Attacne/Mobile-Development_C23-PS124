@@ -14,41 +14,27 @@ import 'package:attacne/screens/acne.dart';
 
 import '../models/acneAdapter.dart';
 
-class DetailScan extends StatefulWidget {
+class DetailScan extends StatelessWidget {
   final File? _image;
 
   DetailScan(this._image);
 
-  @override
-  State<DetailScan> createState() => _DetailScanState();
-}
-
-class _DetailScanState extends State<DetailScan> {
   String _description = '';
 
   List<List<String>> _recomended = [];
 
-  String _tanggalSementara = '';
+  String _tanggalSementara =
+      'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}';
 
   // disini get API hasil deteksi
-  String _title = '';
+  String _title = jenis[Random().nextInt(5)];
 
   @override
   Widget build(BuildContext c) {
-    _title = (read(c).fixedLang == 'Indonesia' ? jenis_id : jenis_en)[Random().nextInt(5)];
-
-    _tanggalSementara = read(c).fixedLang == 'Indonesia'
-        ? 'Scan pada: '
-            'Tanggal ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
-            'Jam ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}'
-        : 'Scans on: '
-            'Date ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
-            'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}';
-
-    for (int i = 0; i < (read(c).fixedLang == 'Indonesia' ? jenis_id : jenis_en).length; i++) {
-      if (_title == (read(c).fixedLang == 'Indonesia' ? jenis_id[i] : jenis_en[i])) {
-        _description = (read(c).fixedLang == 'Indonesia' ? desk_id[i] : desk_en[i]);
-        _recomended = (read(c).fixedLang == 'Indonesia' ? recomendasi_id[i] : recomendasi_en[i]);
+    for (int i = 0; i < jenis.length; i++) {
+      if (_title == jenis[i]) {
+        _description = desk[i];
+        _recomended = recomendasi[i];
       }
     }
     // button untuk save atau tidak
@@ -66,7 +52,7 @@ class _DetailScanState extends State<DetailScan> {
           onPressed: () async {
             if (isSave) {
               listHistoryScan.add(
-                HistoryScan(imgScan: widget._image, hasilScan: _title, deskHasilScan: _description, tanggalScan: _tanggalSementara, rekomendasiProduk: _recomended),
+                HistoryScan(imgScan: _image, hasilScan: _title, deskHasilScan: _description, tanggalScan: _tanggalSementara, rekomendasiProduk: _recomended),
               );
               create(c).setIsLoadingToDB(); //ubah tampilan loading
               await Future.delayed(Duration(seconds: 2));
@@ -113,7 +99,7 @@ class _DetailScanState extends State<DetailScan> {
                       background: Container(
                         decoration: BoxDecoration(
                           color: read(c).fixTheme ? Cw : C2,
-                          image: DecorationImage(image: FileImage(widget._image!), fit: BoxFit.cover),
+                          image: DecorationImage(image: FileImage(_image!), fit: BoxFit.cover),
                         ),
                       ),
                     ),
@@ -177,7 +163,7 @@ class _DetailScanState extends State<DetailScan> {
         ),
       ),
       bottomNavigationBar: read(c).loadingToDB
-          ? null
+          ? Container(height: 80, color: read(c).fixTheme ? Cw : C2)
           : Container(
               height: 80,
               color: read(c).fixTheme ? Cw : C2,

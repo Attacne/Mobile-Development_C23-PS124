@@ -59,30 +59,35 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
 // TextField dengan background putih
 Widget inputData(BuildContext c, IconData icon, String hintText, bool isPassword, bool isEmail) {
   return Container(
-    height: size(c).width / 8,
-    width: size(c).width / 1.2,
-    alignment: Alignment.center,
-    decoration: BoxDecoration(
-      color: Cw,
-      borderRadius: rounded(15),
-      boxShadow: [
-        BoxShadow(color: Cb.withOpacity(.5), blurRadius: 5, offset: const Offset(0, 5)),
-      ],
-    ),
+    width: size(c).width * .9,
+    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+    decoration: BoxDecoration(color: Cw.withOpacity(.1), borderRadius: rounded(10)),
     child: TextField(
-      style: TextStyle(fontSize: 20, color: Cb),
-      obscureText: isPassword,
-      onChanged: (text) {},
+      style: TextStyle(fontSize: 18, color: Cw),
+      obscureText: isPassword
+          ? read(c).isHidePass
+              ? true
+              : false
+          : isPassword,
+      onSubmitted: (text) {},
       keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
       decoration: InputDecoration(
-        prefixIcon: Icon(
-          icon,
-          color: C1,
-        ),
+        suffixIcon: isPassword
+            ? IconButton(
+                padding: EdgeInsets.zero,
+                splashRadius: 1,
+                onPressed: () => create(c).passSet(),
+                icon: Icon(
+                  read(c).isHidePass ? Icons.visibility_off : Icons.visibility,
+                  color: read(c).isHidePass ? Cw.withOpacity(.5) : C1,
+                ),
+              )
+            : null,
+        prefixIcon: Icon(icon, color: C1),
         border: InputBorder.none,
         hintMaxLines: 1,
         hintText: hintText,
-        hintStyle: const TextStyle(fontSize: 20, color: Color(0xff999999)),
+        hintStyle: TextStyle(fontSize: 18, color: Cw.withOpacity(.2)),
       ),
     ),
   );

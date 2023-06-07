@@ -1,9 +1,30 @@
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/shared_preferences.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ChangeTheme extends StatelessWidget {
+class ChangeTheme extends StatefulWidget {
+  @override
+  State<ChangeTheme> createState() => _ChangeThemeState();
+}
+
+class _ChangeThemeState extends State<ChangeTheme> {
+  String? selected;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadValue();
+  }
+
+  loadValue() async {
+    selected = await SharedP.getTheme('theme');
+    create(context).setFixedTheme(context, selected!);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext c) {
     return Scaffold(
@@ -22,8 +43,8 @@ class ChangeTheme extends StatelessWidget {
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'LightTheme',
-              groupValue: read(c).selectedTheme,
-              onChanged: (value) => create(c).setSelectedTheme(value!),
+              groupValue: selected,
+              onChanged: (value) => setState(() => selected = value),
             ),
             RadioListTile(
               title: Text(
@@ -31,8 +52,8 @@ class ChangeTheme extends StatelessWidget {
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'DarkTheme',
-              groupValue: read(c).selectedTheme,
-              onChanged: (value) => create(c).setSelectedTheme(value!),
+              groupValue: selected,
+              onChanged: (value) => setState(() => selected = value),
             ),
             RadioListTile(
               title: Text(
@@ -40,8 +61,8 @@ class ChangeTheme extends StatelessWidget {
                 style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
               ),
               value: 'System',
-              groupValue: read(c).selectedTheme,
-              onChanged: (value) => create(c).setSelectedTheme(value!),
+              groupValue: selected,
+              onChanged: (value) => setState(() => selected = value),
             ),
             SizedBox(height: 16.0),
             Container(
@@ -58,7 +79,8 @@ class ChangeTheme extends StatelessWidget {
                 ),
                 onPressed: () async {
                   await Future.delayed(const Duration(milliseconds: 300));
-                  create(c).setFixedTheme(c);
+                  SharedP.setTheme('theme', selected!);
+                  loadValue();
                 },
                 child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save'),
               ),

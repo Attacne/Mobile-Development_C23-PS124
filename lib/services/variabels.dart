@@ -10,6 +10,64 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //--------------------------------------------------------------------
+//--------------------------------------------------------------------
+//Prepare
+var jenis = [
+  'Blackhead',
+  'Nodules',
+  'Papules',
+  'Pustules',
+  'Whitehead',
+];
+var desk = [
+  'Jerawat Anda bertipe Blackhead',
+  'Jerawat Anda bertipe  Nodules',
+  'Jerawat Anda bertipe  Papules',
+  'Jerawat Anda bertipe  Pustules',
+  'Jerawat Anda bertipe  Whitehead',
+];
+var recomendasi = [
+  [
+    ["assets/Card 1.png", 'Salep Blackhead'],
+    ["assets/Card 2.png", 'Salep Blackhead'],
+    ["assets/Card 3.png", 'Salep Blackhead'],
+    ["assets/Card 4.png", 'Salep Blackhead'],
+    ["assets/Card 5.png", 'Salep Blackhead'],
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Nodules'],
+    ["assets/Card 2.png", 'Salep Nodules'],
+    ["assets/Card 3.png", 'Salep Nodules'],
+    ["assets/Card 4.png", 'Salep Nodules'],
+    ["assets/Card 5.png", 'Salep Nodules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Papules'],
+    ["assets/Card 2.png", 'Salep Papules'],
+    ["assets/Card 3.png", 'Salep Papules'],
+    ["assets/Card 4.png", 'Salep Papules'],
+    ["assets/Card 5.png", 'Salep Papules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Pustules'],
+    ["assets/Card 2.png", 'Salep Pustules'],
+    ["assets/Card 3.png", 'Salep Pustules'],
+    ["assets/Card 4.png", 'Salep Pustules'],
+    ["assets/Card 5.png", 'Salep Pustules']
+  ],
+  [
+    ["assets/Card 1.png", 'Salep Whitehead'],
+    ["assets/Card 2.png", 'Salep Whitehead'],
+    ["assets/Card 3.png", 'Salep Whitehead'],
+    ["assets/Card 4.png", 'Salep Whitehead'],
+    ["assets/Card 5.png", 'Salep Whitehead']
+  ]
+];
+
+//--------------------------------------------------------------------
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
 var bold = FontWeight.bold;
 var rounded = BorderRadius.circular;
 

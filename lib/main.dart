@@ -10,6 +10,7 @@ import 'package:attacne/screens/nav_bar.dart';
 import 'package:attacne/screens/profile.dart';
 import 'package:attacne/screens/register.dart';
 import 'package:attacne/services/provider.dart';
+import 'package:attacne/services/shared_preferences.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/widgets/loading.dart';
 import 'package:flutter/material.dart';

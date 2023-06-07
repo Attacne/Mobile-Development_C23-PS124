@@ -1,11 +1,32 @@
 import 'dart:math';
 
 import 'package:attacne/services/colors.dart';
+import 'package:attacne/services/shared_preferences.dart';
 import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ChangeLanguage extends StatelessWidget {
+class ChangeLanguage extends StatefulWidget {
+  @override
+  State<ChangeLanguage> createState() => _ChangeLanguageState();
+}
+
+class _ChangeLanguageState extends State<ChangeLanguage> {
+  String? selected;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadValue();
+  }
+
+  loadValue() async {
+    selected = await SharedP.getLang('lang');
+    create(context).setFixedLang(selected!);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext c) {
     return Scaffold(
@@ -29,8 +50,8 @@ class ChangeLanguage extends StatelessWidget {
                 style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
               ),
               value: 'English',
-              groupValue: read(c).selectedLang,
-              onChanged: (value) => create(c).setSelectedLang(value!),
+              groupValue: selected,
+              onChanged: (value) => setState(() => selected = value),
             ),
             RadioListTile(
               title: Text(
@@ -38,8 +59,8 @@ class ChangeLanguage extends StatelessWidget {
                 style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
               ),
               value: 'Indonesia',
-              groupValue: read(c).selectedLang,
-              onChanged: (value) => create(c).setSelectedLang(value!),
+              groupValue: selected,
+              onChanged: (value) => setState(() => selected = value),
             ),
             SizedBox(height: 16.0),
             Container(
@@ -55,8 +76,9 @@ class ChangeLanguage extends StatelessWidget {
                   )),
                 ),
                 onPressed: () async {
-                  await Future.delayed(const Duration(milliseconds: 500));
-                  create(c).setFixedLang();
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  SharedP.setLang('lang', selected!);
+                  loadValue();
                   // close(c);
                 },
                 child: Text(

@@ -6,61 +6,6 @@ import 'package:provider/provider.dart';
 
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
-//Prepare
-var jenis_en = [
-  'Blackhead Acne',
-  'Nodules Acne',
-  'Papules Acne',
-  'Pustules Acne',
-  'Whitehead  Acne',
-];
-var desk_en = [
-  'Blackhead Acne',
-  'Nodules Acne',
-  'Papules Acne',
-  'Pustules Acne',
-  'Whitehead  Acne',
-];
-var recomendasi_en = [
-  [
-    ["assets/Card 1.png", 'Blackhead Potion'],
-    ["assets/Card 2.png", 'Blackhead Potion'],
-    ["assets/Card 3.png", 'Blackhead Potion'],
-    ["assets/Card 4.png", 'Blackhead Potion'],
-    ["assets/Card 5.png", 'Blackhead Potion'],
-  ],
-  [
-    ["assets/Card 1.png", 'Nodules Potion'],
-    ["assets/Card 2.png", 'Nodules Potion'],
-    ["assets/Card 3.png", 'Nodules Potion'],
-    ["assets/Card 4.png", 'Nodules Potion'],
-    ["assets/Card 5.png", 'Nodules Potion'],
-  ],
-  [
-    ["assets/Card 1.png", 'Papules Potion'],
-    ["assets/Card 2.png", 'Papules Potion'],
-    ["assets/Card 3.png", 'Papules Potion'],
-    ["assets/Card 4.png", 'Papules Potion'],
-    ["assets/Card 5.png", 'Papules Potion'],
-  ],
-  [
-    ["assets/Card 1.png", 'Pustules Potion'],
-    ["assets/Card 2.png", 'Pustules Potion'],
-    ["assets/Card 3.png", 'Pustules Potion'],
-    ["assets/Card 4.png", 'Pustules Potion'],
-    ["assets/Card 5.png", 'Pustules Potion'],
-  ],
-  [
-    ["assets/Card 1.png", 'Whitehead Potion'],
-    ["assets/Card 2.png", 'Whitehead Potion'],
-    ["assets/Card 3.png", 'Whitehead Potion'],
-    ["assets/Card 4.png", 'Whitehead Potion'],
-    ["assets/Card 5.png", 'Whitehead Potion'],
-  ]
-];
-
-//--------------------------------------------------------------------
-//--------------------------------------------------------------------
 
 //--------------------------------------------------------------------
 //String Login Page
@@ -128,7 +73,7 @@ String detailScanHead_en = 'Detail', subHeadDetailScan_en = 'Rekomendasi Produk'
 //String Profile page
 String dgLogOut_en = 'Log Out?',
     head1Profile_en = 'Account',
-    subHead1Profile_en = 'Tutorial for use.',
+    subHead1Profile_en = 'Tutorial for use',
     subHead2Profile_en = 'Personal policy',
     head2Profile_en = 'General',
     subHead3Profile_en = 'Language',
@@ -137,7 +82,13 @@ String dgLogOut_en = 'Log Out?',
     subHead6Profile_en = 'Rate this app';
 //--------------------------------------------------------------------
 //Model untuk info kenali jerawat
-List<String> nameAcneInfo_en = jenis_en;
+List<String> nameAcneInfo_en = [
+  'Blackhead Acne',
+  'Nodules Acne',
+  'Papules Acne',
+  'Pustules Acne',
+  'Whitehead  Acne',
+];
 List<String> descAcneInfo_en = [
   "Blackheads are a type of non-inflammatory acne that occurs when the skin's pores become clogged with sebum (natural skin oil), dead skin cells, and dirt. When the pores are clogged, the trapped sebum undergoes oxidation and produces a black color, resulting in the appearance of blackheads.\n\nBlackheads typically appear in areas of the skin that have excessive oil glands, such as the face, chest, and back. They have an open surface and appear as small black dots on the skin.\n\nBlackheads are often caused by a combination of factors, including excessive oil production, hormonal changes, accumulation of dead skin cells, the use of unsuitable skincare products, and an imbalance of bacteria on the skin. To treat blackhead acne, it is important to maintain regular skin hygiene by gently cleansing it with suitable facial cleansers. The use of exfoliants and masks containing ingredients such as salicylic acid or retinoids can also help cleanse the pores and prevent the formation of new blackheads. If your blackhead acne persists or is severe, consult a dermatologist for appropriate advice and treatment.",
   "Nodular acne is a more severe and serious type of acne compared to common acne. They appear as large, inflamed, and painful lumps located beneath the surface of the skin. Nodular acne is usually deeper and larger than regular acne or cystic acne. Nodular acne forms when the skin's pores become clogged with oil, dead skin cells, and bacteria. The primary causes of nodular acne are increased oil production by the sebaceous glands beneath the skin and inflammation occurring within the pores. Treating nodular acne is usually more challenging and requires medical intervention.\n\nRecommended treatments may include topical medications such as creams or gels containing retinoids or benzoyl peroxide to reduce inflammation and cleanse the pores. In more severe cases, doctors may prescribe oral antibiotics or isotretinoin to reduce inflammation and control the skin's oil production. Corticosteroid injections can be administered to reduce inflammation and the size of nodules in nodular acne. Medical procedures such as chemical peels, microdermabrasion, or light therapy can also help cleanse the pores and reduce inflammation. Always consult with a doctor or dermatologist to determine the appropriate treatment for your nodular acne. They can provide customized advice based on your skin condition and help effectively manage nodular acne.",

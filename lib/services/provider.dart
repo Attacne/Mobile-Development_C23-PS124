@@ -80,46 +80,44 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
 //------------------------------------------------------------------------------
 // untuk pemilihan bahasa page
-  String _selectedLang = 'English';
-
-  String get selectedLang => _selectedLang;
-
-  void setSelectedLang(String value) {
-    _selectedLang = value;
-    notifyListeners();
-  }
-
+//   String _selectedLang = 'English';
   String _fixedLang = 'English';
 
+  // String get selectedLang => _selectedLang;
   String get fixedLang => _fixedLang;
 
-  void setFixedLang() {
-    _fixedLang = _selectedLang;
+  /*void setSelectedLang(String value) {
+    _selectedLang = value;
+    notifyListeners();
+  }*/
+
+  void setFixedLang(String value) {
+    _fixedLang = value;
     notifyListeners();
   }
 
 //------------------------------------------------------------------------------
 // untuk pemilihan tema page
 
-  String _selectedTheme = 'LightTheme';
+  // String _selectedTheme = 'LightTheme';
 
-  String get selectedTheme => _selectedTheme;
-
-  void setSelectedTheme(String value) {
-    _selectedTheme = value;
-    notifyListeners();
-  }
+  // String get selectedTheme => _selectedTheme;
 
   bool _fixTheme = true;
 
   bool get fixTheme => _fixTheme;
 
-  void setFixedTheme(BuildContext c) {
-    _selectedTheme == 'System'
+  /*void setSelectedTheme(String value) {
+    _selectedTheme = value;
+    notifyListeners();
+  }*/
+
+  void setFixedTheme(BuildContext c, String theme) {
+    theme == 'System'
         ? MediaQuery.of(c).platformBrightness == Brightness.light
             ? _fixTheme = true
             : _fixTheme = false
-        : _selectedTheme == 'LightTheme'
+        : theme == 'LightTheme'
             ? _fixTheme = true
             : _fixTheme = false;
 
@@ -145,5 +143,4 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
     _ladingToDB = !_ladingToDB;
     notifyListeners();
   }
-
 }

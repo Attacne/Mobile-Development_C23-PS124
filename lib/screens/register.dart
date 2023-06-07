@@ -14,8 +14,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> with TickerProviderStateMixin {
   @override
-  Widget build(BuildContext c) =>
-      Scaffold(
+  Widget build(BuildContext c) => Scaffold(
         backgroundColor: const Color(0xff192028),
         body: ScrollConfiguration(
           behavior: MaterialScrollBehavior().copyWith(overscroll: false),
@@ -32,58 +31,49 @@ class _RegisterState extends State<Register> with TickerProviderStateMixin {
                     decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
                   ),
                 ),
-                Column(
-                  children: [
-                    Container(height: 50),
-                    Text(
-                      read(c).fixedLang == 'Indonesia' ? register_id : register_en,
-                      style: TextStyle(
-                        color: Cw,
-                        fontSize: 30,
-                        fontWeight: bold,
-                        wordSpacing: 4,
+                Container(
+                  width: size(c).width,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: size(c).height * .05),
+                        child: Column(
+                          children: [
+                            Text(
+                              read(c).fixedLang == 'Indonesia' ? register_id : register_en,
+                              style: TextStyle(color: Cw, fontSize: 30, fontWeight: bold, wordSpacing: 4),
+                            ),
+                            Text(
+                              read(c).fixedLang == 'Indonesia' ? subTitleRegister_id : subTitleRegister_en,
+                              style: TextStyle(color: Cw, letterSpacing: 2, fontSize: 20, fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      read(c).fixedLang == 'Indonesia' ? subTitleRegister_id : subTitleRegister_en,
-                      style: TextStyle(
-                        color: Cw,
-                        letterSpacing: 2,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w300,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 40),
+                          Text(read(c).fixedLang == 'Indonesia' ? fullName_id : fullName_en, style: TextStyle(color: Cw, fontSize: 18)),
+                          const SizedBox(height: 5),
+                          inputData(c, Icons.person_rounded, read(c).fixedLang == 'Indonesia' ? hintFullName_id : hintFullName_en, false, false),
+                          const SizedBox(height: 20),
+                          Text(read(c).fixedLang == 'Indonesia' ? userName_id : userName_en, style: TextStyle(color: Cw, fontSize: 18)),
+                          const SizedBox(height: 5),
+                          inputData(c, Icons.adjust_rounded, read(c).fixedLang == 'Indonesia' ? hintUserName_id : hintUserName_en, false, false),
+                          const SizedBox(height: 20),
+                          Text(read(c).fixedLang == 'Indonesia' ? emailRegister_id : emailRegister_en, style: TextStyle(color: Cw, fontSize: 18)),
+                          const SizedBox(height: 5),
+                          inputData(c, Icons.email_rounded, read(c).fixedLang == 'Indonesia' ? hintEmailRegister_id : hintEmailRegister_en, false, true),
+                          const SizedBox(height: 20),
+                          Text(read(c).fixedLang == 'Indonesia' ? passRegister_id : passRegister_en, style: TextStyle(color: Cw, fontSize: 18)),
+                          const SizedBox(height: 5),
+                          inputData(c, Icons.lock_rounded, read(c).fixedLang == 'Indonesia' ? hintPassRegister_id : hintPassRegister_en, true, false),
+                          const SizedBox(height: 20),
+                        ],
                       ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 100, width: 10),
-                        Text(
-                          read(c).fixedLang == 'Indonesia' ? fullName_id : fullName_en,
-                          style: TextStyle(color: Cw, fontSize: 18),
-                        ),
-                        inputData(c, Icons.person_rounded, read(c).fixedLang == 'Indonesia' ? hintFullName_id : hintFullName_en, false, false),
-                        const SizedBox(height: 20, width: 10),
-                        Text(
-                          read(c).fixedLang == 'Indonesia' ? userName_id : userName_en,
-                          style: TextStyle(color: Cw, fontSize: 18),
-                        ),
-                        inputData(c, Icons.adjust_rounded, read(c).fixedLang == 'Indonesia' ? hintUserName_id : hintUserName_en, false, false),
-                        const SizedBox(height: 20, width: 10),
-                        Text(
-                          read(c).fixedLang == 'Indonesia' ? emailRegister_id : emailRegister_en,
-                          style: TextStyle(color: Cw, fontSize: 18),
-                        ),
-                        inputData(c, Icons.email_rounded, read(c).fixedLang == 'Indonesia' ? hintEmailRegister_id : hintEmailRegister_en, false, true),
-                        const SizedBox(height: 20, width: 10),
-                        Text(
-                          read(c).fixedLang == 'Indonesia' ? passRegister_id : passRegister_en,
-                          style: TextStyle(color: Cw, fontSize: 18),
-                        ),
-                        inputData(c, Icons.lock_rounded, read(c).fixedLang == 'Indonesia' ? hintPassRegister_id : hintPassRegister_en, true, false),
-                        const SizedBox(height: 20, width: 10),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -101,14 +91,15 @@ class _RegisterState extends State<Register> with TickerProviderStateMixin {
                 children: [
                   Text(
                     read(c).fixedLang == 'Indonesia' ? infoRegister_id : infoRegister_en,
-                    style: TextStyle(color: Cw, fontSize: 15),
+                    style: TextStyle(color: read(c).fixTheme ? Cw : Cw.withOpacity(.5), fontSize: 15),
                   ),
                   TextButton(
-                    style: ButtonStyle(
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    ),
+                    style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
                     onPressed: () => close(c),
-                    child: Text(read(c).fixedLang == 'Indonesia' ? btnSignIn_id : btnSignIn_en, style: TextStyle(color: C1, fontSize: 15)),
+                    child: Text(
+                      read(c).fixedLang == 'Indonesia' ? btnSignIn_id : btnSignIn_en,
+                      style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 15),
+                    ),
                   ),
                 ],
               ),

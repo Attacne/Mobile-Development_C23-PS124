@@ -117,9 +117,11 @@ class DetailProfile extends StatelessWidget {
               keyboardType: TextInputType.visiblePassword,
               obscureText: read(c).isHidePass ? true : false,
               decoration: InputDecoration(
-                suffix: GestureDetector(
-                  onTap: () => create(c).passSet(),
-                  child: Icon(
+                suffixIcon: IconButton(
+                  padding: EdgeInsets.zero,
+                  splashRadius: 1,
+                  onPressed: () => create(c).passSet(),
+                  icon: Icon(
                     read(c).isHidePass ? Icons.visibility_off : Icons.visibility,
                     color: read(c).isHidePass
                         ? read(c).fixTheme

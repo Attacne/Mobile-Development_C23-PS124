@@ -2,6 +2,7 @@ import 'package:attacne/models/acneAdapter.dart';
 import 'package:attacne/screens/detail_info.dart';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/provider.dart';
+import 'package:attacne/services/shared_preferences.dart';
 import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
@@ -28,6 +29,7 @@ class _HomeState extends State<Home> {
     CardExtended card2 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[2], titleCardHome_id[2]) : CardExtended(headCardHome_en[2], titleCardHome_en[2]);
     CardExtended card3 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[3], titleCardHome_id[3]) : CardExtended(headCardHome_en[3], titleCardHome_en[3]);
     CardExtended card4 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[4], titleCardHome_id[4]) : CardExtended(headCardHome_en[4], titleCardHome_en[4]);
+
     return Scaffold(
       body: Stack(
         children: [
