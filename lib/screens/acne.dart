@@ -12,49 +12,49 @@ import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Acne extends StatefulWidget {
-  @override
-  State<Acne> createState() => _AcneState();
-}
+// bool isLoadingToCC = false;
 
-class _AcneState extends State<Acne> {
+class Acne extends StatelessWidget {
 // untuk simpan sementara file gambar,judul dan desk. setiap hasil scan yang belum
   File? _image;
-  bool isLoading = false;
 
   @override
   Widget build(BuildContext c) {
-    return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C2,
-      body: Stack(
-        children: [
-          Positioned(
-            bottom: size(c).height * .5,
-            left: -(900 / 5),
-            right: -(900 / 5),
-            child: Container(
-              height: 900,
-              decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
+    return SafeArea(
+      bottom: false,
+      top: false,
+      child: Scaffold(
+        backgroundColor: read(c).fixTheme ? Cw : C2,
+        body: Stack(
+          children: [
+            Positioned(
+              bottom: size(c).height * .5,
+              left: -(900 / 5),
+              right: -(900 / 5),
+              child: Container(
+                height: 900,
+                decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
+              ),
             ),
-          ),
-          SafeArea(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(read(c).fixedLang == 'Indonesia' ? acneHead_id : acneHead_en, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
-                Image.asset(height: size(c).height * .35, read(c).fixTheme ? imgAcneLight : imgAcneDark, fit: BoxFit.fitWidth),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    btnAcne(c, Icons.camera_alt),
-                    btnAcne(c, Icons.add_rounded),
-                  ],
-                ),
-              ],
+            SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(read(c).fixedLang == 'Indonesia' ? acneHead_id : acneHead_en, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
+                  Image.asset(height: size(c).height * .35, read(c).fixTheme ? imgAcneLight : imgAcneDark, fit: BoxFit.fitWidth),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      btnAcne(c, Icons.camera_alt),
+                      btnAcne(c, Icons.add_rounded),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          isLoading ? Loading() : Container()
-        ],
+            read(c).loadingToCC ? Loading() : Container()
+          ],
+        ),
       ),
     );
   }
@@ -83,11 +83,11 @@ class _AcneState extends State<Acne> {
       child: TextButton(
         onPressed: () async {
           isGallery ? await getImage(c, ImageSource.gallery) : await getImage(c, ImageSource.camera);
-          await Future.delayed(Duration(milliseconds: 200)); //kirim gambar ke cc dan di proses
-          setState(() => isLoading = !isLoading); //ubah tampilan loading
-          await Future.delayed(Duration(seconds: 3));
+          await Future.delayed(const Duration(milliseconds: 200)); //kirim gambar ke cc dan di proses
+          create(c).setIsLoadingToCC(); //ubah tampilan loading
+          await Future.delayed(const Duration(seconds: 3));
           open(c, DetailScan(_image));
-          setState(() => isLoading = !isLoading); //hilangkan tampilan loading
+          create(c).setIsLoadingToCC(); //hilangkan tampilan loading
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: rounded(10)),

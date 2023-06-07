@@ -27,16 +27,8 @@ void main() async {
   );
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => StateM()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => StateM())],
       child: const MyApp(),
-    ),
-  );
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
     ),
   );
 }

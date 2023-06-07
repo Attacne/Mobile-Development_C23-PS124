@@ -87,6 +87,8 @@ class _HistoryState extends State<History> {
                   color: read(contex).fixTheme ? Cw : C3,
                   elevation: 3,
                   child: InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
                     onTap: () => open(contex, DetailScanHistory(listModel: listHistoryScan[index])),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -99,14 +101,18 @@ class _HistoryState extends State<History> {
                             child: Image.file(listHistoryScan[index].imgScan!, fit: BoxFit.cover),
                           ),
                         ),
-                        Container(height: 10, width: 10),
+                        Container(width: 10),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(listHistoryScan[index].hasilScan!, style: TextStyle(color: read(contex).fixTheme ? Cb : Cw, fontSize: 20)),
+                            Text(
+                              listHistoryScan[index].hasilScan!,
+                              style: TextStyle(color: read(contex).fixTheme ? Cb : Cw, fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
                             Container(
                               width: size(contex).width * .5,
+                              margin: EdgeInsets.only(top: 10),
                               height: 50,
                               // color: Colors.red,
                               child: Text(

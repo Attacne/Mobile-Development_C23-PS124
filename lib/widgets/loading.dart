@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/variabels.dart';
+import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -62,8 +63,10 @@ class _LoadingState extends State<Loading> with TickerProviderStateMixin {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        color: read(context).fixTheme ? Cw.withOpacity(.5) : C2.withOpacity(.5),
+  Widget build(BuildContext c) => Container(
+        height: size(c).height,
+        width: size(c).width,
+        color: read(c).fixTheme ? Cw.withOpacity(.5) : C2.withOpacity(.5),
         child: Center(
           child: SizedBox(
             height: 100,

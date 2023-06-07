@@ -24,7 +24,6 @@ class DetailScan extends StatefulWidget {
 }
 
 class _DetailScanState extends State<DetailScan> {
-  bool isLoading = false;
   String _description = '';
 
   List<List<String>> _recomended = [];
@@ -69,11 +68,11 @@ class _DetailScanState extends State<DetailScan> {
               listHistoryScan.add(
                 HistoryScan(imgScan: widget._image, hasilScan: _title, deskHasilScan: _description, tanggalScan: _tanggalSementara, rekomendasiProduk: _recomended),
               );
+              create(c).setIsLoadingToDB(); //ubah tampilan loading
+              await Future.delayed(Duration(seconds: 2));
+              create(c).setIsLoadingToDB(); //hilangkan tampilan loading
+              await Future.delayed(Duration(milliseconds: 500));
             }
-            setState(() => isLoading = !isLoading); //ubah tampilan loading
-            await Future.delayed(Duration(seconds: 3));
-            setState(() => isLoading = !isLoading); //hilangkan tampilan loading
-            await Future.delayed(Duration(milliseconds: 300));
             close(c);
           },
           style: TextButton.styleFrom(
@@ -127,7 +126,7 @@ class _DetailScanState extends State<DetailScan> {
                           child: Column(
                             children: [
                               Container(
-                                padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
+                                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -173,24 +172,26 @@ class _DetailScanState extends State<DetailScan> {
                 ],
               ),
             ),
-            isLoading ? Loading() : Container()
+            read(c).loadingToDB ? Loading() : Container()
           ],
         ),
       ),
-      bottomNavigationBar: Container(
-        height: 80,
-        color: read(c).fixTheme ? Cw : C2,
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              btnSave(c, read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, true),
-              btnSave(c, read(c).fixedLang == 'Indonesia' ? dontSaveDetailScan_id : dontSaveDetailScan_en, false),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: read(c).loadingToDB
+          ? null
+          : Container(
+              height: 80,
+              color: read(c).fixTheme ? Cw : C2,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    btnSave(c, read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, true),
+                    btnSave(c, read(c).fixedLang == 'Indonesia' ? dontSaveDetailScan_id : dontSaveDetailScan_en, false),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }

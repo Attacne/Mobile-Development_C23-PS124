@@ -21,7 +21,7 @@ class DetailScanHistory extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: ScrollConfiguration(
-          behavior: MaterialScrollBehavior().copyWith(overscroll: false),
+          behavior: const MaterialScrollBehavior().copyWith(overscroll: false),
           child: CustomScrollView(
             slivers: [
               SliverAppBar(
@@ -46,7 +46,7 @@ class DetailScanHistory extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 55),
+                            padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

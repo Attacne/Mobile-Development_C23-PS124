@@ -18,6 +18,13 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
 //------------------------------------------------------------------------------
 //Untuk data userName Profile
+  void setListProfile(String value1, String value2, String value3) {
+    _userName = value1;
+    _email = value2;
+    _pass = value3;
+    notifyListeners();
+  }
+
   String _userName = 'Muh. Hilmy Noor Fauzi';
 
   String get userName => _userName;
@@ -118,4 +125,25 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
     notifyListeners();
   }
+
+//
+  bool _ladingToCC = false;
+
+  bool get loadingToCC => _ladingToCC;
+
+  void setIsLoadingToCC() {
+    _ladingToCC = !_ladingToCC;
+    notifyListeners();
+  }
+
+//
+  bool _ladingToDB = false;
+
+  bool get loadingToDB => _ladingToDB;
+
+  void setIsLoadingToDB() {
+    _ladingToDB = !_ladingToDB;
+    notifyListeners();
+  }
+
 }
