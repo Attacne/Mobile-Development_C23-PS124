@@ -155,4 +155,14 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
     _indexNavBar = index;
     notifyListeners();
   }
+
+  //
+  bool _isNotSave = false;
+
+  bool get isNotSave => _isNotSave;
+
+  void setIsNotSave(bool value) {
+    _isNotSave = value;
+    notifyListeners();
+  }
 }

@@ -129,7 +129,10 @@ class _HistoryState extends State<History> {
                             Container(
                               height: 150,
                               width: 150,
-                              color: Colors.grey,
+                              decoration: BoxDecoration(
+                                borderRadius: rounded(10),
+                                image: DecorationImage(image: FileImage(File(snapshot.data![i].image!)), fit: BoxFit.cover),
+                              ),
                             ),
                             Container(width: 10),
                             Column(

@@ -1,3 +1,4 @@
+/*
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/provider.dart';
 import 'package:attacne/services/strings_en.dart';
@@ -156,3 +157,4 @@ class DetailProfile extends StatelessWidget {
     );
   }
 }
+*/

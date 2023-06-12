@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:attacne/screens/history.dart';
-import 'package:attacne/screens/profile.dart';
+import 'package:attacne/screens/profile_settings.dart';
 import 'package:attacne/screens/acne.dart';
 import 'package:attacne/screens/home.dart';
 import 'package:attacne/services/colors.dart';

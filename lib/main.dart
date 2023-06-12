@@ -7,7 +7,7 @@ import 'package:attacne/screens/detail_scan.dart';
 import 'package:attacne/screens/home.dart';
 import 'package:attacne/screens/login.dart';
 import 'package:attacne/screens/nav_bar.dart';
-import 'package:attacne/screens/profile.dart';
+import 'package:attacne/screens/profile_settings.dart';
 import 'package:attacne/screens/register.dart';
 import 'package:attacne/services/provider.dart';
 import 'package:attacne/services/shared_preferences.dart';

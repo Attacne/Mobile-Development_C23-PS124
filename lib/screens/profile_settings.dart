@@ -13,14 +13,14 @@ import 'package:attacne/widgets/futures.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+class ProfileSettings extends StatefulWidget {
+  const ProfileSettings({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<ProfileSettings> createState() => _ProfileSettingsState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileSettingsState extends State<ProfileSettings> {
   @override
   Widget build(BuildContext c) {
     // menampilkan dialog untuk logout
@@ -53,39 +53,9 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: read(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        leadingWidth: 70,
-        leading: Row(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(left: 20),
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                gradient: read(c).fixTheme ? gradientLight : gradientDark,
-                borderRadius: rounded(50),
-                image: DecorationImage(
-                  image: read(c).imgPrifileNow == '' ? AssetImage('assets/attacne_logo.png') : AssetImage(read(c).imgPrifileNow),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ],
-        ),
-        toolbarHeight: 80,
         backgroundColor: read(c).fixTheme ? Cw : C3,
         elevation: 0,
-        titleSpacing: 0,
-        title: TextButton(
-          style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
-          onPressed: () => open(c, DetailProfile()),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(read(c).userName, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17)),
-              Text(read(c).email, style: TextStyle(color: read(c).fixTheme ? Cb : Cw)),
-            ],
-          ),
-        ),
+        title: Image.asset('assets/attacne_logo2.png',fit: BoxFit.fitWidth, width: 150),
         actions: [
           IconButton(
             onPressed: () => dialogLogOut(),
@@ -105,18 +75,12 @@ class _ProfileState extends State<Profile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  read(c).fixedLang == 'Indonesia' ? head1Profile_id : head1Profile_en,
-                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
-                ),
-                const SizedBox(height: 10),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead1Profile_id : subHead1Profile_en, voidCallback: () => launchUrl1('https://www.youtube.com/watch?v=-TMbfwi7Bz0')),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead2Profile_id : subHead2Profile_en, voidCallback: () => launchUrl1('https://github.com/Attacne')),
-                const SizedBox(height: 50),
-                Text(
                   read(c).fixedLang == 'Indonesia' ? head2Profile_id : head2Profile_en,
                   style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
+                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead1Profile_id : subHead1Profile_en, voidCallback: () => launchUrl1('https://www.youtube.com/watch?v=-TMbfwi7Bz0')),
+                // btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead2Profile_id : subHead2Profile_en, voidCallback: () => launchUrl1('https://github.com/Attacne')),
                 btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead3Profile_id : subHead3Profile_en, voidCallback: () => open(c, ChangeLanguage())),
                 btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead4Profile_id : subHead4Profile_en, voidCallback: () => open(c, ChangeTheme())),
                 btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead5Profile_id : subHead5Profile_en, voidCallback: () => launchUrl1('https://github.com/Attacne')),

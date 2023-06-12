@@ -13,7 +13,7 @@ import '../widgets/widgets.dart';
 import 'nav_bar.dart';
 
 class DetailScan extends StatefulWidget {
-  final File? image;
+  String? image;
 
   DetailScan(this.image);
 
@@ -22,7 +22,7 @@ class DetailScan extends StatefulWidget {
 }
 
 class _DetailScanState extends State<DetailScan> {
-  var index = Random().nextInt(5);
+  final index = Random().nextInt(5);
 
   @override
   void initState() {
@@ -55,15 +55,24 @@ class _DetailScanState extends State<DetailScan> {
                     pinned: true,
                     backgroundColor: read(c).fixTheme ? C1 : C3,
                     expandedHeight: size(c).width,
+                    /*leading: IconButton(
+                      splashRadius: 1,
+                      splashColor: Colors.transparent,
+                      onPressed: () {
+                        // create(c).setIsNotSave(true);
+                        close(c);
+                      },
+                      icon: Icon(Icons.arrow_back_rounded, color: read(c).fixTheme ? Cb : Cw),
+                    ),*/
                     title:
-                        //Text('${widget.image}'),
+                        // Text('${widget.image}', style: TextStyle(color: Colors.black)),
                         Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                     flexibleSpace: FlexibleSpaceBar(
                       background: widget.image != null
                           ? Container(
                               decoration: BoxDecoration(
                                 color: read(c).fixTheme ? Cw : C2,
-                                image: DecorationImage(image: FileImage(widget.image!), fit: BoxFit.cover),
+                                image: DecorationImage(image: FileImage(File(widget.image!)), fit: BoxFit.cover),
                               ),
                             )
                           : Container(color: read(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
@@ -88,10 +97,7 @@ class _DetailScanState extends State<DetailScan> {
                                     ),
                                     Text(
                                       desc,
-                                      style: TextStyle(
-                                        color: read(c).fixTheme ? Cb : Cw,
-                                        fontSize: 17,
-                                      ),
+                                      style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
                                       textAlign: TextAlign.justify,
                                     ),
                                     Container(height: 100),
@@ -135,6 +141,7 @@ class _DetailScanState extends State<DetailScan> {
                 style: ElevatedButton.styleFrom(backgroundColor: C1),
                 onPressed: () async {
                   await db.insert({
+                    'image': widget.image,
                     'title': title,
                     'desc': desc,
                     'date': 'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '

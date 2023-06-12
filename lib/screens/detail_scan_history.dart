@@ -32,13 +32,16 @@ class DetailScanHistory extends StatelessWidget {
                 backgroundColor: read(c).fixTheme ? C1 : C3,
                 expandedHeight: size(c).width,
                 title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
-                /*flexibleSpace: FlexibleSpaceBar(
-                  background: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(image: FileImage(listModel.), fit: BoxFit.cover),
-                    ),
-                  ),
-                ),*/
+                flexibleSpace: FlexibleSpaceBar(
+                  background: listModel.image != null
+                      ? Container(
+                          decoration: BoxDecoration(
+                            color: read(c).fixTheme ? Cw : C2,
+                            image: DecorationImage(image: FileImage(File(listModel.image!)), fit: BoxFit.cover),
+                          ),
+                        )
+                      : Container(color: read(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
+                ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(

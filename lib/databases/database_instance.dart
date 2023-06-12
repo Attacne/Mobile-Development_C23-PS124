@@ -11,6 +11,7 @@ class DataBaseInstance {
   //producht
   final String table = 'scanned';
   final String id = 'id';
+  final String image = 'image';
   final String title = 'title';
   final String desc = 'desc';
   final String date = 'date';
@@ -35,6 +36,7 @@ class DataBaseInstance {
     await db.execute('''
       CREATE TABLE $table (
         $id INTEGER PRIMARY KEY,
+        $image TEXT,
         $title TEXT,
         $desc TEXT,
         $date TEXT
