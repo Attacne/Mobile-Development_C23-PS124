@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:io';
-
-import 'package:attacne/models/acneAdapter.dart';
-import 'package:attacne/screens/detail_info.dart';
-import 'package:attacne/screens/detail_scan.dart';
-import 'package:attacne/screens/detail_scan_history.dart';
 import 'package:attacne/services/colors.dart';
-import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
-import 'package:attacne/widgets/futures.dart';
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 // Menghapus lapisan teratas pada page
 void close(BuildContext c) => Navigator.pop(c);

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:attacne/models/scan_history_model.dart';
 import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
@@ -81,4 +82,4 @@ var _acneImg = [
 //--------------------------------------------------------------------
 // Adapter untuk AcneInfoModel
 
-List<HistoryScan> listHistoryScan = [];
+List<ScanHistoryModel> listHistoryScan = [];

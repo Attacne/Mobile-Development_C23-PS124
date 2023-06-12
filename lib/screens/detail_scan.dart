@@ -1,92 +1,53 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:attacne/models/acneModel.dart';
-import 'package:attacne/screens/history.dart';
-import 'package:attacne/services/colors.dart';
-import 'package:attacne/services/strings_en.dart';
-import 'package:attacne/services/strings_id.dart';
 import 'package:attacne/services/variabels.dart';
-import 'package:attacne/widgets/loading.dart';
-import 'package:attacne/widgets/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:attacne/screens/acne.dart';
+import '../databases/database_instance.dart';
+import '../services/colors.dart';
+import '../services/strings_en.dart';
+import '../services/strings_id.dart';
+import '../widgets/loading.dart';
+import '../widgets/widgets.dart';
+import 'nav_bar.dart';
 
-import '../models/acneAdapter.dart';
+class DetailScan extends StatefulWidget {
+  final File? image;
 
-class DetailScan extends StatelessWidget {
-  final File? _image;
+  DetailScan(this.image);
 
-  DetailScan(this._image);
+  @override
+  State<DetailScan> createState() => _DetailScanState();
+}
 
-  String _description = '';
+class _DetailScanState extends State<DetailScan> {
+  var index = Random().nextInt(5);
 
-  List<List<String>> _recomended = [];
-
-  String _tanggalSementara =
-      'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}';
-
-  // disini get API hasil deteksi
-  String _title = jenis[Random().nextInt(5)];
+  @override
+  void initState() {
+    super.initState();
+    db.database();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext c) {
-    for (int i = 0; i < jenis.length; i++) {
-      if (_title == jenis[i]) {
-        _description = desk[i];
-        _recomended = recomendasi[i];
+    var title = jenisAcne[index];
+    var desc = '';
+
+    for (int i = 0; i < jenisAcne.length; i++) {
+      if (title == jenisAcne[i]) {
+        desc = desk[i];
       }
     }
-    // button untuk save atau tidak
-    Widget btnSave(BuildContext c, String btnIsSave, bool isSave) {
-      return Container(
-        height: size(c).width * .12,
-        width: size(c).width * .3,
-        decoration: isSave
-            ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15))
-            : BoxDecoration(
-                border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
-                borderRadius: rounded(15),
-              ),
-        child: TextButton(
-          onPressed: () async {
-            if (isSave) {
-              listHistoryScan.add(
-                HistoryScan(imgScan: _image, hasilScan: _title, deskHasilScan: _description, tanggalScan: _tanggalSementara, rekomendasiProduk: _recomended),
-              );
-              create(c).setIsLoadingToDB(); //ubah tampilan loading
-              await Future.delayed(Duration(seconds: 2));
-              create(c).setIsLoadingToDB(); //hilangkan tampilan loading
-              await Future.delayed(Duration(milliseconds: 500));
-            }
-            close(c);
-          },
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: rounded(10)),
-          ),
-          child: Text(
-            btnIsSave,
-            style: TextStyle(
-              color: isSave
-                  ? read(c).fixTheme
-                      ? Cw
-                      : Cw.withOpacity(.5)
-                  : read(c).fixTheme
-                      ? C1
-                      : Cw.withOpacity(.5),
-            ),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? C1 : C3,
       body: SafeArea(
+        top: false,
         child: Stack(
           children: [
             ScrollConfiguration(
-              behavior: MaterialScrollBehavior().copyWith(overscroll: false),
+              behavior: const MaterialScrollBehavior().copyWith(overscroll: false),
               child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
@@ -94,14 +55,18 @@ class DetailScan extends StatelessWidget {
                     pinned: true,
                     backgroundColor: read(c).fixTheme ? C1 : C3,
                     expandedHeight: size(c).width,
-                    title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
+                    title:
+                        //Text('${widget.image}'),
+                        Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                     flexibleSpace: FlexibleSpaceBar(
-                      background: Container(
-                        decoration: BoxDecoration(
-                          color: read(c).fixTheme ? Cw : C2,
-                          image: DecorationImage(image: FileImage(_image!), fit: BoxFit.cover),
-                        ),
-                      ),
+                      background: widget.image != null
+                          ? Container(
+                              decoration: BoxDecoration(
+                                color: read(c).fixTheme ? Cw : C2,
+                                image: DecorationImage(image: FileImage(widget.image!), fit: BoxFit.cover),
+                              ),
+                            )
+                          : Container(color: read(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
                     ),
                   ),
                   SliverList(
@@ -118,11 +83,11 @@ class DetailScan extends StatelessWidget {
                                   children: [
                                     Container(height: 10, width: 10),
                                     Text(
-                                      _title,
+                                      title,
                                       style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
                                     ),
                                     Text(
-                                      _description,
+                                      desc,
                                       style: TextStyle(
                                         color: read(c).fixTheme ? Cb : Cw,
                                         fontSize: 17,
@@ -130,14 +95,14 @@ class DetailScan extends StatelessWidget {
                                       textAlign: TextAlign.justify,
                                     ),
                                     Container(height: 100),
-                                    Text(
+                                    /*Text(
                                       read(c).fixedLang == 'Indonesia' ? subHeadDetailScan_id : subHeadDetailScan_en,
                                       style: TextStyle(color: C1, fontSize: 30),
-                                    ),
+                                    ),*/
                                   ],
                                 ),
                               ),
-                              Container(
+                              /*Container(
                                 height: 260,
                                 width: size(c).width,
                                 child: ListView.builder(
@@ -147,7 +112,7 @@ class DetailScan extends StatelessWidget {
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder: (BuildContext c, int i) => card(c, _recomended[i][0]!, _recomended[i][1]!),
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         );
@@ -163,19 +128,25 @@ class DetailScan extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: read(c).loadingToDB
-          ? Container(height: 80, color: read(c).fixTheme ? Cw : C2)
+          ? null
           : Container(
-              height: 80,
-              color: read(c).fixTheme ? Cw : C2,
-              child: Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    btnSave(c, read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, true),
-                    btnSave(c, read(c).fixedLang == 'Indonesia' ? dontSaveDetailScan_id : dontSaveDetailScan_en, false),
-                  ],
-                ),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: C1),
+                onPressed: () async {
+                  await db.insert({
+                    'title': title,
+                    'desc': desc,
+                    'date': 'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
+                        'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}',
+                  });
+                  create(c).setIsLoadingToDB(); //ubah tampilan loading
+                  await Future.delayed(Duration(seconds: 1));
+                  create(c).setIsLoadingToDB(); //hilangkan tampilan loading
+                  await Future.delayed(Duration(milliseconds: 500));
+                  Navigator.pop(context, true);
+                },
+                child: Text(read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en),
               ),
             ),
     );

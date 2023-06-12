@@ -5,7 +5,7 @@ var C2 = const Color(0xFF212837);
 var C3 = const Color(0xFF2F384E);
 var Cw = const Color(0xFFFFFFFF);
 var Cb = const Color(0xFF000000);
-var Ck = const Color(0xFFCA5514);
+// var Ck = const Color(0xFFCA5514);
 
 var gradientLight = const LinearGradient(
   begin: Alignment.topLeft,

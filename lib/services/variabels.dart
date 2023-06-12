@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------
 //Prepare
-var jenis = [
+var jenisAcne = [
   'Blackhead',
   'Nodules',
   'Papules',

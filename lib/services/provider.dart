@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:attacne/services/strings_id.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -141,6 +143,16 @@ class StateM with ChangeNotifier, DiagnosticableTreeMixin {
 
   void setIsLoadingToDB() {
     _ladingToDB = !_ladingToDB;
+    notifyListeners();
+  }
+
+  //
+  int _indexNavBar = 0;
+
+  int get indexNavBar => _indexNavBar;
+
+  void setIndexNavBar(int index) {
+    _indexNavBar = index;
     notifyListeners();
   }
 }

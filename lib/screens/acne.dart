@@ -46,7 +46,7 @@ class Acne extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       btnAcne(c, Icons.camera_alt),
-                      btnAcne(c, Icons.add_rounded),
+                      btnAcne(c, Icons.image_outlined),
                     ],
                   ),
                 ],
@@ -70,7 +70,7 @@ class Acne extends StatelessWidget {
 
 // button untuk membuka camera atau gallery
   Widget btnAcne(BuildContext c, IconData icon) {
-    bool isGallery = icon == Icons.add_rounded;
+    bool isGallery = icon == Icons.image_outlined;
     return Container(
       height: size(c).height * .15,
       width: size(c).width * .3,
@@ -85,9 +85,12 @@ class Acne extends StatelessWidget {
           isGallery ? await getImage(c, ImageSource.gallery) : await getImage(c, ImageSource.camera);
           await Future.delayed(const Duration(milliseconds: 200)); //kirim gambar ke cc dan di proses
           create(c).setIsLoadingToCC(); //ubah tampilan loading
-          await Future.delayed(const Duration(seconds: 3));
-          open(c, DetailScan(_image));
+          await Future.delayed(const Duration(seconds: 2));
           create(c).setIsLoadingToCC(); //hilangkan tampilan loading
+          open(c, DetailScan(_image));
+
+          await Future.delayed(const Duration(milliseconds: 200));
+          create(c).setIndexNavBar(2);
         },
         style: TextButton.styleFrom(
           shape: RoundedRectangleBorder(borderRadius: rounded(10)),

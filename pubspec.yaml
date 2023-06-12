@@ -32,14 +32,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.2
   image_picker: ^0.8.7+5
   #flutter_staggered_animations:
   provider: ^6.0.5
   url_launcher: ^6.1.11
   shared_preferences: ^2.1.1
-  path_provider: ^2.0.15
-  sqflite: ^2.2.8+4
+  path_provider: ^2.0.11
+  sqflite: ^2.0.3
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 

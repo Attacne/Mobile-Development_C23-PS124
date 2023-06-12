@@ -9,8 +9,10 @@ import 'package:attacne/services/variabels.dart';
 import 'package:attacne/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
+import '../models/scan_history_model.dart';
+
 class DetailScanHistory extends StatelessWidget {
-  HistoryScan listModel;
+  ScanHistoryModel listModel;
 
   DetailScanHistory({required this.listModel});
 
@@ -30,13 +32,13 @@ class DetailScanHistory extends StatelessWidget {
                 backgroundColor: read(c).fixTheme ? C1 : C3,
                 expandedHeight: size(c).width,
                 title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
-                flexibleSpace: FlexibleSpaceBar(
+                /*flexibleSpace: FlexibleSpaceBar(
                   background: Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(image: FileImage(listModel.imgScan!), fit: BoxFit.cover),
+                      image: DecorationImage(image: FileImage(listModel.), fit: BoxFit.cover),
                     ),
                   ),
-                ),
+                ),*/
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -52,11 +54,11 @@ class DetailScanHistory extends StatelessWidget {
                               children: [
                                 Container(height: 10, width: 10),
                                 Text(
-                                  listModel.hasilScan,
+                                  listModel.title!,
                                   style: TextStyle(color: C1, fontSize: 30),
                                 ),
                                 Text(
-                                  listModel.deskHasilScan,
+                                  listModel.desc!,
                                   style: TextStyle(
                                     color: read(c).fixTheme ? Cb : Cw,
                                     fontSize: 17,
@@ -64,15 +66,15 @@ class DetailScanHistory extends StatelessWidget {
                                   textAlign: TextAlign.justify,
                                 ),
                                 Container(height: 100),
-                                Text(
+                                /*Text(
                                   read(c).fixedLang == 'Indonesia' ? rekomendasiProdukHasilScan_id : rekomendasiProdukHasilScan_en,
                                   style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
-                                ),
+                                ),*/
                               ],
                             ),
                           ),
                           // Rekomendasi Produk
-                          Container(
+                          /*Container(
                             height: 260,
                             width: size(c).width,
                             child: ListView.builder(
@@ -82,11 +84,11 @@ class DetailScanHistory extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (BuildContext c, int i) => card(
                                 c,
-                                listModel.rekomendasiProduk[i][0],
-                                listModel.rekomendasiProduk[i][1],
+                                listModel['rekomendasiProduk'][i][0],
+                                listModel['rekomendasiProduk'][i][1],
                               ),
                             ),
-                          ),
+                          ),*/
                         ],
                       ),
                     );
