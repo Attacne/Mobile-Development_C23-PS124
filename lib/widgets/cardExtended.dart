@@ -29,7 +29,7 @@ class _CardExtendedState extends State<CardExtended> {
         onTap: () => setState(() => isTapped1 = !isTapped1),
         onHighlightChanged: (value) => setState(() => isExpanded1 = value),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 1000),
           curve: Curves.fastLinearToSlowEaseIn,
           height: isTapped1
               ? isExpanded1

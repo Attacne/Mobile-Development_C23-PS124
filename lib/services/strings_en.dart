@@ -67,7 +67,7 @@ String editProfileHead_en = 'Edit Profile', labelNameEP_en = fullName_en, labelU
 
 //--------------------------------------------------------------------
 //String Detail Scane page
-String detailScanHead_en = 'Detail', subHeadDetailScan_en = 'Rekomendasi Produk', saveDetailScan_en = 'Simpan', dontSaveDetailScan_en = 'Batal', rekomendasiProdukHasilScan_en = 'Rekomendasi Produk';
+String detailScanHead_en = 'Detail', subHeadDetailScan_en = 'Rekomendasi Produk', saveDetailScan_en = 'Save', dontSaveDetailScan_en = 'Batal', rekomendasiProdukHasilScan_en = 'Rekomendasi Produk';
 
 //--------------------------------------------------------------------
 //String Profile page

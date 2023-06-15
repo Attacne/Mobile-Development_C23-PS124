@@ -19,9 +19,9 @@ class DetailScanHistory extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? C1 : C3,
+      backgroundColor: read(c).fixTheme ? Cw : C3,
       body: SafeArea(
-        bottom: false,
+        top: false,
         child: ScrollConfiguration(
           behavior: const MaterialScrollBehavior().copyWith(overscroll: false),
           child: CustomScrollView(

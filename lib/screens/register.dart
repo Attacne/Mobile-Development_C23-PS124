@@ -1,3 +1,4 @@
+/*
 import 'package:attacne/services/colors.dart';
 import 'package:attacne/services/strings_en.dart';
 import 'package:attacne/services/strings_id.dart';
@@ -80,7 +81,9 @@ class _RegisterState extends State<Register> with TickerProviderStateMixin {
           ),
         ),
         bottomNavigationBar: SizedBox(
-          height: 120 /*size(c).height*/,
+          height: 120 */
+/*size(c).height*//*
+,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -108,3 +111,4 @@ class _RegisterState extends State<Register> with TickerProviderStateMixin {
         ),
       );
 }
+*/

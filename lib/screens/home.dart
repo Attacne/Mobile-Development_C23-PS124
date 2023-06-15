@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
           SafeArea(
             bottom: false,
             child: ScrollConfiguration(
-              behavior: MaterialScrollBehavior().copyWith(overscroll: false),
+              behavior: const MaterialScrollBehavior().copyWith(overscroll: false),
               child: CustomScrollView(
                 slivers: [
                   SliverAppBar(
@@ -48,18 +48,11 @@ class _HomeState extends State<Home> {
                     backgroundColor: Colors.transparent,
                     expandedHeight: 220.0,
                     flexibleSpace: FlexibleSpaceBar(
-                      titlePadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                      title: Text(
-                        appName,
-                        style: TextStyle(color: Cw, fontSize: size(c).width * .08),
-                      ),
+                      titlePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      title: Image.asset('assets/attacne_logo3.png', width: size(c).width * .27),
                       background: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          alignment: Alignment.centerRight,
-                          imgMaskotHome,
-                          fit: BoxFit.fitHeight,
-                        ),
+                        child: Image.asset(alignment: Alignment.centerRight, imgMaskotHome, fit: BoxFit.fitHeight),
                       ),
                     ),
                   ),
@@ -71,15 +64,12 @@ class _HomeState extends State<Home> {
                         ),
                         decoration: BoxDecoration(
                           color: read(c).fixTheme ? Cw : C2,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                         ),
                         child: Column(
                           children: [
                             Container(
-                              margin: const EdgeInsets.only(bottom: 20, top: 10),
+                              margin: const EdgeInsets.only(bottom: 30, top: 10),
                               height: 3,
                               width: size(c).width * .2,
                               decoration: BoxDecoration(
@@ -87,15 +77,46 @@ class _HomeState extends State<Home> {
                                 borderRadius: rounded(5),
                               ),
                             ),
-                            Row(
-                              children: [
-                                const SizedBox(width: 10),
-                                Text(
-                                  read(c).fixedLang == 'Indonesia' ? subHead1Home_id : subHead1Home_en,
-                                  style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
+                            Container(
+                              height: 175,
+                              width: size(c).width,
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(borderRadius: rounded(15), gradient: read(c).fixTheme ? gradientLight : gradientDark),
+                              child: InkWell(
+                                onTap: () => create(c).setIndexNavBar(1),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(image: AssetImage('assets/vecHome.png'), fit: BoxFit.fitWidth),
+                                          borderRadius: rounded(10),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 160,
+                                      padding: const EdgeInsets.all(10),
+                                      child: Text(
+                                        read(c).fixedLang == 'Indonesia' ? "Scan wajah Anda dan nikmati fitur canggih kami!" : "Scan your face and enjoy our powerful features!",
+                                        style: TextStyle(fontSize: 20, color: Cw),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            ),
+                            const SizedBox(height: 40),
+                            Container(
+                              width: size(c).width,
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                read(c).fixedLang == 'Indonesia' ? subHead1Home_id : subHead1Home_en,
+                                style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.start,
+                              ),
                             ),
                             const SizedBox(height: 10),
                             Container(
@@ -117,15 +138,14 @@ class _HomeState extends State<Home> {
                                 },
                               ),
                             ),
-                            Row(
-                              children: [
-                                const SizedBox(width: 10, height: 20),
-                                Text(
-                                  read(c).fixedLang == 'Indonesia' ? subHead2Home_id : subHead2Home_en,
-                                  style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ],
+                            Container(
+                              width: size(c).width,
+                              margin: const EdgeInsets.symmetric(horizontal: 10),
+                              child: Text(
+                                read(c).fixedLang == 'Indonesia' ? subHead2Home_id : subHead2Home_en,
+                                style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.start,
+                              ),
                             ),
                             const SizedBox(height: 10),
                             card0,

@@ -1,3 +1,4 @@
+/*
 import 'package:attacne/screens/nav_bar.dart';
 import 'package:attacne/screens/register.dart';
 import 'package:attacne/services/colors.dart';
@@ -142,3 +143,4 @@ class _LoginState extends State<Login> with TickerProviderStateMixin {
     );
   }
 }
+*/

@@ -25,14 +25,9 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
     shape: RoundedRectangleBorder(borderRadius: rounded(10)),
     child: Container(
       width: 240,
-      decoration: BoxDecoration(
-        borderRadius: rounded(10),
-        color: read(c).fixTheme ? Cw : C3,
-      ),
+      decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C3, borderRadius: rounded(10)),
       child: TextButton(
-        style: ButtonStyle(
-          overlayColor: MaterialStateProperty.all(Colors.transparent),
-        ),
+        style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
         onPressed: () => dest == null ? {} : open(c, dest),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -46,8 +41,38 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
   );
 }
 
+Future<void> launchUrl1(String link) async {
+  final Uri _url = Uri.parse(link);
+  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
+    throw Exception('Could not launch $_url');
+  }
+}
+
+// btn untuk profile
+Widget btnData_profile(BuildContext c, String title, {required VoidCallback voidCallback}) {
+  return TextButton(
+    onPressed: voidCallback,
+    /*onPressed: () {
+      _launchURL('www.youtube.com');
+    },*/
+    style: ButtonStyle(
+      overlayColor: MaterialStateProperty.all(Colors.transparent),
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: FontWeight.w400),
+        ),
+        Icon(Icons.chevron_right_rounded, color: C1, size: 30),
+      ],
+    ),
+  );
+}
+
 // TextField dengan background putih
-Widget inputData(BuildContext c, IconData icon, String hintText, bool isPassword, bool isEmail) {
+/*Widget inputData(BuildContext c, IconData icon, String hintText, bool isPassword, bool isEmail) {
   return Container(
     width: size(c).width * .9,
     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
@@ -81,10 +106,10 @@ Widget inputData(BuildContext c, IconData icon, String hintText, bool isPassword
       ),
     ),
   );
-}
+}*/
 
 // button login/register
-Widget loginRegister(BuildContext c, String title, double width, VoidCallback v) {
+/*Widget loginRegister(BuildContext c, String title, double width, VoidCallback v) {
   return InkWell(
     highlightColor: Colors.transparent,
     splashColor: Colors.transparent,
@@ -106,7 +131,7 @@ Widget loginRegister(BuildContext c, String title, double width, VoidCallback v)
       ),
     ),
   );
-}
+}*/
 
 /*Future<void> launchURL(String url) async {
   final Uri uri = Uri(scheme: "https", host: url);
@@ -117,32 +142,3 @@ Widget loginRegister(BuildContext c, String title, double width, VoidCallback v)
     throw "Can not launch url";
   }
 }*/
-Future<void> launchUrl1(String link) async {
-  final Uri _url = Uri.parse(link);
-  if (!await launchUrl(_url, mode: LaunchMode.externalApplication)) {
-    throw Exception('Could not launch $_url');
-  }
-}
-
-// btn untuk profile
-Widget btnData_profile(BuildContext c, String title, {required VoidCallback voidCallback}) {
-  return TextButton(
-    onPressed: voidCallback,
-    /*onPressed: () {
-      _launchURL('www.youtube.com');
-    },*/
-    style: ButtonStyle(
-      overlayColor: MaterialStateProperty.all(Colors.transparent),
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: FontWeight.w400),
-        ),
-        Icon(Icons.chevron_right_rounded, color: C1, size: 30),
-      ],
-    ),
-  );
-}

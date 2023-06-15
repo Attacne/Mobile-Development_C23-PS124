@@ -24,8 +24,6 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  List<Map<String, dynamic>> _scanHistoryList = [];
-
   @override
   void initState() {
     super.initState();
@@ -39,7 +37,7 @@ class _HistoryState extends State<History> {
           context: c,
           builder: (c) => AlertDialog(
             backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: rounded(20)),
+            shape: RoundedRectangleBorder(borderRadius: rounded(10)),
             content: Text(
               read(c).fixedLang == 'Indonesia' ? dgDeleteHistroy_id : dgDeleteHistroy_en,
               style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold),
@@ -58,6 +56,7 @@ class _HistoryState extends State<History> {
             ],
           ),
         );
+
     bool dbNotEmpty = false;
     return Scaffold(
       appBar: AppBar(
@@ -102,64 +101,65 @@ class _HistoryState extends State<History> {
                   ),
                 );
               }
-              return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (c, i) {
-                    dbNotEmpty = snapshot.data!.isNotEmpty;
-                    print('${snapshot.data![i].id}');
-                    print('${snapshot.data![i].title}');
-                    print('${snapshot.data![i].desc}');
-                    print('${snapshot.data![i].date}');
-                    return Card(
-                      shape: RoundedRectangleBorder(borderRadius: rounded(10)),
-                      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      color: read(c).fixTheme ? Cw : C3,
-                      elevation: 3,
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () {
-                          open(c, DetailScanHistory(listModel: snapshot.data![i]));
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(
-                                borderRadius: rounded(10),
-                                image: DecorationImage(image: FileImage(File(snapshot.data![i].image!)), fit: BoxFit.cover),
+              return Container(
+                child: ListView.builder(
+                    padding: EdgeInsets.only(bottom: 100),
+                    physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                    itemCount: snapshot.data!.length,
+                    // reverse: true,
+                    itemBuilder: (c, i) {
+                      dbNotEmpty = snapshot.data!.isNotEmpty;
+                      final reversedIndex = snapshot.data!.length - 1 - i;
+                      final item = snapshot.data![reversedIndex];
+                      return Card(
+                        shape: RoundedRectangleBorder(borderRadius: rounded(10)),
+                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                        color: read(c).fixTheme ? Cw : C3,
+                        elevation: 3,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () {
+                            open(c, DetailScanHistory(listModel: item));
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: rounded(10),
+                                  image: DecorationImage(image: FileImage(File(item.image!)), fit: BoxFit.cover),
+                                ),
                               ),
-                            ),
-                            Container(width: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
-                                  snapshot.data![i].title!,
-                                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 22, fontWeight: FontWeight.bold),
-                                ),
-                                Container(
-                                  width: size(c).width * .5,
-                                  margin: EdgeInsets.only(top: 10),
-                                  height: 50,
-                                  // color: Colors.red,
-                                  child: Text(
-                                    snapshot.data![i].date!,
-                                    style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 15),
+                              Container(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    item.title!,
+                                    style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 22, fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  Container(
+                                    width: size(c).width * .5,
+                                    margin: EdgeInsets.only(top: 10),
+                                    height: 50,
+                                    // color: Colors.red,
+                                    child: Text(
+                                      item.date!,
+                                      style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 15),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  });
+                      );
+                    }),
+              );
             } else {
               return Center(child: CircularProgressIndicator(color: C1));
             }

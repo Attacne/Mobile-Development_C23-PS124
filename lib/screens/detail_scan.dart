@@ -41,6 +41,35 @@ class _DetailScanState extends State<DetailScan> {
         desc = desk[i];
       }
     }
+    Widget btnSave({required bool save}) {
+      return Container(
+        color: Cw,
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: EdgeInsets.symmetric(vertical: 15),
+            backgroundColor: C1,
+            shape: RoundedRectangleBorder(borderRadius: rounded(10)),
+          ),
+          onPressed: () async {
+            await db.insert({
+              'image': widget.image,
+              'title': title,
+              'desc': desc,
+              'date': 'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
+                  'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}',
+            });
+            create(c).setIsLoadingToDB(); //ubah tampilan loading
+            await Future.delayed(Duration(seconds: 1));
+            create(c).setIsLoadingToDB(); //hilangkan tampilan loading
+            await Future.delayed(Duration(milliseconds: 500));
+            Navigator.pop(context, true);
+          },
+          child: Text(read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, style: TextStyle(fontSize: 20)),
+        ),
+      );
+    }
+
     return Scaffold(
       body: SafeArea(
         top: false,
@@ -55,15 +84,6 @@ class _DetailScanState extends State<DetailScan> {
                     pinned: true,
                     backgroundColor: read(c).fixTheme ? C1 : C3,
                     expandedHeight: size(c).width,
-                    /*leading: IconButton(
-                      splashRadius: 1,
-                      splashColor: Colors.transparent,
-                      onPressed: () {
-                        // create(c).setIsNotSave(true);
-                        close(c);
-                      },
-                      icon: Icon(Icons.arrow_back_rounded, color: read(c).fixTheme ? Cb : Cw),
-                    ),*/
                     title:
                         // Text('${widget.image}', style: TextStyle(color: Colors.black)),
                         Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
@@ -91,34 +111,12 @@ class _DetailScanState extends State<DetailScan> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(height: 10, width: 10),
-                                    Text(
-                                      title,
-                                      style: TextStyle(color: C1, fontSize: 30, fontWeight: bold),
-                                    ),
-                                    Text(
-                                      desc,
-                                      style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
-                                      textAlign: TextAlign.justify,
-                                    ),
+                                    Text(title, style: TextStyle(color: C1, fontSize: 30, fontWeight: bold)),
+                                    Text(desc, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17), textAlign: TextAlign.justify),
                                     Container(height: 100),
-                                    /*Text(
-                                      read(c).fixedLang == 'Indonesia' ? subHeadDetailScan_id : subHeadDetailScan_en,
-                                      style: TextStyle(color: C1, fontSize: 30),
-                                    ),*/
                                   ],
                                 ),
                               ),
-                              /*Container(
-                                height: 260,
-                                width: size(c).width,
-                                child: ListView.builder(
-                                  itemCount: 5,
-                                  padding: EdgeInsets.zero,
-                                  physics: const BouncingScrollPhysics(),
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (BuildContext c, int i) => card(c, _recomended[i][0]!, _recomended[i][1]!),
-                                ),
-                              ),*/
                             ],
                           ),
                         );
@@ -133,29 +131,7 @@ class _DetailScanState extends State<DetailScan> {
           ],
         ),
       ),
-      bottomNavigationBar: read(c).loadingToDB
-          ? null
-          : Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: C1),
-                onPressed: () async {
-                  await db.insert({
-                    'image': widget.image,
-                    'title': title,
-                    'desc': desc,
-                    'date': 'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
-                        'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}',
-                  });
-                  create(c).setIsLoadingToDB(); //ubah tampilan loading
-                  await Future.delayed(Duration(seconds: 1));
-                  create(c).setIsLoadingToDB(); //hilangkan tampilan loading
-                  await Future.delayed(Duration(milliseconds: 500));
-                  Navigator.pop(context, true);
-                },
-                child: Text(read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en),
-              ),
-            ),
+      bottomNavigationBar: read(c).loadingToDB ? null : btnSave(save: true),
     );
   }
 }

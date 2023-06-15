@@ -20,7 +20,7 @@ Future showMyDialogExit(BuildContext c, String info) {
     context: c,
     builder: (c) => AlertDialog(
       backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: rounded(20)),
+      shape: RoundedRectangleBorder(borderRadius: rounded(10)),
       content: Text(info,
           style: const TextStyle(
             color: Colors.black,
