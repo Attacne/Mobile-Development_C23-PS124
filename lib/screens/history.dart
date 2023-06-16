@@ -39,7 +39,7 @@ class _HistoryState extends State<History> {
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(borderRadius: rounded(10)),
             content: Text(
-              read(c).fixedLang == 'Indonesia' ? dgDeleteHistroy_id : dgDeleteHistroy_en,
+              Watch(c).fixedLang == 'Indonesia' ? dgDeleteHistroy_id : dgDeleteHistroy_en,
               style: TextStyle(color: Colors.black, fontSize: 25, fontWeight: bold),
               textAlign: TextAlign.center,
             ),
@@ -50,9 +50,9 @@ class _HistoryState extends State<History> {
                   setState(() {});
                   closeDialog(c, true);
                 },
-                child: Text(read(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes'),
+                child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes'),
               ),
-              TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
+              TextButton(onPressed: () => closeDialog(c, false), child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
             ],
           ),
         );
@@ -62,8 +62,8 @@ class _HistoryState extends State<History> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        flexibleSpace: Container(decoration: read(c).fixTheme ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark) : BoxDecoration(color: C3)),
-        title: Text(read(c).fixedLang == 'Indonesia' ? historyHead_id : historyHead_en, style: TextStyle(color: Cw, fontSize: 25)),
+        flexibleSpace: Container(decoration: Watch(c).fixTheme ? BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark) : BoxDecoration(color: C3)),
+        title: Text(Watch(c).fixedLang == 'Indonesia' ? historyHead_id : historyHead_en, style: TextStyle(color: Cw, fontSize: 25)),
         actions: [
           IconButton(
             onPressed: () async {
@@ -75,7 +75,7 @@ class _HistoryState extends State<History> {
           )
         ],
       ),
-      backgroundColor: read(c).fixTheme ? Cw : C2,
+      backgroundColor: Watch(c).fixTheme ? Cw : C2,
       body: RefreshIndicator(
         onRefresh: () async => setState(() {}),
         child: FutureBuilder<List<ScanHistoryModel>>(
@@ -93,7 +93,7 @@ class _HistoryState extends State<History> {
                       children: [
                         Icon(Icons.history_rounded, color: C1, size: 150),
                         Text(
-                          read(c).fixedLang == 'Indonesia' ? infoHistory_id : infoHistory_en,
+                          Watch(c).fixedLang == 'Indonesia' ? infoHistory_id : infoHistory_en,
                           style: TextStyle(color: C1, fontWeight: bold, fontSize: 20),
                         ),
                       ],
@@ -114,7 +114,7 @@ class _HistoryState extends State<History> {
                       return Card(
                         shape: RoundedRectangleBorder(borderRadius: rounded(10)),
                         margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        color: read(c).fixTheme ? Cw : C3,
+                        color: Watch(c).fixTheme ? Cw : C3,
                         elevation: 3,
                         child: InkWell(
                           splashColor: Colors.transparent,
@@ -140,7 +140,7 @@ class _HistoryState extends State<History> {
                                 children: [
                                   Text(
                                     item.title!,
-                                    style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 22, fontWeight: FontWeight.bold),
+                                    style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 22, fontWeight: FontWeight.bold),
                                   ),
                                   Container(
                                     width: size(c).width * .5,
@@ -149,7 +149,7 @@ class _HistoryState extends State<History> {
                                     // color: Colors.red,
                                     child: Text(
                                       item.date!,
-                                      style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 15),
+                                      style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 15),
                                     ),
                                   ),
                                 ],

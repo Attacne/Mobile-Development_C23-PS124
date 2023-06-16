@@ -17,13 +17,13 @@ class DetailInfo extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C3,
+      backgroundColor: Watch(c).fixTheme ? Cw : C3,
       body: Stack(
         children: [
           Container(
             height: size(c).height,
             width: size(c).width,
-            decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark),
+            decoration: BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark),
           ),
           SafeArea(
             child: ScrollConfiguration(
@@ -52,7 +52,7 @@ class DetailInfo extends StatelessWidget {
                       (BuildContext context, int index) {
                         return Container(
                           decoration: BoxDecoration(
-                            color: read(c).fixTheme ? Cw : C2,
+                            color: Watch(c).fixTheme ? Cw : C2,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30),
@@ -64,13 +64,13 @@ class DetailInfo extends StatelessWidget {
                               Container(
                                 height: 5,
                                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: size(c).width * .35),
-                                decoration: BoxDecoration(borderRadius: rounded(50), color: read(c).fixTheme ? C1 : C3),
+                                decoration: BoxDecoration(borderRadius: rounded(50), color: Watch(c).fixTheme ? C1 : C3),
                               ),
                               Container(
                                 padding: const EdgeInsets.all(20),
                                 child: Text(
                                   model.acneDesc,
-                                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17),
+                                  style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 17),
                                   textAlign: TextAlign.justify,
                                 ),
                               ),
@@ -89,7 +89,7 @@ class DetailInfo extends StatelessWidget {
                                       margin: EdgeInsets.all(10),
                                       decoration: BoxDecoration(
                                         borderRadius: rounded(30),
-                                        color: read(c).fixTheme ? Cw : C3,
+                                        color: Watch(c).fixTheme ? Cw : C3,
                                         image: DecorationImage(image: AssetImage(model.imgAcne[i]), fit: BoxFit.cover),
                                       ),
                                     );

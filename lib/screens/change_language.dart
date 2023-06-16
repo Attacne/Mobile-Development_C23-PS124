@@ -23,21 +23,21 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
 
   loadValue() async {
     selected = await SharedP.getLang('lang');
-    create(context).setFixedLang(selected!);
+    Create(context).setFixedLang(selected!);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C2,
+      backgroundColor: Watch(c).fixTheme ? Cw : C2,
       appBar: AppBar(
         title: Text(
-          read(c).fixedLang == 'Indonesia' ? 'Bahasa' : 'Language',
+          Watch(c).fixedLang == 'Indonesia' ? 'Bahasa' : 'Language',
         ),
         flexibleSpace: Container(
           width: size(c).width,
-          decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark),
+          decoration: BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark),
         ),
       ),
       body: Container(
@@ -46,8 +46,8 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
           children: <Widget>[
             RadioListTile(
               title: Text(
-                read(c).fixedLang == 'Indonesia' ? 'Inggris' : 'English',
-                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
+                Watch(c).fixedLang == 'Indonesia' ? 'Inggris' : 'English',
+                style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw),
               ),
               value: 'English',
               groupValue: selected,
@@ -56,7 +56,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
             RadioListTile(
               title: Text(
                 'Indonesia',
-                style: TextStyle(color: read(c).fixTheme ? Cb : Cw),
+                style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw),
               ),
               value: 'Indonesia',
               groupValue: selected,
@@ -82,7 +82,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                   // close(c);
                 },
                 child: Text(
-                  read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save',
+                  Watch(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save',
                   style: TextStyle(fontSize: 18),
                 ),
               ),

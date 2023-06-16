@@ -66,7 +66,7 @@ class _LoadingState extends State<Loading> with TickerProviderStateMixin {
   Widget build(BuildContext c) => Container(
         height: size(c).height,
         width: size(c).width,
-        color: read(c).fixTheme ? Cw.withOpacity(.5) : C2.withOpacity(.5),
+        color: Watch(c).fixTheme ? Cw.withOpacity(.5) : C2.withOpacity(.5),
         child: Center(
           child: SizedBox(
             height: 100,

@@ -21,17 +21,17 @@ class _ChangeThemeState extends State<ChangeTheme> {
 
   loadValue() async {
     selected = await SharedP.getTheme('theme');
-    create(context).setFixedTheme(context, selected!);
+    Create(context).setFixedTheme(context, selected!);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C2,
+      backgroundColor: Watch(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        title: Text(read(c).fixedLang == 'Indonesia' ? 'Tema' : 'Theme'),
-        flexibleSpace: Container(width: size(c).width, decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark)),
+        title: Text(Watch(c).fixedLang == 'Indonesia' ? 'Tema' : 'Theme'),
+        flexibleSpace: Container(width: size(c).width, decoration: BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark)),
       ),
       body: Container(
         child: Column(
@@ -39,8 +39,8 @@ class _ChangeThemeState extends State<ChangeTheme> {
           children: <Widget>[
             RadioListTile(
               title: Text(
-                read(c).fixedLang == 'Indonesia' ? 'Tema Terang' : 'LightTheme',
-                style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
+                Watch(c).fixedLang == 'Indonesia' ? 'Tema Terang' : 'LightTheme',
+                style: TextStyle(color: Watch(c).fixTheme ? C2 : Cw),
               ),
               value: 'LightTheme',
               groupValue: selected,
@@ -48,8 +48,8 @@ class _ChangeThemeState extends State<ChangeTheme> {
             ),
             RadioListTile(
               title: Text(
-                read(c).fixedLang == 'Indonesia' ? 'Tema Gelap' : 'DarkTheme',
-                style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
+                Watch(c).fixedLang == 'Indonesia' ? 'Tema Gelap' : 'DarkTheme',
+                style: TextStyle(color: Watch(c).fixTheme ? C2 : Cw),
               ),
               value: 'DarkTheme',
               groupValue: selected,
@@ -57,8 +57,8 @@ class _ChangeThemeState extends State<ChangeTheme> {
             ),
             RadioListTile(
               title: Text(
-                read(c).fixedLang == 'Indonesia' ? 'Sistem' : 'System',
-                style: TextStyle(color: read(c).fixTheme ? C2 : Cw),
+                Watch(c).fixedLang == 'Indonesia' ? 'Sistem' : 'System',
+                style: TextStyle(color: Watch(c).fixTheme ? C2 : Cw),
               ),
               value: 'System',
               groupValue: selected,
@@ -82,7 +82,7 @@ class _ChangeThemeState extends State<ChangeTheme> {
                   SharedP.setTheme('theme', selected!);
                   loadValue();
                 },
-                child: Text(read(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save'),
+                child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Simpan' : 'Save'),
               ),
             ),
           ],

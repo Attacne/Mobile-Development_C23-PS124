@@ -25,7 +25,7 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
     shape: RoundedRectangleBorder(borderRadius: rounded(10)),
     child: Container(
       width: 240,
-      decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C3, borderRadius: rounded(10)),
+      decoration: BoxDecoration(color: Watch(c).fixTheme ? Cw : C3, borderRadius: rounded(10)),
       child: TextButton(
         style: ButtonStyle(overlayColor: MaterialStateProperty.all(Colors.transparent)),
         onPressed: () => dest == null ? {} : open(c, dest),
@@ -33,7 +33,7 @@ Widget card(BuildContext c, String image, String title, {dynamic dest}) {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(image, fit: BoxFit.cover, height: 170),
-            Text(title, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 20)),
+            Text(title, style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 20)),
           ],
         ),
       ),
@@ -63,7 +63,7 @@ Widget btnData_profile(BuildContext c, String title, {required VoidCallback void
       children: [
         Text(
           title,
-          style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: FontWeight.w400),
+          style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: FontWeight.w400),
         ),
         Icon(Icons.chevron_right_rounded, color: C1, size: 30),
       ],

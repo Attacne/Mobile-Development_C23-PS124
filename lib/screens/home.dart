@@ -24,18 +24,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext c) {
-    CardExtended card0 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[0], titleCardHome_id[0]) : CardExtended(headCardHome_en[0], titleCardHome_en[0]);
-    CardExtended card1 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[1], titleCardHome_id[1]) : CardExtended(headCardHome_en[1], titleCardHome_en[1]);
-    CardExtended card2 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[2], titleCardHome_id[2]) : CardExtended(headCardHome_en[2], titleCardHome_en[2]);
-    CardExtended card3 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[3], titleCardHome_id[3]) : CardExtended(headCardHome_en[3], titleCardHome_en[3]);
-    CardExtended card4 = read(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[4], titleCardHome_id[4]) : CardExtended(headCardHome_en[4], titleCardHome_en[4]);
+    CardExtended card0 = Watch(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[0], titleCardHome_id[0]) : CardExtended(headCardHome_en[0], titleCardHome_en[0]);
+    CardExtended card1 = Watch(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[1], titleCardHome_id[1]) : CardExtended(headCardHome_en[1], titleCardHome_en[1]);
+    CardExtended card2 = Watch(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[2], titleCardHome_id[2]) : CardExtended(headCardHome_en[2], titleCardHome_en[2]);
+    CardExtended card3 = Watch(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[3], titleCardHome_id[3]) : CardExtended(headCardHome_en[3], titleCardHome_en[3]);
+    CardExtended card4 = Watch(c).fixedLang == 'Indonesia' ? CardExtended(headCardHome_id[4], titleCardHome_id[4]) : CardExtended(headCardHome_en[4], titleCardHome_en[4]);
 
     return Scaffold(
       body: Stack(
         children: [
           Container(
             height: 300,
-            decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark),
+            decoration: BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark),
           ),
           SafeArea(
             bottom: false,
@@ -63,7 +63,7 @@ class _HomeState extends State<Home> {
                           bottom: 55 + (size(c).width * .05),
                         ),
                         decoration: BoxDecoration(
-                          color: read(c).fixTheme ? Cw : C2,
+                          color: Watch(c).fixTheme ? Cw : C2,
                           borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
                         ),
                         child: Column(
@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
                               height: 3,
                               width: size(c).width * .2,
                               decoration: BoxDecoration(
-                                color: read(c).fixTheme ? Cb.withOpacity(.5) : Cw.withOpacity(.5),
+                                color: Watch(c).fixTheme ? Cb.withOpacity(.5) : Cw.withOpacity(.5),
                                 borderRadius: rounded(5),
                               ),
                             ),
@@ -82,9 +82,9 @@ class _HomeState extends State<Home> {
                               width: size(c).width,
                               margin: const EdgeInsets.symmetric(horizontal: 10),
                               padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(borderRadius: rounded(15), gradient: read(c).fixTheme ? gradientLight : gradientDark),
+                              decoration: BoxDecoration(borderRadius: rounded(15), gradient: Watch(c).fixTheme ? gradientLight : gradientDark),
                               child: InkWell(
-                                onTap: () => create(c).setIndexNavBar(1),
+                                onTap: () => Watch(c).setIndexNavBar(1),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -99,7 +99,7 @@ class _HomeState extends State<Home> {
                                       width: 160,
                                       padding: const EdgeInsets.all(10),
                                       child: Text(
-                                        read(c).fixedLang == 'Indonesia' ? "Scan wajah Anda dan nikmati fitur canggih kami!" : "Scan your face and enjoy our powerful features!",
+                                        Watch(c).fixedLang == 'Indonesia' ? "Scan wajah Anda dan nikmati fitur canggih kami!" : "Scan your face and enjoy our powerful features!",
                                         style: TextStyle(fontSize: 20, color: Cw),
                                         textAlign: TextAlign.center,
                                       ),
@@ -113,8 +113,8 @@ class _HomeState extends State<Home> {
                               width: size(c).width,
                               margin: const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                read(c).fixedLang == 'Indonesia' ? subHead1Home_id : subHead1Home_en,
-                                style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                Watch(c).fixedLang == 'Indonesia' ? subHead1Home_id : subHead1Home_en,
+                                style: TextStyle(color: Watch(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.start,
                               ),
                             ),
@@ -131,9 +131,9 @@ class _HomeState extends State<Home> {
                                 itemBuilder: (BuildContext c, int i) {
                                   return card(
                                     c,
-                                    (read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].illustration,
-                                    (read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].acneName,
-                                    dest: DetailInfo((read(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i]),
+                                    (Watch(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].illustration,
+                                    (Watch(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i].acneName,
+                                    dest: DetailInfo((Watch(c).fixedLang == 'Indonesia' ? acneInfoData_id : acneInfoData_en)[i]),
                                   );
                                 },
                               ),
@@ -142,8 +142,8 @@ class _HomeState extends State<Home> {
                               width: size(c).width,
                               margin: const EdgeInsets.symmetric(horizontal: 10),
                               child: Text(
-                                read(c).fixedLang == 'Indonesia' ? subHead2Home_id : subHead2Home_en,
-                                style: TextStyle(color: read(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
+                                Watch(c).fixedLang == 'Indonesia' ? subHead2Home_id : subHead2Home_en,
+                                style: TextStyle(color: Watch(c).fixTheme ? C1 : Cw, fontSize: 20, fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.start,
                               ),
                             ),

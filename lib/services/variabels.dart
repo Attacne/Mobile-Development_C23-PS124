@@ -100,11 +100,11 @@ List<Widget> destPage = [
 
 //--------------------------------------------------------------------
 //State Manajement edit
-StateM create(BuildContext c) => c.read<StateM>();
+StateM Create(BuildContext c) => c.read<StateM>();
 
 //--------------------------------------------------------------------
 //State Manajement lihat
-StateM read(BuildContext c) => c.watch<StateM>();
+StateM Watch(BuildContext c) => c.watch<StateM>();
 
 //--------------------------------------------------------------------
 // List untuk ganti gambar profile

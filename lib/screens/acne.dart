@@ -25,7 +25,7 @@ class Acne extends StatelessWidget {
       bottom: false,
       top: false,
       child: Scaffold(
-        backgroundColor: read(c).fixTheme ? Cw : C2,
+        backgroundColor: Watch(c).fixTheme ? Cw : C2,
         body: Stack(
           children: [
             Positioned(
@@ -34,15 +34,15 @@ class Acne extends StatelessWidget {
               right: -(900 / 5),
               child: Container(
                 height: 900,
-                decoration: BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
+                decoration: BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(1000)),
               ),
             ),
             SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(read(c).fixedLang == 'Indonesia' ? acneHead_id : acneHead_en, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
-                  Image.asset(height: size(c).height * .35, read(c).fixTheme ? imgAcneLight : imgAcneDark, fit: BoxFit.fitWidth),
+                  Text(Watch(c).fixedLang == 'Indonesia' ? acneHead_id : acneHead_en, style: TextStyle(color: Cw, fontSize: 40, fontWeight: bold)),
+                  Image.asset(height: size(c).height * .35, Watch(c).fixTheme ? imgAcneLight : imgAcneDark, fit: BoxFit.fitWidth),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -53,7 +53,7 @@ class Acne extends StatelessWidget {
                 ],
               ),
             ),
-            read(c).loadingToCC ? Loading() : Container()
+            Watch(c).loadingToCC ? Loading() : Container()
           ],
         ),
       ),
@@ -87,7 +87,7 @@ class Acne extends StatelessWidget {
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: read(c).fixTheme ? Cw : C2,
+                    color: Watch(c).fixTheme ? Cw : C2,
                     borderRadius: rounded(10),
                     image: DecorationImage(image: FileImage(File(_image!)), fit: BoxFit.cover),
                   ),
@@ -95,7 +95,7 @@ class Acne extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                read(c).fixedLang == 'Indonesia' ? "Gunakan gambar ini?" : "Use this Image?",
+                Watch(c).fixedLang == 'Indonesia' ? "Gunakan gambar ini?" : "Use this Image?",
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 25,
@@ -112,14 +112,14 @@ class Acne extends StatelessWidget {
               isSave = true;
               closeDialog(c, true);
             },
-            child: Text(read(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes'),
+            child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes'),
           ),
           TextButton(
             onPressed: () {
               isSave = false;
               closeDialog(c, false);
             },
-            child: Text(read(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No'),
+            child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No'),
           ),
         ],
       ),
@@ -134,10 +134,10 @@ class Acne extends StatelessWidget {
       width: size(c).width * .3,
       decoration: isGallery
           ? BoxDecoration(
-              border: Border.all(width: 3, color: read(c).fixTheme ? C1 : Cw.withOpacity(.5)),
+              border: Border.all(width: 3, color: Watch(c).fixTheme ? C1 : Cw.withOpacity(.5)),
               borderRadius: rounded(15),
             )
-          : BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
+          : BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(15)),
       child: TextButton(
         onPressed: () async {
           //ambil gambar
@@ -148,15 +148,15 @@ class Acne extends StatelessWidget {
             await Future.delayed(const Duration(milliseconds: 200));
 
             //ubah tampilan loading
-            create(c).setIsLoadingToCC();
+            Create(c).setIsLoadingToCC();
             await Future.delayed(const Duration(seconds: 2));
 
             //hilangkan tampilan loading
-            create(c).setIsLoadingToCC();
-            open(c, DetailScan(_image));
+            Create(c).setIsLoadingToCC();
+            open(c, DetailScan(_image!));
             _image = null;
             await Future.delayed(const Duration(milliseconds: 200));
-            create(c).setIndexNavBar(2);
+            Create(c).setIndexNavBar(2);
             isSave = false;
           }
         },
@@ -164,10 +164,10 @@ class Acne extends StatelessWidget {
         child: Icon(
           icon,
           color: isGallery
-              ? read(c).fixTheme
+              ? Watch(c).fixTheme
                   ? C1
                   : Cw.withOpacity(.5)
-              : read(c).fixTheme
+              : Watch(c).fixTheme
                   ? Cw
                   : Cw.withOpacity(.5),
           size: size(c).height * .05,

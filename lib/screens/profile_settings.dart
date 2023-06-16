@@ -24,9 +24,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C2,
+      backgroundColor: Watch(c).fixTheme ? Cw : C2,
       appBar: AppBar(
-        backgroundColor: read(c).fixTheme ? Cw : C3,
+        backgroundColor: Watch(c).fixTheme ? Cw : C3,
         elevation: 0,
         title: Image.asset('assets/attacne_logo2.png', fit: BoxFit.fitWidth, width: 150),
       ),
@@ -39,15 +39,15 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  read(c).fixedLang == 'Indonesia' ? head2Profile_id : head2Profile_en,
-                  style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
+                  Watch(c).fixedLang == 'Indonesia' ? head2Profile_id : head2Profile_en,
+                  style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 17, fontWeight: bold),
                 ),
                 const SizedBox(height: 10),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead1Profile_id : subHead1Profile_en, voidCallback: () => launchUrl1('https://www.youtube.com/watch?v=-TMbfwi7Bz0')),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead3Profile_id : subHead3Profile_en, voidCallback: () => open(c, ChangeLanguage())),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead4Profile_id : subHead4Profile_en, voidCallback: () => open(c, ChangeTheme())),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead5Profile_id : subHead5Profile_en, voidCallback: () => launchUrl1('https://github.com/Attacne')),
-                btnData_profile(c, read(c).fixedLang == 'Indonesia' ? subHead6Profile_id : subHead6Profile_en,
+                btnData_profile(c, Watch(c).fixedLang == 'Indonesia' ? subHead1Profile_id : subHead1Profile_en, voidCallback: () => launchUrl1('https://www.youtube.com/watch?v=-TMbfwi7Bz0')),
+                btnData_profile(c, Watch(c).fixedLang == 'Indonesia' ? subHead3Profile_id : subHead3Profile_en, voidCallback: () => open(c, ChangeLanguage())),
+                btnData_profile(c, Watch(c).fixedLang == 'Indonesia' ? subHead4Profile_id : subHead4Profile_en, voidCallback: () => open(c, ChangeTheme())),
+                btnData_profile(c, Watch(c).fixedLang == 'Indonesia' ? subHead5Profile_id : subHead5Profile_en, voidCallback: () => launchUrl1('https://github.com/Attacne')),
+                btnData_profile(c, Watch(c).fixedLang == 'Indonesia' ? subHead6Profile_id : subHead6Profile_en,
                     voidCallback: () => launchUrl1('https://play.google.com/store/apps/details?id=com.github.android')),
               ],
             ),

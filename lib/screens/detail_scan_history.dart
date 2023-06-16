@@ -19,7 +19,7 @@ class DetailScanHistory extends StatelessWidget {
   @override
   Widget build(BuildContext c) {
     return Scaffold(
-      backgroundColor: read(c).fixTheme ? Cw : C3,
+      backgroundColor: Watch(c).fixTheme ? Cw : C3,
       body: SafeArea(
         top: false,
         child: ScrollConfiguration(
@@ -29,25 +29,25 @@ class DetailScanHistory extends StatelessWidget {
               SliverAppBar(
                 elevation: 5,
                 pinned: true,
-                backgroundColor: read(c).fixTheme ? C1 : C3,
+                backgroundColor: Watch(c).fixTheme ? C1 : C3,
                 expandedHeight: size(c).width,
-                title: Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
+                title: Text(Watch(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                 flexibleSpace: FlexibleSpaceBar(
                   background: listModel.image != null
                       ? Container(
                           decoration: BoxDecoration(
-                            color: read(c).fixTheme ? Cw : C2,
+                            color: Watch(c).fixTheme ? Cw : C2,
                             image: DecorationImage(image: FileImage(File(listModel.image!)), fit: BoxFit.cover),
                           ),
                         )
-                      : Container(color: read(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
+                      : Container(color: Watch(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
                 ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
                     return Container(
-                      decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
+                      decoration: BoxDecoration(color: Watch(c).fixTheme ? Cw : C2),
                       child: Column(
                         children: [
                           Container(
@@ -63,7 +63,7 @@ class DetailScanHistory extends StatelessWidget {
                                 Text(
                                   listModel.desc!,
                                   style: TextStyle(
-                                    color: read(c).fixTheme ? Cb : Cw,
+                                    color: Watch(c).fixTheme ? Cb : Cw,
                                     fontSize: 17,
                                   ),
                                   textAlign: TextAlign.justify,

@@ -39,8 +39,8 @@ class NavBarAppState extends State<NavBarApp> {
   }
 
   loadValue() async {
-    create(context).setFixedLang(await SharedP.getLang('lang'));
-    create(context).setFixedTheme(context, await SharedP.getTheme('theme'));
+    Create(context).setFixedLang(await SharedP.getLang('lang'));
+    Create(context).setFixedTheme(context, await SharedP.getTheme('theme'));
   }
 
   @override
@@ -48,19 +48,19 @@ class NavBarAppState extends State<NavBarApp> {
     return WillPopScope(
       onWillPop: () async => await showMyDialogExit(c, 'Exit this app?'),
       child: Scaffold(
-        body: destPage[read(c).indexNavBar],
+        body: destPage[Watch(c).indexNavBar],
         extendBody: true,
-        bottomNavigationBar: read(c).loadingToCC
+        bottomNavigationBar: Watch(c).loadingToCC
             ? Container(
                 margin: EdgeInsets.only(top: size(c).width * .0, bottom: size(c).width * .03),
                 height: 55,
-                color: read(c).fixTheme ? Cw : C2,
+                color: Watch(c).fixTheme ? Cw : C2,
               )
             : Container(
                 margin: EdgeInsets.fromLTRB(size(c).width * .05, size(c).width * .0, size(c).width * .05, size(c).width * .03),
                 height: 55,
                 decoration: BoxDecoration(
-                  color: read(c).fixTheme ? Cw : C3,
+                  color: Watch(c).fixTheme ? Cw : C3,
                   boxShadow: [
                     BoxShadow(color: Cb.withOpacity(.3), blurRadius: 20, offset: Offset(0, 5)),
                   ],
@@ -72,7 +72,7 @@ class NavBarAppState extends State<NavBarApp> {
                   padding: EdgeInsets.symmetric(horizontal: size(c).width * .02),
                   itemBuilder: (c, index) => InkWell(
                     onTap: () => setState(() {
-                      create(c).setIndexNavBar(index); //currentIndex = index;
+                      Create(c).setIndexNavBar(index); //currentIndex = index;
                       HapticFeedback.lightImpact();
                     }),
                     splashColor: Colors.transparent,
@@ -82,15 +82,15 @@ class NavBarAppState extends State<NavBarApp> {
                         AnimatedContainer(
                           duration: Duration(seconds: 1),
                           curve: Curves.fastLinearToSlowEaseIn,
-                          width: index == read(c).indexNavBar ? size(c).width * .32 : size(c).width * .18,
+                          width: index == Watch(c).indexNavBar ? size(c).width * .32 : size(c).width * .18,
                           alignment: Alignment.center,
                           child: AnimatedContainer(
                             duration: Duration(seconds: 1),
                             curve: Curves.fastLinearToSlowEaseIn,
-                            height: index == read(c).indexNavBar ? 40 : 0,
-                            width: index == read(c).indexNavBar ? size(c).width * .32 : 0,
+                            height: index == Watch(c).indexNavBar ? 40 : 0,
+                            width: index == Watch(c).indexNavBar ? size(c).width * .32 : 0,
                             decoration: BoxDecoration(
-                              color: index == read(c).indexNavBar ? C1.withOpacity(.2) : Colors.transparent,
+                              color: index == Watch(c).indexNavBar ? C1.withOpacity(.2) : Colors.transparent,
                               borderRadius: rounded(50),
                             ),
                           ),
@@ -98,7 +98,7 @@ class NavBarAppState extends State<NavBarApp> {
                         AnimatedContainer(
                           duration: Duration(seconds: 1),
                           curve: Curves.fastLinearToSlowEaseIn,
-                          width: index == read(c).indexNavBar ? size(c).width * .30 : size(c).width * .18,
+                          width: index == Watch(c).indexNavBar ? size(c).width * .30 : size(c).width * .18,
                           alignment: Alignment.center,
                           child: Stack(
                             children: [
@@ -107,14 +107,14 @@ class NavBarAppState extends State<NavBarApp> {
                                   AnimatedContainer(
                                     duration: Duration(seconds: 1),
                                     curve: Curves.fastLinearToSlowEaseIn,
-                                    width: index == read(c).indexNavBar ? size(c).width * .13 : 0,
+                                    width: index == Watch(c).indexNavBar ? size(c).width * .13 : 0,
                                   ),
                                   AnimatedOpacity(
-                                    opacity: index == read(c).indexNavBar ? 1 : 0,
+                                    opacity: index == Watch(c).indexNavBar ? 1 : 0,
                                     duration: Duration(seconds: 1),
                                     curve: Curves.fastLinearToSlowEaseIn,
                                     child: Text(
-                                      index == read(c).indexNavBar ? '${titleNavBar[index]}' : '',
+                                      index == Watch(c).indexNavBar ? '${titleNavBar[index]}' : '',
                                       style: TextStyle(color: C1, fontWeight: FontWeight.w600, fontSize: 15),
                                     ),
                                   ),
@@ -125,14 +125,14 @@ class NavBarAppState extends State<NavBarApp> {
                                   AnimatedContainer(
                                     duration: Duration(seconds: 1),
                                     curve: Curves.fastLinearToSlowEaseIn,
-                                    width: index == read(c).indexNavBar ? size(c).width * .03 : 20,
+                                    width: index == Watch(c).indexNavBar ? size(c).width * .03 : 20,
                                   ),
                                   Icon(
                                     icon[index],
                                     size: 30,
-                                    color: index == read(c).indexNavBar
+                                    color: index == Watch(c).indexNavBar
                                         ? C1
-                                        : read(c).fixTheme
+                                        : Watch(c).fixTheme
                                             ? Cb.withOpacity(.5)
                                             : Cw.withOpacity(.5),
                                   ),

@@ -29,8 +29,8 @@ Future showMyDialogExit(BuildContext c, String info) {
           ),
           textAlign: TextAlign.center),
       actions: [
-        TextButton(onPressed: () => closeDialog(c, true), child: Text(read(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes')),
-        TextButton(onPressed: () => closeDialog(c, false), child: Text(read(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
+        TextButton(onPressed: () => closeDialog(c, true), child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Ya' : 'Yes')),
+        TextButton(onPressed: () => closeDialog(c, false), child: Text(Watch(c).fixedLang == 'Indonesia' ? 'Tidak' : 'No')),
       ],
     ),
   );

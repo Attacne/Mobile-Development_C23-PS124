@@ -39,8 +39,8 @@ class _CardExtendedState extends State<CardExtended> {
                   ? 340
                   : 380,
           width: isExpanded1 ? 385 : 390,
-          decoration: read(c).fixTheme
-              ? BoxDecoration(gradient: read(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(20))
+          decoration: Watch(c).fixTheme
+              ? BoxDecoration(gradient: Watch(c).fixTheme ? gradientLight : gradientDark, borderRadius: rounded(20))
               : BoxDecoration(
                   color: C3,
                   borderRadius: rounded(20),

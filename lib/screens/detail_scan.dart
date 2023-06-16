@@ -4,16 +4,18 @@ import 'dart:math';
 import 'package:attacne/services/variabels.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../databases/database_instance.dart';
+import 'package:path/path.dart';
 import '../services/colors.dart';
 import '../services/strings_en.dart';
 import '../services/strings_id.dart';
 import '../widgets/loading.dart';
 import '../widgets/widgets.dart';
 import 'nav_bar.dart';
+import 'package:http/http.dart' as http;
+import 'package:async/async.dart';
 
 class DetailScan extends StatefulWidget {
-  String? image;
+  String image;
 
   DetailScan(this.image);
 
@@ -29,6 +31,29 @@ class _DetailScanState extends State<DetailScan> {
     super.initState();
     db.database();
     setState(() {});
+  }
+
+  Future upload(File imageFile) async {
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    var length = await imageFile.length();
+    var uri = Uri.parse("http://10.0.2.2/my_store/upload.php");
+
+    var request = http.MultipartRequest("POST", uri);
+
+    var multipartFile = http.MultipartFile("image", stream, length, filename: basename(imageFile.path));
+    // request.fields['title'] = "cTitle.text";
+    request.files.add(multipartFile);
+
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      print("Image Uploaded");
+    } else {
+      print("Upload Failed");
+    }
+    /*response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });*/
   }
 
   @override
@@ -47,11 +72,12 @@ class _DetailScanState extends State<DetailScan> {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(vertical: 15),
+            padding: const EdgeInsets.symmetric(vertical: 15),
             backgroundColor: C1,
             shape: RoundedRectangleBorder(borderRadius: rounded(10)),
           ),
           onPressed: () async {
+            upload(File(widget.image));
             await db.insert({
               'image': widget.image,
               'title': title,
@@ -59,13 +85,13 @@ class _DetailScanState extends State<DetailScan> {
               'date': 'Date: ${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}, '
                   'at ${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second} ${DateTime.now().timeZoneName}',
             });
-            create(c).setIsLoadingToDB(); //ubah tampilan loading
-            await Future.delayed(Duration(seconds: 1));
-            create(c).setIsLoadingToDB(); //hilangkan tampilan loading
-            await Future.delayed(Duration(milliseconds: 500));
-            Navigator.pop(context, true);
+            Create(c).setIsLoadingToDB(); //ubah tampilan loading
+            await Future.delayed(const Duration(seconds: 1));
+            Create(c).setIsLoadingToDB(); //hilangkan tampilan loading
+            await Future.delayed(const Duration(milliseconds: 500));
+            Navigator.pop(c, true);
           },
-          child: Text(read(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, style: TextStyle(fontSize: 20)),
+          child: Text(Watch(c).fixedLang == 'Indonesia' ? saveDetailScan_id : saveDetailScan_en, style: const TextStyle(fontSize: 20)),
         ),
       );
     }
@@ -82,27 +108,27 @@ class _DetailScanState extends State<DetailScan> {
                   SliverAppBar(
                     elevation: 5,
                     pinned: true,
-                    backgroundColor: read(c).fixTheme ? C1 : C3,
+                    backgroundColor: Watch(c).fixTheme ? C1 : C3,
                     expandedHeight: size(c).width,
                     title:
                         // Text('${widget.image}', style: TextStyle(color: Colors.black)),
-                        Text(read(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
+                        Text(Watch(c).fixedLang == 'Indonesia' ? detailScanHead_id : detailScanHead_en),
                     flexibleSpace: FlexibleSpaceBar(
                       background: widget.image != null
                           ? Container(
                               decoration: BoxDecoration(
-                                color: read(c).fixTheme ? Cw : C2,
-                                image: DecorationImage(image: FileImage(File(widget.image!)), fit: BoxFit.cover),
+                                color: Watch(c).fixTheme ? Cw : C2,
+                                image: DecorationImage(image: FileImage(File(widget.image)), fit: BoxFit.cover),
                               ),
                             )
-                          : Container(color: read(c).fixTheme ? C1 : C2, child: Center(child: CircularProgressIndicator())),
+                          : Container(color: Watch(c).fixTheme ? C1 : C2, child: const Center(child: CircularProgressIndicator())),
                     ),
                   ),
                   SliverList(
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext c, int index) {
                         return Container(
-                          decoration: BoxDecoration(color: read(c).fixTheme ? Cw : C2),
+                          decoration: BoxDecoration(color: Watch(c).fixTheme ? Cw : C2),
                           child: Column(
                             children: [
                               Container(
@@ -112,7 +138,7 @@ class _DetailScanState extends State<DetailScan> {
                                   children: [
                                     Container(height: 10, width: 10),
                                     Text(title, style: TextStyle(color: C1, fontSize: 30, fontWeight: bold)),
-                                    Text(desc, style: TextStyle(color: read(c).fixTheme ? Cb : Cw, fontSize: 17), textAlign: TextAlign.justify),
+                                    Text(desc, style: TextStyle(color: Watch(c).fixTheme ? Cb : Cw, fontSize: 17), textAlign: TextAlign.justify),
                                     Container(height: 100),
                                   ],
                                 ),
@@ -127,11 +153,11 @@ class _DetailScanState extends State<DetailScan> {
                 ],
               ),
             ),
-            read(c).loadingToDB ? Loading() : Container()
+            Watch(c).loadingToDB ? Loading() : Container()
           ],
         ),
       ),
-      bottomNavigationBar: read(c).loadingToDB ? null : btnSave(save: true),
+      bottomNavigationBar: Watch(c).loadingToDB ? null : btnSave(save: true),
     );
   }
 }
